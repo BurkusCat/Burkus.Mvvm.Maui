@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="Register"
+    x:DataType="vm:RegisterViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:RegisterViewModel}">
+    <ScrollView>
+        <Grid
+            Margin="15"
+            MaximumWidthRequest="600"
+            RowDefinitions="*,Auto,*"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Register"
+                VerticalOptions="CenterAndExpand" />
+            <Label
+                Grid.Row="1"
+                Text="You don't actually need to register. You can just make up any username and password to login! This is just a demo page for relative navigation." />
+            <Button
+                Grid.Row="2"
+                Margin="0,20,0,0"
+                Command="{Binding GoBackCommand}"
+                MaximumWidthRequest="300"
+                Text="Go Back"
+                VerticalOptions="Start" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

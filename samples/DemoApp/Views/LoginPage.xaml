@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="Login"
+    x:DataType="vm:LoginViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:LoginViewModel}">
+    <ScrollView>
+        <Grid
+            Margin="15"
+            MaximumWidthRequest="600"
+            RowDefinitions="*,Auto,Auto,Auto,Auto,*"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Burkus.Mvvm.Maui Demo App"
+                VerticalOptions="CenterAndExpand" />
+            <Label
+                Grid.Row="1"
+                Text="Enter any data to login to this demo app." />
+            <Entry
+                Grid.Row="2"
+                Placeholder="username"
+                ReturnType="Next"
+                Text="{Binding Username}" />
+            <Entry
+                Grid.Row="3"
+                IsPassword="True"
+                Placeholder="password"
+                ReturnCommand="{Binding LoginCommand}"
+                ReturnType="Done"
+                Text="{Binding Password}" />
+            <Button
+                Grid.Row="4"
+                Margin="0,20,0,0"
+                Command="{Binding LoginCommand}"
+                MaximumWidthRequest="300"
+                Text="Login"
+                VerticalOptions="Start" />
+            <Label
+                Grid.Row="5"
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="Don't have an account yet? Register here."
+                TextColor="{DynamicResource Blue100Accent}"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </ScrollView>
+</ContentPage>
