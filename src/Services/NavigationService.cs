@@ -104,7 +104,17 @@ internal class NavigationService : INavigationService
             var navigation = Application.Current.MainPage.Navigation;
             var pageToNavigateTo = ServiceResolver.Resolve<T>();
 
-            navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack.Last());
+            if (navigation.NavigationStack.Count > 0)
+            {
+                // insert page as the new root page
+                navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack.Last());
+            }
+            else
+            {
+                // the stack was already empty
+                await navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+            }
+
             await navigation.PopToRootAsync(navigationParameters.UseAnimatedNavigation);
         },
         navigationParameters);
