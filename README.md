@@ -146,6 +146,35 @@ Untyped service resolution:
 ServiceResolver.Resolve(IExampleService);
 ```
 
+## Navigation service
+`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more.
+
+This is a simple navigation example where we push a "`TestPage`" onto the navigation stack:
+``` csharp
+await navigationService.Push<TestPage>();
+```
+
+Almost all the methods offer an overload where you can pass `NavigationParameters navigationParameters`. These parameters can be received by the page you are navigating to by using the [Burkus MVVM lifecycle events](#lifecycle-events-and-passing-parameters) in your viewmodel.
+
+Here is an example where we set three parameters in three different ways and pass them to the next page:
+``` csharp
+var navigationParameters = new NavigationParameters
+{
+    // 1. on NavigationParameters object creation, set as many keys as you wish
+    { "username", Username },
+};
+
+// 2. append an additional custom parameter
+navigationParameters.Add("selection", Selection);
+
+// 3. reserved parameter with a special meaning in the Burkus MVVM library, it has a helper method to make setting it easier
+navigationParameters.UseModalNavigation = true;
+
+await navigationService.Push<TestPage>(navigationParameters);
+```
+
+See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
+
 ## Choosing the start page of your app
 It is possible to have a service that decides which page is most appropriate to navigate to. This service could decide to:
   - Navigate to the "Terms & Conditions" page if the user has not agreed to the latest terms yet
