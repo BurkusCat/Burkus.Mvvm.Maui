@@ -135,4 +135,33 @@ internal class NavigationService : INavigationService
             await navigatedToViewModel.OnNavigatedTo(navigationParameters);
         }
     }
+
+    public async Task SelectTab<T>() where T : Page
+    {
+        var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
+
+        if (tabbedPage == null)
+        {
+            // todo: warn about this in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            return;
+        }
+
+        foreach (var child in tabbedPage.Children)
+        {
+            if (child.GetType() == typeof(T))
+            {
+                tabbedPage.CurrentPage = child;
+                return;
+            }
+
+            if (child is NavigationPage)
+            {
+                if (((NavigationPage)child).CurrentPage.GetType() == typeof(T))
+                {
+                    tabbedPage.CurrentPage = child;
+                    return;
+                }
+            }
+        }
+    }
 }

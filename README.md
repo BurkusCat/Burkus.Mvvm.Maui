@@ -260,5 +260,9 @@ The below are some things of note that may help prevent issues from arising:
 # Contributing 💁‍♀️
 Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING.MD) to get started.
 
+[![NuGet release](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/release-nuget.yml/badge.svg)](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/release-nuget.yml)
+[![Build for CI](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/ci.yml/badge.svg)](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/ci.yml)
+[![Build Demo App for CI](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/ci-demo-app.yml/badge.svg)](https://github.com/BurkusCat/Burkus.Mvvm.Maui/actions/workflows/ci-demo-app.yml)
+
 # License 🪪
 The project is distributed under the [MIT license](LICENSE). Contributors do not need to sign a CLA.

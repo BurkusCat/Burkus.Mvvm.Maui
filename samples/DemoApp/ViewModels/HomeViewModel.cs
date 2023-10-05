@@ -66,5 +66,14 @@ public partial class HomeViewModel : BaseViewModel
         await navigationService.Push<ChangeUsernamePage>(navigationParameters);
     }
 
+    /// <summary>
+    /// Navigate to the example tabbed page.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToTabbedPageDemo()
+    {
+        await navigationService.Push<DemoTabsPage>();
+    }
+
     #endregion Commands
 }

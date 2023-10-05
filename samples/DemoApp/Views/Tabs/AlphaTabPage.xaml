@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.AlphaTabPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="Alpha"
+    x:DataType="vm:DemoTabsViewModel">
+    <ScrollView>
+        <Grid
+            Margin="15"
+            MaximumWidthRequest="600"
+            RowDefinitions="*,Auto,Auto,*"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Alpha"
+                VerticalOptions="CenterAndExpand" />
+            <Button
+                Grid.Row="1"
+                Margin="0,20,0,0"
+                Command="{Binding SwitchToBetaTabPageCommand}"
+                MaximumWidthRequest="300"
+                Text="Switch to Beta"
+                VerticalOptions="Start" />
+            <Button
+                Grid.Row="2"
+                Margin="0,20,0,0"
+                Command="{Binding SwitchToCharlieTabPageCommand}"
+                MaximumWidthRequest="300"
+                Text="Switch to Charlie"
+                VerticalOptions="Start" />
+            <Button
+                Grid.Row="3"
+                Margin="0,20,0,0"
+                Command="{Binding GoBackCommand}"
+                MaximumWidthRequest="300"
+                Text="Go Back"
+                VerticalOptions="Start" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

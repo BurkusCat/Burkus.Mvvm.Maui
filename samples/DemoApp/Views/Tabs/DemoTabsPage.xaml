@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="DemoApp.Views.DemoTabsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:views="clr-namespace:DemoApp.Views;assembly=DemoApp"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="Tabbed Page"
+    x:DataType="vm:DemoTabsViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:DemoTabsViewModel}">
+    <views:AlphaTabPage Title="Alpha" />
+    <views:BetaTabPage Title="Beta" />
+    <views:CharlieTabPage Title="Charlie" />
+</TabbedPage>

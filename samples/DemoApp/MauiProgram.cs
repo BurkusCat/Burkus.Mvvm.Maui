@@ -39,6 +39,7 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<ChangeUsernameViewModel>();
+        mauiAppBuilder.Services.AddTransient<DemoTabsViewModel>();
         mauiAppBuilder.Services.AddTransient<HomeViewModel>();
         mauiAppBuilder.Services.AddTransient<LoginViewModel>();
         mauiAppBuilder.Services.AddTransient<RegisterViewModel>();
@@ -49,6 +50,7 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<ChangeUsernamePage>();
+        mauiAppBuilder.Services.AddTransient<DemoTabsPage>();
         mauiAppBuilder.Services.AddTransient<HomePage>();
         mauiAppBuilder.Services.AddTransient<LoginPage>();
         mauiAppBuilder.Services.AddTransient<RegisterPage>();

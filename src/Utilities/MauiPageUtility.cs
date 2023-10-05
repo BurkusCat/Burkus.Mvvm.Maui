@@ -2,7 +2,7 @@
 
 internal static class MauiPageUtility
 {
-    internal static object GetTopPageBindingContext()
+    internal static Page GetTopPage()
     {
         var navigationStack = Application.Current.MainPage?.Navigation.NavigationStack;
 
@@ -11,15 +11,20 @@ internal static class MauiPageUtility
         if (modalStack != null && modalStack.Any())
         {
             // return a modal as the modals are on top
-            return modalStack.Last()?.BindingContext;
+            return modalStack.Last();
         }
 
         if (navigationStack != null && navigationStack.Any())
         {
 
-            return navigationStack.Last()?.BindingContext;
+            return navigationStack.Last();
         }
 
         return null;
+    }
+
+    internal static object GetTopPageBindingContext()
+    {
+        return GetTopPage()?.BindingContext;
     }
 }

@@ -31,6 +31,7 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<DebugType>portable</DebugType>
 		<PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,5 +56,6 @@
 	<!-- Package additions -->
 	<ItemGroup>
 		<None Include="..\art\MvvmVertical.png" PackagePath="icon.png" Pack="true" />
+		<None Include="..\README.md" PackagePath="README.md" Pack="true" />
 	</ItemGroup>
 </Project>

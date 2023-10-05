@@ -12,7 +12,7 @@
         <Grid
             Margin="15"
             MaximumWidthRequest="600"
-            RowDefinitions="*,Auto,Auto,Auto,*"
+            RowDefinitions="*,Auto,Auto,Auto,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
@@ -37,6 +37,13 @@
                 Command="{Binding ChangeUsernameWithoutAnimationCommand}"
                 MaximumWidthRequest="400"
                 Text="Change Username (no animation)"
+                VerticalOptions="Start" />
+            <Button
+                Grid.Row="4"
+                Margin="0,20,0,0"
+                Command="{Binding GoToTabbedPageDemoCommand}"
+                MaximumWidthRequest="400"
+                Text="Tabbed Page demo"
                 VerticalOptions="Start" />
         </Grid>
     </ScrollView>
