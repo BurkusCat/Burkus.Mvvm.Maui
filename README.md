@@ -20,7 +20,7 @@
 **⚠️ WARNING**: `Burkus.Mvvm.Maui` is currently an experimental library. The API will change frequently and there will be frequent backwards compatibility breaking changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until a well-liked, stable API has been found. Only then would a version "1.y.z" and beyond be released.
 
 # Documentation 📗
-See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs.
+See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs. The [test project](/tests/DemoApp.UnitTests/) for the demo app demonstrates how you can write tests with code that calls this library.
 
 ## Getting started
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
