@@ -2,10 +2,6 @@
 
 internal class NavigationService : INavigationService
 {
-    public NavigationService()
-    {
-    }
-
     public async Task Push<T>() where T : Page
     {
         var parameters = new NavigationParameters();
