@@ -1,24 +1,37 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DemoApp.Abstractions;
+using DemoApp.Services;
 using DemoApp.Views;
 
 namespace DemoApp.ViewModels;
 
 public partial class HomeViewModel : BaseViewModel
 {
+    #region Fields
+
+    protected IWeatherService weatherService { get; }
+
+    #endregion Fields
+
     #region Properties
 
     [ObservableProperty]
     private string username;
+
+    [ObservableProperty]
+    private string currentWeatherDescription;
 
     #endregion Properties
 
     #region Constructors
 
     public HomeViewModel(
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IWeatherService weatherService)
         : base(navigationService)
     {
+        this.weatherService = weatherService;
     }
 
     #endregion Constructors
@@ -35,6 +48,8 @@ public partial class HomeViewModel : BaseViewModel
         {
             Username = usernameValue;
         }
+
+        CurrentWeatherDescription = weatherService.GetWeatherDescription();
     }
 
     #endregion Lifecycle events

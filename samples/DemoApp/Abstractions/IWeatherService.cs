@@ -2,4 +2,5 @@
 
 public interface IWeatherService
 {
+    string GetWeatherDescription();
 }

@@ -20,26 +20,32 @@
                 FontSize="20"
                 HorizontalOptions="CenterAndExpand"
                 Text="{Binding Username, StringFormat='Welcome {0}'}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalOptions="EndAndExpand" />
             <Label
                 Grid.Row="1"
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding CurrentWeatherDescription}" />
+            <Label
+                Grid.Row="2"
+                Margin="0,20,0,0"
                 Text="Modal navigation:" />
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithAnimationCommand}"
                 MaximumWidthRequest="400"
                 Text="Change Username (animated)"
                 VerticalOptions="Start" />
             <Button
-                Grid.Row="3"
+                Grid.Row="4"
                 Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithoutAnimationCommand}"
                 MaximumWidthRequest="400"
                 Text="Change Username (no animation)"
                 VerticalOptions="Start" />
             <Button
-                Grid.Row="4"
+                Grid.Row="5"
                 Margin="0,20,0,0"
                 Command="{Binding GoToTabbedPageDemoCommand}"
                 MaximumWidthRequest="400"
