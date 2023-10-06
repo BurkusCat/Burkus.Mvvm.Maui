@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "src\Bur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui.UnitTests", "tests\Burkus.Mvvm.Maui.UnitTests\Burkus.Mvvm.Maui.UnitTests.csproj", "{9E4BA358-5402-487E-B412-4864B3371BB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.UnitTests", "tests\DemoApp.UnitTests\DemoApp.UnitTests.csproj", "{F209686B-FF98-430D-8C97-85CDEB503DFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
