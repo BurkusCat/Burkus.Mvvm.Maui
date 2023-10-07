@@ -1,7 +1,9 @@
-﻿namespace Burkus.Mvvm.Maui;
+namespace Burkus.Mvvm.Maui;
 
 internal class NavigationService : INavigationService
 {
+    #region Core navigation methods
+
     public async Task Push<T>() where T : Page
     {
         var parameters = new NavigationParameters();
@@ -63,6 +65,10 @@ internal class NavigationService : INavigationService
             navigationParameters);
     }
 
+    #endregion Core navigation methods
+
+    #region Advanced navigation methods
+
     public async Task ReplaceTopPage<T>()
         where T : Page
     {
@@ -115,6 +121,10 @@ internal class NavigationService : INavigationService
             navigationParameters);
     }
 
+    #endregion Advanced navigation methods
+
+    #region Internal implementation
+
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)
         where T : Page
     {
@@ -143,7 +153,11 @@ internal class NavigationService : INavigationService
         }
     }
 
-    public async Task SelectTab<T>() where T : Page
+    #endregion Internal implementation
+
+    #region Tab navigation methods
+
+    public void SelectTab<T>() where T : Page
     {
         var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
 
@@ -171,4 +185,6 @@ internal class NavigationService : INavigationService
             }
         }
     }
+
+    #endregion Tab navigation methods
 }
