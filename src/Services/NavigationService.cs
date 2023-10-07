@@ -1,10 +1,8 @@
-﻿namespace Burkus.Mvvm.Maui;
+namespace Burkus.Mvvm.Maui;
 
 internal class NavigationService : INavigationService
 {
-    public NavigationService()
-    {
-    }
+    #region Core navigation methods
 
     public async Task Push<T>() where T : Page
     {
@@ -67,6 +65,10 @@ internal class NavigationService : INavigationService
             navigationParameters);
     }
 
+    #endregion Core navigation methods
+
+    #region Advanced navigation methods
+
     public async Task ReplaceTopPage<T>()
         where T : Page
     {
@@ -79,7 +81,6 @@ internal class NavigationService : INavigationService
     {
         await HandleNavigation<Page>(async () =>
             {
-
                 var navigation = Application.Current.MainPage.Navigation;
                 var pageToNavigateTo = ServiceResolver.Resolve<T>();
 
@@ -100,31 +101,36 @@ internal class NavigationService : INavigationService
         where T : Page
     {
         await HandleNavigation<Page>(async () =>
-        {
-            var navigation = Application.Current.MainPage.Navigation;
-            var pageToNavigateTo = ServiceResolver.Resolve<T>();
-
-            if (navigation.NavigationStack.Count > 0)
             {
-                // insert page as the new root page
-                navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack.Last());
-            }
-            else
-            {
-                // the stack was already empty
-                await navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
-            }
+                var navigation = Application.Current.MainPage.Navigation;
+                var pageToNavigateTo = ServiceResolver.Resolve<T>();
 
-            await navigation.PopToRootAsync(navigationParameters.UseAnimatedNavigation);
-        },
-        navigationParameters);
+                if (navigation.NavigationStack.Count > 0)
+                {
+                    // insert page as the new root page
+                    navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack.Last());
+                }
+                else
+                {
+                    // the stack was already empty
+                    await navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                }
+
+                await navigation.PopToRootAsync(navigationParameters.UseAnimatedNavigation);
+            },
+            navigationParameters);
     }
+
+    #endregion Advanced navigation methods
+
+    #region Internal implementation
 
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)
         where T : Page
     {
-        var navigatingFromViewModel = MauiPageUtility.GetTopPageBindingContext() as INavigatingEvents;
-        var navigatedFromViewModel = MauiPageUtility.GetTopPageBindingContext() as INavigatedEvents;
+        var fromBindingContext = MauiPageUtility.GetTopPageBindingContext();
+        var navigatingFromViewModel = fromBindingContext as INavigatingEvents;
+        var navigatedFromViewModel = fromBindingContext as INavigatedEvents;
 
         if (navigatingFromViewModel != null)
         {
@@ -138,7 +144,8 @@ internal class NavigationService : INavigationService
             await navigatedFromViewModel.OnNavigatedFrom(navigationParameters);
         }
 
-        var navigatedToViewModel = MauiPageUtility.GetTopPageBindingContext() as INavigatedEvents;
+        var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
+        var navigatedToViewModel = toBindingContext as INavigatedEvents;
 
         if (navigatedToViewModel != null)
         {
@@ -146,7 +153,11 @@ internal class NavigationService : INavigationService
         }
     }
 
-    public async Task SelectTab<T>() where T : Page
+    #endregion Internal implementation
+
+    #region Tab navigation methods
+
+    public void SelectTab<T>() where T : Page
     {
         var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
 
@@ -174,4 +185,6 @@ internal class NavigationService : INavigationService
             }
         }
     }
+
+    #endregion Tab navigation methods
 }

@@ -53,6 +53,7 @@ public partial class LoginViewModel : BaseViewModel
             { "username", Username },
         };
 
+        // after we login, we replace the stack so the user can't go back to the Login page
         await navigationService.ResetStackAndPush<HomePage>(navigationParameters);
     }
 

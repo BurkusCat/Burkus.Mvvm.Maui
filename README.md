@@ -20,7 +20,7 @@
 **⚠️ WARNING**: `Burkus.Mvvm.Maui` is currently an experimental library. The API will change frequently and there will be frequent backwards compatibility breaking changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until a well-liked, stable API has been found. Only then would a version "1.y.z" and beyond be released.
 
 # Documentation 📗
-See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs.
+See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs. The [test project](/tests/DemoApp.UnitTests/) for the demo app demonstrates how you can write tests with code that calls this library.
 
 ## Getting started
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
@@ -145,6 +145,35 @@ Untyped service resolution:
 ``` csharp
 ServiceResolver.Resolve(IExampleService);
 ```
+
+## Navigation service
+`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more.
+
+This is a simple navigation example where we push a "`TestPage`" onto the navigation stack:
+``` csharp
+await navigationService.Push<TestPage>();
+```
+
+Almost all the methods offer an overload where you can pass `NavigationParameters navigationParameters`. These parameters can be received by the page you are navigating to by using the [Burkus MVVM lifecycle events](#lifecycle-events-and-passing-parameters) in your viewmodel.
+
+Here is an example where we set three parameters in three different ways and pass them to the next page:
+``` csharp
+var navigationParameters = new NavigationParameters
+{
+    // 1. on NavigationParameters object creation, set as many keys as you wish
+    { "username", Username },
+};
+
+// 2. append an additional custom parameter
+navigationParameters.Add("selection", Selection);
+
+// 3. reserved parameter with a special meaning in the Burkus MVVM library, it has a helper method to make setting it easier
+navigationParameters.UseModalNavigation = true;
+
+await navigationService.Push<TestPage>(navigationParameters);
+```
+
+See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
 
 ## Choosing the start page of your app
 It is possible to have a service that decides which page is most appropriate to navigate to. This service could decide to:

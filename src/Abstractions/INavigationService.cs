@@ -83,7 +83,6 @@ public interface INavigationService
     /// When within a <see cref="TabbedPage"/>, use this method to select a tab.
     /// </summary>
     /// <typeparam name="T">Type of Page</typeparam>
-    /// <returns>A completed task</returns>
-    Task SelectTab<T>()
+    void SelectTab<T>()
         where T : Page;
 }
