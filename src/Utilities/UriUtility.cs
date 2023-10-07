@@ -4,7 +4,7 @@ namespace Burkus.Mvvm.Maui;
 
 internal static class UriUtility
 {
-    internal static List<string> GetUriSegments(string uri)
+    internal static IEnumerable<string> GetUriSegments(string uri)
     {
         if (string.IsNullOrEmpty(uri))
         {
@@ -13,8 +13,7 @@ internal static class UriUtility
 
         // split the URI by '/' and remove empty segments
         var segments = uri.Split('/')
-            .Where(s => !string.IsNullOrWhiteSpace(s))
-            .ToList();
+            .Where(s => !string.IsNullOrWhiteSpace(s));
 
         if (!segments.Any())
         {

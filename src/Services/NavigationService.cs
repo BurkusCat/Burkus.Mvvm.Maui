@@ -130,31 +130,31 @@ internal class NavigationService : INavigationService
     public async Task Navigate(string uri)
     {
         var segments = UriUtility.GetUriSegments(uri);
+        var instructions = segments.Select(UriUtility.ParseUriSegment)
+            .ToList();
 
-        for (int i = 0; i < segments.Count(); i++)
+        for (int i = 0; i < instructions.Count(); i++)
         {
-            var (pageType, queryParameters) = UriUtility.ParseUriSegment(segments[i]);
-
-            if (i == segments.Count - 1)
+            if (i == instructions.Count() - 1)
             {
                 // don't use animated navigation for the first set of pages
-                queryParameters.UseAnimatedNavigation = false;
+                instructions[i].QueryParameters.UseAnimatedNavigation = false;
             }
 
             if (i == 0 && UriUtility.IsUriAbsolute(uri))
             {
                 // reset stack and push for the first navigation
-                await ResetStackAndPushWithType(pageType, queryParameters);
+                await ResetStackAndPushWithType(instructions[i].PageType, instructions[i].QueryParameters);
             }
-            else if (pageType == typeof(GoBackUriSegment))
+            else if (instructions[i].PageType == typeof(GoBackUriSegment))
             {
                 // go back
-                await Pop(queryParameters);
+                await Pop(instructions[i].QueryParameters);
             }
             else
             {
                 // standard relative push onto the stack
-                await PushWithType(pageType, queryParameters);
+                await PushWithType(instructions[i].PageType, instructions[i].QueryParameters);
             }
         }
 
