@@ -128,6 +128,9 @@ internal class NavigationService : INavigationService
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
         // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
+        // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
+        // todo: need to consider what query parameter should and shouldn't be.
+        // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
 
         var segments = UriUtility.GetUriSegments(uri);
         var instructions = segments.Select(UriUtility.ParseUriSegment)

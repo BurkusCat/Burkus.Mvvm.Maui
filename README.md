@@ -147,7 +147,8 @@ ServiceResolver.Resolve(IExampleService);
 ```
 
 ## Navigation service
-`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more.
+`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more. 
+See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
 
 This is a simple navigation example where we push a "`TestPage`" onto the navigation stack:
 ``` csharp
@@ -164,7 +165,7 @@ var navigationParameters = new NavigationParameters
     { "username", Username },
 };
 
-// 2. append an additional custom parameter
+// 2. append an additional, custom parameter
 navigationParameters.Add("selection", Selection);
 
 // 3. reserved parameter with a special meaning in the Burkus MVVM library, it has a helper method to make setting it easier
@@ -173,7 +174,27 @@ navigationParameters.UseModalNavigation = true;
 await navigationService.Push<TestPage>(navigationParameters);
 ```
 
-See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
+The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation.
+
+Here are some examples of URI navigation:
+``` csharp
+// use absolute navigation (starts with a "/") to go to the LoginPage
+navigationService.Navigate("/LoginPage");
+
+// push a page with query parameters
+navigationService.Navigate("HomePage?username=Ronan&loggedIn=true");
+
+// push multiple pages using relative navigation onto the stack
+navigationService.Navigate("AlphaPage/BetaPage/CharliePage");
+
+// go back one page modally
+var parameters = new NavigationParameters();
+parameters.UseModalNavigation = true;
+navigationService.Navigate("..", parameters);
+
+// go back three pages and push one new page
+navigationService.Navigate("../../../AlphaPage");
+```
 
 ## Choosing the start page of your app
 It is possible to have a service that decides which page is most appropriate to navigate to. This service could decide to:
