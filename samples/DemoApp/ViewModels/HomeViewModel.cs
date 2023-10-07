@@ -106,7 +106,7 @@ public partial class HomeViewModel : BaseViewModel
     private async Task AddMultiplePages()
     {
         // use the navigate URI syntax to add multiple pages
-        await navigationService.Navigate("RegisterPage/DemoTabsPage/RegisterPage");
+        await navigationService.Navigate($"{nameof(LoginPage)}/{nameof(DemoTabsPage)}/{nameof(RegisterPage)}");
     }
 
     #endregion Commands

@@ -1,6 +1,4 @@
-using System.Text.Json;
-
-namespace Burkus.Mvvm.Maui;
+﻿namespace Burkus.Mvvm.Maui;
 
 internal class NavigationService : INavigationService
 {
@@ -124,38 +122,70 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri)
     {
+        await Navigate(uri, new NavigationParameters());
+    }
+
+    public async Task Navigate(string uri, NavigationParameters navigationParameters)
+    {
+        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
+
         var segments = UriUtility.GetUriSegments(uri);
         var instructions = segments.Select(UriUtility.ParseUriSegment)
             .ToList();
 
-        for (int i = 0; i < instructions.Count(); i++)
+        // process last instruction first since it will be the one visible to the user
+        if (UriUtility.IsUriAbsolute(uri) && instructions.Count() == 1)
         {
-            if (i == instructions.Count() - 1)
+            // reset stack and push for the first navigation
+            await ResetStackAndPushWithType(instructions.Single().PageType, instructions.Single().QueryParameters);
+
+            // TODO: Do I need a ResetStack method to call first here? then do normal Push and insert pages behind?
+        }
+        else if (instructions.Last().PageType == typeof(GoBackUriSegment))
+        {
+            // remove all other pages first
+            if (instructions.Count() > 1)
             {
-                // don't use animated navigation for the first set of pages
-                instructions[i].QueryParameters.UseAnimatedNavigation = false;
+                var navigation = Application.Current.MainPage.Navigation;
+
+                // remove all but one page
+                for (int i = 1; i < instructions.Count(); i++)
+                {
+                    var pageToRemove = navigation.NavigationStack[^(i + 1)];
+                    navigation.RemovePage(pageToRemove);
+                }
             }
 
-            if (i == 0 && UriUtility.IsUriAbsolute(uri))
+            // then do the final pop
+            await Pop(instructions.Last().QueryParameters);
+        }
+        else
+        {
+            // standard relative push onto the stack
+            await PushWithType(instructions.Last().PageType, instructions.Last().QueryParameters);
+
+            if (instructions.Count() > 1)
             {
-                // reset stack and push for the first navigation
-                await ResetStackAndPushWithType(instructions[i].PageType, instructions[i].QueryParameters);
-            }
-            else if (instructions[i].PageType == typeof(GoBackUriSegment))
-            {
-                // go back
-                await Pop(instructions[i].QueryParameters);
-            }
-            else
-            {
-                // standard relative push onto the stack
-                await PushWithType(instructions[i].PageType, instructions[i].QueryParameters);
+                var navigation = Application.Current.MainPage.Navigation;
+
+                for (int i = instructions.Count() - 2; i >= 0; i--)
+                {
+                    if (instructions[i].PageType == typeof(GoBackUriSegment))
+                    {
+                        // go back
+                        var pageToRemove = navigation.NavigationStack[^i];
+                        navigation.RemovePage(pageToRemove);
+                    }
+                    else
+                    {
+                        // insert pages behind the top page
+                        var pageToNavigateTo = ServiceResolver.Resolve(instructions[i].PageType) as Page;
+                        var pagesBeforeEnd = (instructions.Count() - 1 - i);
+                        navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack[^pagesBeforeEnd]);
+                    }
+                }
             }
         }
-
-        // todo: handle relative vs absolute
-        // todo: handle ../../ etc
-        // todo: handle query parameters
     }
 
     #endregion URI navigation methods

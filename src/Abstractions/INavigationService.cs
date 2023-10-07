@@ -102,6 +102,28 @@ public interface INavigationService
     /// </code>
     /// </example>
     /// <param name="uri">The URI to navigate to</param>
+    /// <remarks>This method is *very* experimental and likely to change.</remarks>
     /// <returns>A completed task</returns>
     Task Navigate(string uri);
+
+    /// <summary>
+    /// Navigate using a string URI.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// // use absolute navigation to go to the LoginPage
+    /// navigationService.Navigate("/LoginPage");
+    /// 
+    /// // push multiple pages relatively onto the stack
+    /// navigationService.Navigate("RegisterPage/DemoTabsPage/RegisterPage");
+    /// 
+    /// // go back one page
+    /// navigationService.Navigate("..");
+    /// </code>
+    /// </example>
+    /// <param name="uri">The URI to navigate to</param>
+    /// <param name="navigationParameters">Navigation parameters to pass</param>
+    /// <remarks>This method is *very* experimental and likely to change.</remarks>
+    /// <returns>A completed task</returns>
+    Task Navigate(string uri, NavigationParameters navigationParameters);
 }
