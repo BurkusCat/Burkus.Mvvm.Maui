@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
 namespace Burkus.Mvvm.Maui;
 
@@ -8,8 +8,7 @@ internal class NavigationService : INavigationService
 
     public async Task Push<T>() where T : Page
     {
-        var parameters = new NavigationParameters();
-        await Push<T>(parameters);
+        await Push<T>(new NavigationParameters());
     }
 
     public async Task Push<T>(NavigationParameters navigationParameters) where T : Page
@@ -32,8 +31,7 @@ internal class NavigationService : INavigationService
 
     public async Task Pop()
     {
-        var parameters = new NavigationParameters();
-        await Pop(parameters);
+        await Pop(new NavigationParameters());
     }
 
     public async Task Pop(NavigationParameters navigationParameters)
@@ -54,8 +52,7 @@ internal class NavigationService : INavigationService
 
     public async Task PopToRoot()
     {
-        var parameters = new NavigationParameters();
-        await PopToRoot(parameters);
+        await PopToRoot(new NavigationParameters());
     }
 
     public async Task PopToRoot(NavigationParameters navigationParameters)
@@ -74,8 +71,7 @@ internal class NavigationService : INavigationService
     public async Task ReplaceTopPage<T>()
         where T : Page
     {
-        var parameters = new NavigationParameters();
-        await ReplaceTopPage<T>(parameters);
+        await ReplaceTopPage<T>(new NavigationParameters());
     }
 
     public async Task ReplaceTopPage<T>(NavigationParameters navigationParameters)
@@ -95,8 +91,7 @@ internal class NavigationService : INavigationService
     public async Task ResetStackAndPush<T>()
         where T : Page
     {
-        var parameters = new NavigationParameters();
-        await ResetStackAndPush<T>(parameters);
+        await ResetStackAndPush<T>(new NavigationParameters());
     }
 
     public async Task ResetStackAndPush<T>(NavigationParameters navigationParameters)
