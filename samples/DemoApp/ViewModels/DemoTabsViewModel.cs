@@ -26,7 +26,8 @@ public partial class DemoTabsViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoBack()
     {
-        await navigationService.Pop();
+        // navigate back using the URI syntax
+        await navigationService.Navigate("..");
     }
 
     /// <summary>

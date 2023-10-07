@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DemoApp.Abstractions;
-using DemoApp.Services;
 using DemoApp.Views;
 
 namespace DemoApp.ViewModels;
@@ -88,6 +87,26 @@ public partial class HomeViewModel : BaseViewModel
     private async Task GoToTabbedPageDemo()
     {
         await navigationService.Push<DemoTabsPage>();
+    }
+
+    /// <summary>
+    /// Logout of the application.
+    /// </summary>
+    [RelayCommand]
+    private async Task Logout()
+    {
+        // use the navigate URI syntax to logout with an absolute URI
+        await navigationService.Navigate("/LoginPage");
+    }
+
+    /// <summary>
+    /// Add multiple pages onto the stack.
+    /// </summary>
+    [RelayCommand]
+    private async Task AddMultiplePages()
+    {
+        // use the navigate URI syntax to add multiple pages
+        await navigationService.Navigate("RegisterPage/DemoTabsPage/RegisterPage");
     }
 
     #endregion Commands

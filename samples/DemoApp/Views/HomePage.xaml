@@ -12,7 +12,7 @@
         <Grid
             Margin="15"
             MaximumWidthRequest="600"
-            RowDefinitions="*,Auto,Auto,Auto,Auto,*"
+            RowDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
@@ -50,6 +50,20 @@
                 Command="{Binding GoToTabbedPageDemoCommand}"
                 MaximumWidthRequest="400"
                 Text="Tabbed Page demo"
+                VerticalOptions="Start" />
+            <Button
+                Grid.Row="6"
+                Margin="0,20,0,0"
+                Command="{Binding LogoutCommand}"
+                MaximumWidthRequest="400"
+                Text="Logout with URI syntax"
+                VerticalOptions="Start" />
+            <Button
+                Grid.Row="7"
+                Margin="0,20,0,0"
+                Command="{Binding AddMultiplePagesCommand}"
+                MaximumWidthRequest="400"
+                Text="Add multiple pages"
                 VerticalOptions="Start" />
         </Grid>
     </ScrollView>

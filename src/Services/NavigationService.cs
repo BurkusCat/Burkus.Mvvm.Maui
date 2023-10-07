@@ -1,3 +1,5 @@
+﻿using System.Text.Json;
+
 namespace Burkus.Mvvm.Maui;
 
 internal class NavigationService : INavigationService
@@ -123,7 +125,69 @@ internal class NavigationService : INavigationService
 
     #endregion Advanced navigation methods
 
+    #region URI navigation methods
+
+    public async Task Navigate(string uri)
+    {
+        var segments = UriUtility.GetUriSegments(uri);
+
+        for (int i = 0; i < segments.Count(); i++)
+        {
+            var (pageType, queryParameters) = UriUtility.ParseUriSegment(segments[i]);
+
+            if (i == segments.Count - 1)
+            {
+                // don't use animated navigation for the first set of pages
+                queryParameters.UseAnimatedNavigation = false;
+            }
+
+            if (i == 0 && UriUtility.IsUriAbsolute(uri))
+            {
+                // reset stack and push for the first navigation
+                await ResetStackAndPushWithType(pageType, queryParameters);
+            }
+            else if (pageType == typeof(GoBackUriSegment))
+            {
+                // go back
+                await Pop(queryParameters);
+            }
+            else
+            {
+                // standard relative push onto the stack
+                await PushWithType(pageType, queryParameters);
+            }
+        }
+
+        // todo: handle relative vs absolute
+        // todo: handle ../../ etc
+        // todo: handle query parameters
+    }
+
+    #endregion URI navigation methods
+
     #region Internal implementation
+
+    /// <summary>
+    /// This method allows the <see cref="ResetStackAndPushWithType{T}(NavigationParameters)"/> to be called with reflection.
+    /// </summary>
+    private async Task ResetStackAndPushWithType(Type pageType, NavigationParameters navigationParameters)
+    {
+        var resetStackAndPushMethod = GetType()
+            .GetMethod("ResetStackAndPush", new Type[] { typeof(NavigationParameters) })
+            .MakeGenericMethod(pageType);
+        await (Task)resetStackAndPushMethod.Invoke(this, new object[] { navigationParameters });
+    }
+
+    /// <summary>
+    /// This method allows the <see cref="Push{T}(NavigationParameters)"/> to be called with reflection.
+    /// </summary>
+    private async Task PushWithType(Type pageType, NavigationParameters navigationParameters)
+    {
+        var pushMethod = GetType()
+            .GetMethod("Push", new Type[] { typeof(NavigationParameters) })
+            .MakeGenericMethod(pageType);
+        await (Task)pushMethod.Invoke(this, new object[] { navigationParameters });
+    }
 
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)
         where T : Page
@@ -152,6 +216,7 @@ internal class NavigationService : INavigationService
             await navigatedToViewModel.OnNavigatedTo(navigationParameters);
         }
     }
+
 
     #endregion Internal implementation
 
