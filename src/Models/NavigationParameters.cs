@@ -4,13 +4,12 @@ namespace Burkus.Mvvm.Maui;
 
 public class NavigationParameters : Dictionary<string, object>
 {
-
     /// <summary>
-    /// Gets or sets the value of the "UseAnimatedNavigation" parameter. Defaults to 'false'.
+    /// Gets or sets the value of the "UseAnimatedNavigation" parameter. Defaults to 'true'.
     /// </summary>
     public bool UseAnimatedNavigation
     {
-        get => GetBoolParameter(ReservedNavigationParameters.UseAnimatedNavigation, true);
+        get => GetParameter(ReservedNavigationParameters.UseAnimatedNavigation, true);
         set => this[ReservedNavigationParameters.UseAnimatedNavigation] = value;
     }
 
@@ -19,21 +18,33 @@ public class NavigationParameters : Dictionary<string, object>
     /// </summary>
     public bool UseModalNavigation
     {
-        get => GetBoolParameter(ReservedNavigationParameters.UseModalNavigation, false);
+        get => GetParameter(ReservedNavigationParameters.UseModalNavigation, false);
         set => this[ReservedNavigationParameters.UseModalNavigation] = value;
     }
 
     /// <summary>
-    /// Gets or sets the value of a boolean parameter.
+    /// Gets or sets the value of the "SelectTab" parameter.
+    /// </summary>
+    public string SelectTab
+    {
+        get => GetParameter<string>(ReservedNavigationParameters.SelectTab, null);
+        set => this[ReservedNavigationParameters.SelectTab] = value;
+    }
+
+    /// <summary>
+    /// Gets or sets the value of a parameter.
     /// Defaults to the specified default value if the parameter is not set.
     /// </summary>
+    /// <typeparam name="T">Type of parameter to return</typeparam>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="defaultValue">The default value to return if the parameter is not set.</param>
     /// <returns>The value of the parameter or the default value.</returns>
-    private bool GetBoolParameter(string parameterName, bool defaultValue)
+    
+    
+    private T GetParameter<T>(string parameterName, T defaultValue)
     {
         return ContainsKey(parameterName)
-            ? GetValue<bool>(parameterName)
+            ? GetValue<T>(parameterName)
             : defaultValue;
     }
 

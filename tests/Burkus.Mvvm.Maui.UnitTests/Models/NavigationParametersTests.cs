@@ -45,6 +45,24 @@ public class NavigationParametersTests
         Assert.Equal(expectedValue, result);
     }
 
+    [Theory]
+    [InlineData("AlphaPage", "AlphaPage")]
+    [InlineData("BetaPage", "BetaPage")]
+    public void SelectTab_GetSet_ReturnsSetValue(
+        string setValue,
+        string expectedValue)
+    {
+        // Arrange
+        var navigationParameters = new NavigationParameters();
+        navigationParameters.SelectTab = setValue;
+
+        // Act
+        var result = navigationParameters.SelectTab;
+
+        // Assert
+        Assert.Equal(expectedValue, result);
+    }
+
     [Fact]
     public void GetValue_ExistingBooleanParameter_ReturnsValue()
     {

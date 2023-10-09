@@ -276,11 +276,17 @@ If your viewmodel inherits from this interface, the below events will trigger fo
 Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.Maui` library to adjust how navigation is performed.
 
 - `ReservedNavigationParameters.UseAnimatedNavigation`
-  - Should an animation be used during the navigation?
-  - Defaults to: `true`
+  - If true, uses an animation during navigation.
+  - Type: `bool`
+  - Default: `true`
 - `ReservedNavigationParameters.UseModalNavigation`
-  - Should the navigation be performed modally?
-  - Defaults to: `false`
+  - If true, performs the navigation modally.
+  - Type: `bool`
+  - Default: `false`
+- `ReservedNavigationParameters.SelectTab` 
+  - If navigating to a `TabbedPage`, selects the tab with the name of the type passed. **⚠️ WARNING**: Not yet implemented.
+  - Type: `string`
+  - Default: `null`
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 

@@ -14,4 +14,9 @@ public static class ReservedNavigationParameters
     /// Pass true if the navigation should be animated.
     /// </summary>
     public const string UseAnimatedNavigation = nameof(UseAnimatedNavigation);
+
+    /// <summary>
+    /// Pass the name of the type of page that should be the initial selected tab within a <see cref="TabbedPage"/>.
+    /// </summary>
+    public const string SelectTab = nameof(SelectTab);
 }
