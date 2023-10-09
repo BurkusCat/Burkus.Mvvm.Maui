@@ -33,4 +33,5 @@ NOTE: The above software is the recommended basics. You may be able to use other
 ## Submitting a PR
 - Try to rebase (`git rebase -i`) your PR onto `main` to tidy your git history https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase
 - Update the unit tests (fix any existing tests and ensure new code has unit test coverage)
+- Update the sample app with the change/feature in action
 - Ensure you have the [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022) extension installed and have run it on any XAML files you have changed to format them
