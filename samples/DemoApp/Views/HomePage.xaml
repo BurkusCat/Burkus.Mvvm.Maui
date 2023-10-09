@@ -9,62 +9,49 @@
     x:DataType="vm:HomeViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:HomeViewModel}">
     <ScrollView>
-        <Grid
+        <VerticalStackLayout
             Margin="15"
-            MaximumWidthRequest="600"
-            RowDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto,*"
-            RowSpacing="10">
+            Spacing="10">
             <Label
-                Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource HeadingLabel}"
                 Text="{Binding Username, StringFormat='Welcome {0}'}"
                 VerticalOptions="EndAndExpand" />
             <Label
-                Grid.Row="1"
                 FontAttributes="Bold"
                 HorizontalOptions="CenterAndExpand"
                 Text="{Binding CurrentWeatherDescription}" />
             <Label
-                Grid.Row="2"
                 Margin="0,20,0,0"
+                HorizontalOptions="Center"
                 Text="Modal navigation:" />
             <Button
-                Grid.Row="3"
-                Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithAnimationCommand}"
-                MaximumWidthRequest="400"
-                Text="Change Username (animated)"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Change Username (animated)" />
             <Button
-                Grid.Row="4"
-                Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithoutAnimationCommand}"
-                MaximumWidthRequest="400"
-                Text="Change Username (no animation)"
-                VerticalOptions="Start" />
-            <Button
-                Grid.Row="5"
+                Style="{StaticResource PrimaryButton}"
+                Text="Change Username (no animation)" />
+            <Label
                 Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="Tabbed navigation:" />
+            <Button
                 Command="{Binding GoToTabbedPageDemoCommand}"
-                MaximumWidthRequest="400"
-                Text="Tabbed Page demo"
-                VerticalOptions="Start" />
-            <Button
-                Grid.Row="6"
+                Style="{StaticResource PrimaryButton}"
+                Text="Tabbed Page demo" />
+            <Label
                 Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="URI/URL navigation:" />
+            <Button
                 Command="{Binding LogoutCommand}"
-                MaximumWidthRequest="400"
-                Text="Logout with URI syntax"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Logout with URI syntax" />
             <Button
-                Grid.Row="7"
-                Margin="0,20,0,0"
                 Command="{Binding AddMultiplePagesCommand}"
-                MaximumWidthRequest="400"
-                Text="Add multiple pages"
-                VerticalOptions="Start" />
-        </Grid>
+                Style="{StaticResource PrimaryButton}"
+                Text="Add multiple pages" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

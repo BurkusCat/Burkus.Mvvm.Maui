@@ -11,18 +11,16 @@
     <ScrollView>
         <Grid
             Margin="15"
-            MaximumWidthRequest="600"
             RowDefinitions="*,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource HeadingLabel}"
                 Text="Register"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 Grid.Row="1"
+                HorizontalOptions="Center"
                 Text="You don't actually need to register. You can just make up any username and password to login! This is just a demo page for relative navigation." />
             <Button
                 Grid.Row="2"

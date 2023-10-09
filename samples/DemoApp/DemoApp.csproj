@@ -90,6 +90,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\DemoAppStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ChangeUsernamePage.xaml">
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </MauiXaml>

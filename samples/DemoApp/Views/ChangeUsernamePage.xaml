@@ -11,32 +11,29 @@
     <ScrollView>
         <Grid
             Margin="15"
-            MaximumWidthRequest="600"
             RowDefinitions="*,Auto,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource HeadingLabel}"
                 Text="Change your username"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 Grid.Row="1"
+                HorizontalOptions="Center"
                 Text="This modal will return data to the previous page even if you don't use the 'Finish' button." />
             <Entry
                 Grid.Row="2"
+                MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
                 Placeholder="username"
                 ReturnCommand="{Binding FinishCommand}"
                 ReturnType="Done"
                 Text="{Binding Username}" />
             <Button
                 Grid.Row="3"
-                Margin="0,20,0,0"
                 Command="{Binding FinishCommand}"
-                MaximumWidthRequest="300"
-                Text="Finish"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Finish" />
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -10,37 +10,28 @@
     <ScrollView>
         <Grid
             Margin="15"
-            MaximumWidthRequest="600"
             RowDefinitions="*,Auto,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource HeadingLabel}"
                 Text="Beta"
                 VerticalOptions="CenterAndExpand" />
             <Button
                 Grid.Row="1"
-                Margin="0,20,0,0"
                 Command="{Binding SwitchToAlphaTabPageCommand}"
-                MaximumWidthRequest="300"
-                Text="Switch to Alpha"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Switch to Alpha" />
             <Button
                 Grid.Row="2"
-                Margin="0,20,0,0"
                 Command="{Binding SwitchToCharlieTabPageCommand}"
-                MaximumWidthRequest="300"
-                Text="Switch to Charlie"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Switch to Charlie" />
             <Button
                 Grid.Row="3"
-                Margin="0,20,0,0"
                 Command="{Binding GoBackCommand}"
-                MaximumWidthRequest="300"
-                Text="Go Back"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Go Back" />
         </Grid>
     </ScrollView>
 </ContentPage>

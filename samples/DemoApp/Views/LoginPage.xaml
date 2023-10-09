@@ -11,45 +11,42 @@
     <ScrollView>
         <Grid
             Margin="15"
-            MaximumWidthRequest="600"
             RowDefinitions="*,Auto,Auto,Auto,Auto,*"
             RowSpacing="10">
             <Label
                 Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource HeadingLabel}"
                 Text="Burkus.Mvvm.Maui Demo App"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 Grid.Row="1"
+                HorizontalOptions="Center"
                 Text="Enter any data to login to this demo app." />
             <Entry
                 Grid.Row="2"
+                MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
                 Placeholder="username"
                 ReturnType="Next"
                 Text="{Binding Username}" />
             <Entry
                 Grid.Row="3"
                 IsPassword="True"
+                MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
                 Placeholder="password"
                 ReturnCommand="{Binding LoginCommand}"
                 ReturnType="Done"
                 Text="{Binding Password}" />
             <Button
                 Grid.Row="4"
-                Margin="0,20,0,0"
                 Command="{Binding LoginCommand}"
-                MaximumWidthRequest="300"
-                Text="Login"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="Login" />
             <Label
                 Grid.Row="5"
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"
-                Text="Don't have an account yet? Register here."
-                TextColor="{DynamicResource Blue100Accent}"
-                TextDecorations="Underline">
+                Style="{StaticResource HyperlinkLabel}"
+                Text="Don't have an account yet? Register here.">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>
