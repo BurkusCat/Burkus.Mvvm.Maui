@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Beta"
+    Title="{x:Static properties:Resources.BetaTab_Title}"
     x:DataType="vm:DemoTabsViewModel">
     <ScrollView>
         <Grid
@@ -15,23 +16,23 @@
             <Label
                 Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
-                Text="Beta"
+                Text="{x:Static properties:Resources.BetaTab_Title}"
                 VerticalOptions="CenterAndExpand" />
             <Button
                 Grid.Row="1"
                 Command="{Binding SwitchToAlphaTabPageCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Switch to Alpha" />
+                Text="{x:Static properties:Resources.Button_SwitchToAlpha}" />
             <Button
                 Grid.Row="2"
                 Command="{Binding SwitchToCharlieTabPageCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Switch to Charlie" />
+                Text="{x:Static properties:Resources.Button_SwitchToBeta}" />
             <Button
                 Grid.Row="3"
                 Command="{Binding GoBackCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Go Back" />
+                Text="{x:Static properties:Resources.Button_GoBack}" />
         </Grid>
     </ScrollView>
 </ContentPage>

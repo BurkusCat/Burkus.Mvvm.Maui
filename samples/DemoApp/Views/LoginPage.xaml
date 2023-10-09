@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Login"
+    Title="{x:Static properties:Resources.Login_Title}"
     x:DataType="vm:LoginViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:LoginViewModel}">
     <ScrollView>
@@ -16,23 +17,23 @@
             <Label
                 Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
-                Text="Burkus.Mvvm.Maui Demo App"
+                Text="{x:Static properties:Resources.Login_Heading}"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 Grid.Row="1"
                 HorizontalOptions="Center"
-                Text="Enter any data to login to this demo app." />
+                Text="{x:Static properties:Resources.Login_Instructions}" />
             <Entry
                 Grid.Row="2"
                 MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
-                Placeholder="username"
+                Placeholder="{x:Static properties:Resources.Login_UsernamePlaceholder}"
                 ReturnType="Next"
                 Text="{Binding Username}" />
             <Entry
                 Grid.Row="3"
                 IsPassword="True"
                 MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
-                Placeholder="password"
+                Placeholder="{x:Static properties:Resources.Login_PasswordPlaceholder}"
                 ReturnCommand="{Binding LoginCommand}"
                 ReturnType="Done"
                 Text="{Binding Password}" />
@@ -40,13 +41,13 @@
                 Grid.Row="4"
                 Command="{Binding LoginCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Login" />
+                Text="{x:Static properties:Resources.Button_Login}" />
             <Label
                 Grid.Row="5"
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"
                 Style="{StaticResource HyperlinkLabel}"
-                Text="Don't have an account yet? Register here.">
+                Text="{x:Static properties:Resources.Login_RegisterLink}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>

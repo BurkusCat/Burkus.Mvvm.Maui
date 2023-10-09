@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Home"
+    Title="{x:Static properties:Resources.Home_Title}"
     x:DataType="vm:HomeViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:HomeViewModel}">
     <ScrollView>
@@ -14,7 +15,7 @@
             Spacing="10">
             <Label
                 Style="{StaticResource HeadingLabel}"
-                Text="{Binding Username, StringFormat='Welcome {0}'}"
+                Text="{Binding Username, StringFormat={x:Static properties:Resources.Home_WelcomeMessage}}"
                 VerticalOptions="EndAndExpand" />
             <Label
                 FontAttributes="Bold"
@@ -23,35 +24,35 @@
             <Label
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"
-                Text="Modal navigation:" />
+                Text="{x:Static properties:Resources.Home_SubHeading_ModalNavigation}" />
             <Button
                 Command="{Binding ChangeUsernameWithAnimationCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Change Username (animated)" />
+                Text="{x:Static properties:Resources.Home_Button_ChangeUsernameAnimation}" />
             <Button
                 Command="{Binding ChangeUsernameWithoutAnimationCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Change Username (no animation)" />
+                Text="{x:Static properties:Resources.Home_Button_ChangeUsernameNoAnimation}" />
             <Label
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"
-                Text="Tabbed navigation:" />
+                Text="{x:Static properties:Resources.Home_SubHeading_TabbedNavigation}" />
             <Button
                 Command="{Binding GoToTabbedPageDemoCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Tabbed Page demo" />
+                Text="{x:Static properties:Resources.Home_Button_TabbedPageDemo}" />
             <Label
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"
-                Text="URI/URL navigation:" />
+                Text="{x:Static properties:Resources.Home_SubHeading_UriNavigation}" />
             <Button
                 Command="{Binding LogoutCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Logout with URI syntax" />
+                Text="{x:Static properties:Resources.Home_Button_LogoutWithUriSyntax}" />
             <Button
                 Command="{Binding AddMultiplePagesCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="Add multiple pages" />
+                Text="{x:Static properties:Resources.Home_Button_AddMultiplePages}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

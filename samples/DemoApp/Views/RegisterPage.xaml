@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Register"
+    Title="{x:Static properties:Resources.Register_Title}"
     x:DataType="vm:RegisterViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:RegisterViewModel}">
     <ScrollView>
@@ -16,18 +17,18 @@
             <Label
                 Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
-                Text="Register"
+                Text="{x:Static properties:Resources.Register_Title}"
                 VerticalOptions="CenterAndExpand" />
             <Label
                 Grid.Row="1"
                 HorizontalOptions="Center"
-                Text="You don't actually need to register. You can just make up any username and password to login! This is just a demo page for relative navigation." />
+                Text="{x:Static properties:Resources.Register_Instructions}" />
             <Button
                 Grid.Row="2"
                 Margin="0,20,0,0"
                 Command="{Binding GoBackCommand}"
                 MaximumWidthRequest="300"
-                Text="Go Back"
+                Text="{x:Static properties:Resources.Button_GoBack}"
                 VerticalOptions="Start" />
         </Grid>
     </ScrollView>

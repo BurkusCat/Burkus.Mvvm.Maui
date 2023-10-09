@@ -117,6 +117,150 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlphaTab_Title" xml:space="preserve">
+    <value>Alpha</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="BetaTab_Title" xml:space="preserve">
+    <value>Beta</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_Finish" xml:space="preserve">
+    <value>Finish</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_GoBack" xml:space="preserve">
+    <value>Go Back</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_Login" xml:space="preserve">
+    <value>Login</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_SwitchToAlpha" xml:space="preserve">
+    <value>Switch to Alpha</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_SwitchToBeta" xml:space="preserve">
+    <value>Switch to Beta</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Button_SwitchToCharlie" xml:space="preserve">
+    <value>Switch to Charlie</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="ChangeUsername_Heading" xml:space="preserve">
+    <value>Change your username</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="ChangeUsername_Instructions" xml:space="preserve">
+    <value>This modal will return data to the previous page even if you don't use the 'Finish' button.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="ChangeUsername_Title" xml:space="preserve">
+    <value>Change username</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="ChangeUsername_UsernamePlaceholder" xml:space="preserve">
+    <value>username</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="CharlieTab_Title" xml:space="preserve">
+    <value>Charlie</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="DemoTabs_Title" xml:space="preserve">
+    <value>Tabbed Page</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_AddMultiplePages" xml:space="preserve">
+    <value>Add multiple pages</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_ChangeUsernameAnimation" xml:space="preserve">
+    <value>Change Username (animation)</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_ChangeUsernameNoAnimation" xml:space="preserve">
+    <value>Change Username (no animation)</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_LogoutWithUriSyntax" xml:space="preserve">
+    <value>Logout with URI syntax:</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_TabbedPageDemo" xml:space="preserve">
+    <value>Tabbed Page demo</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_SubHeading_ModalNavigation" xml:space="preserve">
+    <value>Modal navigation:</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_SubHeading_TabbedNavigation" xml:space="preserve">
+    <value>Tabbed navigation:</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_SubHeading_UriNavigation" xml:space="preserve">
+    <value>URI navigation:</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Title" xml:space="preserve">
+    <value>Home</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_WelcomeMessage" xml:space="preserve">
+    <value>Welcome {0}</value>
+    <comment>Translate, {0} parameter is username</comment>
+  </data>
+  <data name="Login_Heading" xml:space="preserve">
+    <value>Burkus.Mvvm.Maui Demo App</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_Instructions" xml:space="preserve">
+    <value>Enter any data to login to this demo app.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve">
+    <value>password</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_RegisterLink" xml:space="preserve">
+    <value>Don't have an account yet? Register here.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>Login</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_UsernamePlaceholder" xml:space="preserve">
+    <value>username</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_Validation_RequiredPassword" xml:space="preserve">
+    <value>You must enter a password.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Login_Validation_RequiredUsername" xml:space="preserve">
+    <value>You must enter a username.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Register_Instructions" xml:space="preserve">
+    <value>You don't actually need to register. You can just make up any username and password to login! This is just a demo page for relative navigation.</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Register_Title" xml:space="preserve">
+    <value>Register</value>
+    <comment>Translate</comment>
+  </data>
   <data name="WeatherDescription_Cloudy" xml:space="preserve">
     <value>Cloudy weather today 🌥️</value>
     <comment>Translate</comment>
