@@ -174,7 +174,7 @@ navigationParameters.UseModalNavigation = true;
 await navigationService.Push<TestPage>(navigationParameters);
 ```
 
-The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation.
+The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation. **⚠️ WARNING**: URI-based navigation behavior is unstable and is likely to change in future releases.
 
 Here are some examples of URI navigation:
 ``` csharp
@@ -182,7 +182,7 @@ Here are some examples of URI navigation:
 navigationService.Navigate("/LoginPage");
 
 // push a page with query parameters
-navigationService.Navigate("HomePage?username=Ronan&loggedIn=true");
+navigationService.Navigate("HomePage?username=Ronan&loggedIn=True");
 
 // push multiple pages using relative navigation onto the stack
 navigationService.Navigate("AlphaPage/BetaPage/CharliePage");
@@ -194,6 +194,25 @@ navigationService.Navigate("..", parameters);
 
 // go back three pages and push one new page
 navigationService.Navigate("../../../AlphaPage");
+
+// it is good practice to use nameof(x) to provide a compile-time reference to the pages in your navigation
+navigationService.Navigate($"{nameof(YankeePage)}/{nameof(ZuluPage)}");
+```
+### Navigation URI builder
+Navigation to multiple pages simultaneously and passing parameters to them can start to get complicated quickly. The `NavigationUriBuilder` is a simple, typed way to build a complex navigation string.
+
+Below is an example where we go back a page (and pass a parameter that instructs the navigation to be performed modally), then push a `VictorPage`, and then push a `YankeePage` onto the stack:
+``` csharp
+var parameters = new NavigationParameters();
+parameters.UseModalNavigation = true;
+
+var navigationUri = new NavigationUriBuilder()
+    .AddGoBackSegment(parameters)
+    .AddSegment<VictorPage>()
+    .AddSegment<YankeePage>()
+    .Build() // produces the string: "..?UseModalNavigation=True/VictorPage/YankeePage/"
+
+navigationService.Navigate(navigationUri);
 ```
 
 ## Choosing the start page of your app

@@ -1,4 +1,6 @@
-﻿namespace Burkus.Mvvm.Maui;
+﻿using System.Web;
+
+namespace Burkus.Mvvm.Maui;
 
 public class NavigationParameters : Dictionary<string, object>
 {
@@ -71,6 +73,29 @@ public class NavigationParameters : Dictionary<string, object>
         catch (Exception ex)
         {
             throw new ArgumentException($"Cannot convert parameter value to type {typeof(T)}", ex);
+        }
+    }
+
+    public string ToQueryString()
+    {
+        var keyValuePairs = new List<string>();
+
+        foreach (var kvp in this)
+        {
+            var key = HttpUtility.UrlEncode(kvp.Key);
+
+            // TODO: the .ToString() won't work for many parameter types
+            var value = HttpUtility.UrlEncode(kvp.Value.ToString());
+            keyValuePairs.Add($"{key}={value}");
+        }
+
+        if (keyValuePairs.Count > 0)
+        {
+            return "?" + string.Join("&", keyValuePairs);
+        }
+        else
+        {
+            return string.Empty;
         }
     }
 }

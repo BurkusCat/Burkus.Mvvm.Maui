@@ -92,7 +92,7 @@ internal static class UriUtility
 
     private static Type FindPageType(string pageName)
     {
-        if (pageName == "..")
+        if (pageName == Constants.GoBackUriSegment)
         {
             // handle special case of going back one page
             return typeof(GoBackUriSegment);
