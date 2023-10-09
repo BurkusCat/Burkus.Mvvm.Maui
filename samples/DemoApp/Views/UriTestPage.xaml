@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.UriTestPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="{x:Static properties:Resources.UriTest_Title}"
+    x:DataType="vm:UriTestViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:UriTestViewModel}">
+    <ScrollView>
+        <VerticalStackLayout
+            Margin="15"
+            Spacing="10">
+            <Label
+                Style="{StaticResource HeadingLabel}"
+                Text="{x:Static properties:Resources.UriTest_Title}"
+                VerticalOptions="CenterAndExpand" />
+            <Button
+                Command="{Binding GoBackMultipleTimesCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Button_GoBack}">
+                <Button.CommandParameter>
+                    <s:Int32>1</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+            <Button
+                Command="{Binding GoBackMultipleTimesCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.UriTest_Button_GoBackTwoTimes}">
+                <Button.CommandParameter>
+                    <s:Int32>2</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+            <Button
+                Command="{Binding GoBackMultipleTimesCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.UriTest_Button_GoBackThreeTimes}">
+                <Button.CommandParameter>
+                    <s:Int32>3</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

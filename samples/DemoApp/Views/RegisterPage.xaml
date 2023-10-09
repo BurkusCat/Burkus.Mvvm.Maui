@@ -25,11 +25,9 @@
                 Text="{x:Static properties:Resources.Register_Instructions}" />
             <Button
                 Grid.Row="2"
-                Margin="0,20,0,0"
                 Command="{Binding GoBackCommand}"
-                MaximumWidthRequest="300"
-                Text="{x:Static properties:Resources.Button_GoBack}"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Button_GoBack}" />
         </Grid>
     </ScrollView>
 </ContentPage>

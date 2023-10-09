@@ -261,6 +261,18 @@
     <value>Register</value>
     <comment>Translate</comment>
   </data>
+  <data name="UriTest_Button_GoBackThreeTimes" xml:space="preserve">
+    <value>Go Back Three Times</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="UriTest_Button_GoBackTwoTimes" xml:space="preserve">
+    <value>Go Back Two Times</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="UriTest_Title" xml:space="preserve">
+    <value>URI Testing</value>
+    <comment>Translate</comment>
+  </data>
   <data name="WeatherDescription_Cloudy" xml:space="preserve">
     <value>Cloudy weather today 🌥️</value>
     <comment>Translate</comment>

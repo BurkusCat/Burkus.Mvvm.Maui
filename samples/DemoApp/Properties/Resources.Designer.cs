@@ -385,6 +385,33 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go Back Three Times.
+        /// </summary>
+        internal static string UriTest_Button_GoBackThreeTimes {
+            get {
+                return ResourceManager.GetString("UriTest_Button_GoBackThreeTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back Two Times.
+        /// </summary>
+        internal static string UriTest_Button_GoBackTwoTimes {
+            get {
+                return ResourceManager.GetString("UriTest_Button_GoBackTwoTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URI Testing.
+        /// </summary>
+        internal static string UriTest_Title {
+            get {
+                return ResourceManager.GetString("UriTest_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cloudy weather today 🌥️.
         /// </summary>
         internal static string WeatherDescription_Cloudy {
