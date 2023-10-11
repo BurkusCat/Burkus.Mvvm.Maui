@@ -154,7 +154,8 @@ internal class NavigationService : INavigationService
                 // remove all but one page
                 for (int i = 1; i < instructions.Count(); i++)
                 {
-                    var pageToRemove = navigation.NavigationStack[^(i + 1)];
+                    // always remove 2nd from last page
+                    var pageToRemove = navigation.NavigationStack[^2];
                     navigation.RemovePage(pageToRemove);
                 }
             }
