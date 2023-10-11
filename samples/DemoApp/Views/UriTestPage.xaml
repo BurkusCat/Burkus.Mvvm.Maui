@@ -42,6 +42,10 @@
                     <s:Int32>3</s:Int32>
                 </Button.CommandParameter>
             </Button>
+            <Button
+                Command="{Binding SwitchToChangeUsernameCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.UriTest_Button_SwitchToChangeUsername}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

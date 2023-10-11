@@ -114,4 +114,8 @@ public class NavigationUriBuilder
         return stringBuilder.ToString();
     }
 
+    public override string ToString()
+    {
+        return Build();
+    }
 }

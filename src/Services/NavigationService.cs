@@ -127,95 +127,110 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
-        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
-        // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
-        // todo: need to consider what query parameter should and shouldn't be.
-        // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
-
-        var segments = UriUtility.GetUriSegments(uri);
-        var instructions = segments.Select(UriUtility.ParseUriSegment)
-            .ToList();
-
-        // process last instruction first since it will be the one visible to the user
-        if (UriUtility.IsUriAbsolute(uri) && instructions.Count() == 1)
+        await HandleNavigation<Page>(async () =>
         {
-            // reset stack and push for the first navigation
-            await ResetStackAndPushWithType(instructions.Single().PageType, instructions.Single().QueryParameters);
-
-            // TODO: Do I need a ResetStack method to call first here? then do normal Push and insert pages behind?
-        }
-        else if (instructions.Last().PageType == typeof(GoBackUriSegment))
-        {
-            // remove all other pages first
-            if (instructions.Count() > 1)
-            {
-                var navigation = Application.Current.MainPage.Navigation;
-
-                // remove all but one page
-                for (int i = 1; i < instructions.Count(); i++)
-                {
-                    // always remove 2nd from last page
-                    var pageToRemove = navigation.NavigationStack[^2];
-                    navigation.RemovePage(pageToRemove);
-                }
-            }
-
-            // then do the final pop
-            await Pop(instructions.Last().QueryParameters);
-        }
-        else
-        {
-            // standard relative push onto the stack
-            await PushWithType(instructions.Last().PageType, instructions.Last().QueryParameters);
-
-            if (instructions.Count() > 1)
-            {
-                var navigation = Application.Current.MainPage.Navigation;
-
-                for (int i = instructions.Count() - 2; i >= 0; i--)
-                {
-                    if (instructions[i].PageType == typeof(GoBackUriSegment))
-                    {
-                        // go back
-                        var pageToRemove = navigation.NavigationStack[^i];
-                        navigation.RemovePage(pageToRemove);
-                    }
-                    else
-                    {
-                        // insert pages behind the top page
-                        var pageToNavigateTo = ServiceResolver.Resolve(instructions[i].PageType) as Page;
-                        var pagesBeforeEnd = (instructions.Count() - 1 - i);
-                        navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack[^pagesBeforeEnd]);
-                    }
-                }
-            }
-        }
+            await UriNavigationAction(uri, navigationParameters);
+        },
+        navigationParameters);
     }
 
     #endregion URI navigation methods
 
     #region Internal implementation
 
-    /// <summary>
-    /// This method allows the <see cref="ResetStackAndPushWithType{T}(NavigationParameters)"/> to be called with reflection.
-    /// </summary>
-    private async Task ResetStackAndPushWithType(Type pageType, NavigationParameters navigationParameters)
+    private async Task UriNavigationAction(string uri, NavigationParameters navigationParameters)
     {
-        var resetStackAndPushMethod = GetType()
-            .GetMethod("ResetStackAndPush", new Type[] { typeof(NavigationParameters) })
-            .MakeGenericMethod(pageType);
-        await (Task)resetStackAndPushMethod.Invoke(this, new object[] { navigationParameters });
-    }
+        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
+        // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
+        // todo: need to consider what query parameter should and shouldn't be.
+        // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
+        var navigation = Application.Current.MainPage.Navigation;
 
-    /// <summary>
-    /// This method allows the <see cref="Push{T}(NavigationParameters)"/> to be called with reflection.
-    /// </summary>
-    private async Task PushWithType(Type pageType, NavigationParameters navigationParameters)
-    {
-        var pushMethod = GetType()
-            .GetMethod("Push", new Type[] { typeof(NavigationParameters) })
-            .MakeGenericMethod(pageType);
-        await (Task)pushMethod.Invoke(this, new object[] { navigationParameters });
+        var segments = UriUtility.GetUriSegments(uri);
+        var instructions = segments.Select(UriUtility.ParseUriSegment)
+            .ToList();
+
+        var pagesToRemove = new List<Page>();
+
+        if (UriUtility.IsUriAbsolute(uri))
+        {
+            if (instructions.Any(instruction => instruction.PageType == typeof(GoBackUriSegment)))
+            {
+                throw new Exception("You can't perform 'go back' actions during absolute URI navigation.");
+            }
+
+            // add every page as a page to be removed
+            pagesToRemove.AddRange(navigation.NavigationStack);
+        }
+
+        if (instructions.Count > 1)
+        {
+            // handle all but the last instruction
+            for (int i = 0; i < instructions.Count() - 1; i++)
+            {
+                if (instructions[i].PageType == typeof(GoBackUriSegment))
+                {
+                    // handle "Go Back" URI segments
+                    pagesToRemove.Add(navigation.NavigationStack[^(i + 1)]);
+                }
+                else
+                {
+                    // push pages relatively onto the stack
+                    var pageToNavigateTo = ServiceResolver.Resolve(instructions[i].PageType) as Page;
+
+                    if (navigationParameters.UseModalNavigation)
+                    {
+                        await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    }
+                }
+            }
+        }
+
+        // handle final instruction
+        var lastInstruction = instructions.Last();
+
+        if (lastInstruction.PageType == typeof(GoBackUriSegment))
+        {
+            // remove all the pages that needed removed
+            foreach (var page in pagesToRemove)
+            {
+                navigation.RemovePage(page);
+            }
+
+            // pop final page
+            if (navigationParameters.UseModalNavigation)
+            {
+                _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+            }
+            else
+            {
+                _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+            }
+        }
+        else
+        {
+            // push page relatively onto the stack
+            var pageToNavigateTo = ServiceResolver.Resolve(lastInstruction.PageType) as Page;
+
+            if (navigationParameters.UseModalNavigation)
+            {
+                await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+            }
+
+            // remove all the pages that needed removed
+            foreach (var page in pagesToRemove)
+            {
+                navigation.RemovePage(page);
+            }
+        }
     }
 
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)

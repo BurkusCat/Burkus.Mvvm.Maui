@@ -403,6 +403,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switch to change username.
+        /// </summary>
+        internal static string UriTest_Button_SwitchToChangeUsername {
+            get {
+                return ResourceManager.GetString("UriTest_Button_SwitchToChangeUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to URI Testing.
         /// </summary>
         internal static string UriTest_Title {
