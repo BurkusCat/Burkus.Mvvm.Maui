@@ -127,19 +127,6 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
-        await HandleNavigation<Page>(async () =>
-        {
-            await UriNavigationAction(uri, navigationParameters);
-        },
-        navigationParameters);
-    }
-
-    #endregion URI navigation methods
-
-    #region Internal implementation
-
-    private async Task UriNavigationAction(string uri, NavigationParameters navigationParameters)
-    {
         // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
         // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
         // todo: need to consider what query parameter should and shouldn't be.
@@ -161,6 +148,11 @@ internal class NavigationService : INavigationService
 
             // add every page as a page to be removed
             pagesToRemove.AddRange(navigation.NavigationStack);
+
+            foreach (var page in navigation.NavigationStack)
+            {
+                await LifecycleEventUtility.TriggerOnNavigatingFrom(page?.BindingContext, navigationParameters);
+            }
         }
 
         if (instructions.Count > 1)
@@ -171,7 +163,10 @@ internal class NavigationService : INavigationService
                 if (instructions[i].PageType == typeof(GoBackUriSegment))
                 {
                     // handle "Go Back" URI segments
-                    pagesToRemove.Add(navigation.NavigationStack[^(i + 1)]);
+                    var pageToRemove = navigation.NavigationStack[^(i + 1)];
+                    pagesToRemove.Add(pageToRemove);
+
+                    await LifecycleEventUtility.TriggerOnNavigatingFrom(pageToRemove?.BindingContext, navigationParameters);
                 }
                 else
                 {
@@ -186,6 +181,8 @@ internal class NavigationService : INavigationService
                     {
                         await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                     }
+
+                    await LifecycleEventUtility.TriggerOnNavigatedTo(pageToNavigateTo?.BindingContext, navigationParameters);
                 }
             }
         }
@@ -196,10 +193,13 @@ internal class NavigationService : INavigationService
         if (lastInstruction.PageType == typeof(GoBackUriSegment))
         {
             // remove all the pages that needed removed
-            foreach (var page in pagesToRemove)
+            foreach (var pageToRemove in pagesToRemove)
             {
-                navigation.RemovePage(page);
+                navigation.RemovePage(pageToRemove);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToRemove?.BindingContext, navigationParameters);
             }
+
+            var pageToPop = navigation.NavigationStack.Last();
 
             // pop final page
             if (navigationParameters.UseModalNavigation)
@@ -210,6 +210,8 @@ internal class NavigationService : INavigationService
             {
                 _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
             }
+
+            await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToPop?.BindingContext, navigationParameters);
         }
         else
         {
@@ -226,39 +228,34 @@ internal class NavigationService : INavigationService
             }
 
             // remove all the pages that needed removed
-            foreach (var page in pagesToRemove)
+            foreach (var pageToRemove in pagesToRemove)
             {
-                navigation.RemovePage(page);
+                navigation.RemovePage(pageToRemove);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToRemove?.BindingContext, navigationParameters);
             }
         }
+
+        var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
+        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
     }
+
+    #endregion URI navigation methods
+
+    #region Internal implementation
 
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)
         where T : Page
     {
         var fromBindingContext = MauiPageUtility.GetTopPageBindingContext();
-        var navigatingFromViewModel = fromBindingContext as INavigatingEvents;
-        var navigatedFromViewModel = fromBindingContext as INavigatedEvents;
 
-        if (navigatingFromViewModel != null)
-        {
-            await navigatingFromViewModel.OnNavigatingFrom(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatingFrom(fromBindingContext, navigationParameters);
         
         await navigationAction.Invoke();
 
-        if (navigatedFromViewModel != null)
-        {
-            await navigatedFromViewModel.OnNavigatedFrom(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatingFrom(fromBindingContext, navigationParameters);
 
         var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
-        var navigatedToViewModel = toBindingContext as INavigatedEvents;
-
-        if (navigatedToViewModel != null)
-        {
-            await navigatedToViewModel.OnNavigatedTo(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
     }
 
 
