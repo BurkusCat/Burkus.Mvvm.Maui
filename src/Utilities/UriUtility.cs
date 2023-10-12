@@ -31,6 +31,11 @@ internal static class UriUtility
 
     internal static (Type PageType, NavigationParameters QueryParameters) ParseUriSegment(string segment)
     {
+        if (string.IsNullOrWhiteSpace(segment))
+        {
+            throw new BurkusMvvmException("URI segment cannot be null or whitespace");
+        }
+
         // Split the segment into the page name and query parameters
         var parts = segment.Split('?');
 
