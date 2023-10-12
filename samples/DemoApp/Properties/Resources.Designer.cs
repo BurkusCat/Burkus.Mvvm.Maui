@@ -61,6 +61,366 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alpha.
+        /// </summary>
+        internal static string AlphaTab_Title {
+            get {
+                return ResourceManager.GetString("AlphaTab_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beta.
+        /// </summary>
+        internal static string BetaTab_Title {
+            get {
+                return ResourceManager.GetString("BetaTab_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        internal static string Button_Finish {
+            get {
+                return ResourceManager.GetString("Button_Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back.
+        /// </summary>
+        internal static string Button_GoBack {
+            get {
+                return ResourceManager.GetString("Button_GoBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string Button_Login {
+            get {
+                return ResourceManager.GetString("Button_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string Button_OK {
+            get {
+                return ResourceManager.GetString("Button_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to Alpha.
+        /// </summary>
+        internal static string Button_SwitchToAlpha {
+            get {
+                return ResourceManager.GetString("Button_SwitchToAlpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to Beta.
+        /// </summary>
+        internal static string Button_SwitchToBeta {
+            get {
+                return ResourceManager.GetString("Button_SwitchToBeta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to Charlie.
+        /// </summary>
+        internal static string Button_SwitchToCharlie {
+            get {
+                return ResourceManager.GetString("Button_SwitchToCharlie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change your username.
+        /// </summary>
+        internal static string ChangeUsername_Heading {
+            get {
+                return ResourceManager.GetString("ChangeUsername_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This modal will return data to the previous page even if you don&apos;t use the &apos;Finish&apos; button..
+        /// </summary>
+        internal static string ChangeUsername_Instructions {
+            get {
+                return ResourceManager.GetString("ChangeUsername_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change username.
+        /// </summary>
+        internal static string ChangeUsername_Title {
+            get {
+                return ResourceManager.GetString("ChangeUsername_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        internal static string ChangeUsername_UsernamePlaceholder {
+            get {
+                return ResourceManager.GetString("ChangeUsername_UsernamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charlie.
+        /// </summary>
+        internal static string CharlieTab_Title {
+            get {
+                return ResourceManager.GetString("CharlieTab_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabbed Page.
+        /// </summary>
+        internal static string DemoTabs_Title {
+            get {
+                return ResourceManager.GetString("DemoTabs_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add multiple pages.
+        /// </summary>
+        internal static string Home_Button_AddMultiplePages {
+            get {
+                return ResourceManager.GetString("Home_Button_AddMultiplePages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Username (animation).
+        /// </summary>
+        internal static string Home_Button_ChangeUsernameAnimation {
+            get {
+                return ResourceManager.GetString("Home_Button_ChangeUsernameAnimation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Username (no animation).
+        /// </summary>
+        internal static string Home_Button_ChangeUsernameNoAnimation {
+            get {
+                return ResourceManager.GetString("Home_Button_ChangeUsernameNoAnimation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout with URI syntax:.
+        /// </summary>
+        internal static string Home_Button_LogoutWithUriSyntax {
+            get {
+                return ResourceManager.GetString("Home_Button_LogoutWithUriSyntax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabbed Page demo.
+        /// </summary>
+        internal static string Home_Button_TabbedPageDemo {
+            get {
+                return ResourceManager.GetString("Home_Button_TabbedPageDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modal navigation:.
+        /// </summary>
+        internal static string Home_SubHeading_ModalNavigation {
+            get {
+                return ResourceManager.GetString("Home_SubHeading_ModalNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabbed navigation:.
+        /// </summary>
+        internal static string Home_SubHeading_TabbedNavigation {
+            get {
+                return ResourceManager.GetString("Home_SubHeading_TabbedNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URI navigation:.
+        /// </summary>
+        internal static string Home_SubHeading_UriNavigation {
+            get {
+                return ResourceManager.GetString("Home_SubHeading_UriNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string Home_Title {
+            get {
+                return ResourceManager.GetString("Home_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome {0}.
+        /// </summary>
+        internal static string Home_WelcomeMessage {
+            get {
+                return ResourceManager.GetString("Home_WelcomeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Burkus.Mvvm.Maui Demo App.
+        /// </summary>
+        internal static string Login_Heading {
+            get {
+                return ResourceManager.GetString("Login_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter any data to login to this demo app..
+        /// </summary>
+        internal static string Login_Instructions {
+            get {
+                return ResourceManager.GetString("Login_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        internal static string Login_PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("Login_PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t have an account yet? Register here..
+        /// </summary>
+        internal static string Login_RegisterLink {
+            get {
+                return ResourceManager.GetString("Login_RegisterLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string Login_Title {
+            get {
+                return ResourceManager.GetString("Login_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        internal static string Login_UsernamePlaceholder {
+            get {
+                return ResourceManager.GetString("Login_UsernamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a password..
+        /// </summary>
+        internal static string Login_Validation_RequiredPassword {
+            get {
+                return ResourceManager.GetString("Login_Validation_RequiredPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a username..
+        /// </summary>
+        internal static string Login_Validation_RequiredUsername {
+            get {
+                return ResourceManager.GetString("Login_Validation_RequiredUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t actually need to register. You can just make up any username and password to login! This is just a demo page for relative navigation..
+        /// </summary>
+        internal static string Register_Instructions {
+            get {
+                return ResourceManager.GetString("Register_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string Register_Title {
+            get {
+                return ResourceManager.GetString("Register_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back Three Times.
+        /// </summary>
+        internal static string UriTest_Button_GoBackThreeTimes {
+            get {
+                return ResourceManager.GetString("UriTest_Button_GoBackThreeTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back Two Times.
+        /// </summary>
+        internal static string UriTest_Button_GoBackTwoTimes {
+            get {
+                return ResourceManager.GetString("UriTest_Button_GoBackTwoTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to change username.
+        /// </summary>
+        internal static string UriTest_Button_SwitchToChangeUsername {
+            get {
+                return ResourceManager.GetString("UriTest_Button_SwitchToChangeUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URI Testing.
+        /// </summary>
+        internal static string UriTest_Title {
+            get {
+                return ResourceManager.GetString("UriTest_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cloudy weather today 🌥️.
         /// </summary>
         internal static string WeatherDescription_Cloudy {

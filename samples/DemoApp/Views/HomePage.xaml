@@ -4,53 +4,55 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Home"
+    Title="{x:Static properties:Resources.Home_Title}"
     x:DataType="vm:HomeViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:HomeViewModel}">
     <ScrollView>
-        <Grid
+        <VerticalStackLayout
             Margin="15"
-            MaximumWidthRequest="600"
-            RowDefinitions="*,Auto,Auto,Auto,Auto,*"
-            RowSpacing="10">
+            Spacing="10">
             <Label
-                Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding Username, StringFormat='Welcome {0}'}"
+                Style="{StaticResource HeadingLabel}"
+                Text="{Binding Username, StringFormat={x:Static properties:Resources.Home_WelcomeMessage}}"
                 VerticalOptions="EndAndExpand" />
             <Label
-                Grid.Row="1"
                 FontAttributes="Bold"
                 HorizontalOptions="CenterAndExpand"
                 Text="{Binding CurrentWeatherDescription}" />
             <Label
-                Grid.Row="2"
                 Margin="0,20,0,0"
-                Text="Modal navigation:" />
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_ModalNavigation}" />
             <Button
-                Grid.Row="3"
-                Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithAnimationCommand}"
-                MaximumWidthRequest="400"
-                Text="Change Username (animated)"
-                VerticalOptions="Start" />
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_ChangeUsernameAnimation}" />
             <Button
-                Grid.Row="4"
-                Margin="0,20,0,0"
                 Command="{Binding ChangeUsernameWithoutAnimationCommand}"
-                MaximumWidthRequest="400"
-                Text="Change Username (no animation)"
-                VerticalOptions="Start" />
-            <Button
-                Grid.Row="5"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_ChangeUsernameNoAnimation}" />
+            <Label
                 Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_TabbedNavigation}" />
+            <Button
                 Command="{Binding GoToTabbedPageDemoCommand}"
-                MaximumWidthRequest="400"
-                Text="Tabbed Page demo"
-                VerticalOptions="Start" />
-        </Grid>
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_TabbedPageDemo}" />
+            <Label
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_UriNavigation}" />
+            <Button
+                Command="{Binding LogoutCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_LogoutWithUriSyntax}" />
+            <Button
+                Command="{Binding AddMultiplePagesCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_AddMultiplePages}" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

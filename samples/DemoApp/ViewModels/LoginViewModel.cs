@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DemoApp.Properties;
 using DemoApp.Views;
 
 namespace DemoApp.ViewModels;
@@ -75,9 +76,9 @@ public partial class LoginViewModel : BaseViewModel
         if (string.IsNullOrEmpty(Username))
         {
             dialogService.DisplayAlert(
-                "Error",
-                "You must enter a username.",
-                "OK");
+                Resources.Error,
+                Resources.Login_Validation_RequiredUsername,
+                Resources.Button_OK);
 
             return false;
         }
@@ -85,9 +86,9 @@ public partial class LoginViewModel : BaseViewModel
         if (string.IsNullOrEmpty(Password))
         {
             dialogService.DisplayAlert(
-                "Error",
-                "You must enter a password.",
-                "OK");
+                Resources.Error,
+                Resources.Login_Validation_RequiredPassword,
+                Resources.Button_OK);
 
             return false;
         }

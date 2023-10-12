@@ -147,7 +147,8 @@ ServiceResolver.Resolve(IExampleService);
 ```
 
 ## Navigation service
-`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more.
+`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more. 
+See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
 
 This is a simple navigation example where we push a "`TestPage`" onto the navigation stack:
 ``` csharp
@@ -164,7 +165,7 @@ var navigationParameters = new NavigationParameters
     { "username", Username },
 };
 
-// 2. append an additional custom parameter
+// 2. append an additional, custom parameter
 navigationParameters.Add("selection", Selection);
 
 // 3. reserved parameter with a special meaning in the Burkus MVVM library, it has a helper method to make setting it easier
@@ -173,7 +174,55 @@ navigationParameters.UseModalNavigation = true;
 await navigationService.Push<TestPage>(navigationParameters);
 ```
 
-See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
+The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation.
+
+**⚠️ WARNING**: URI-based navigation behavior is unstable and is likely to change in future releases. Passing parameters, events triggered etc. are all inconsistent at present.
+
+Here are some examples of URI navigation:
+``` csharp
+// use absolute navigation (starts with a "/") to go to the LoginPage
+navigationService.Navigate("/LoginPage");
+
+// push multiple pages using relative navigation onto the stack
+navigationService.Navigate("AlphaPage/BetaPage/CharliePage");
+
+// push a page relatively with query parameters
+navigationService.Navigate("HomePage?username=Ronan&loggedIn=True");
+
+// push a page with query parameters *and* navigation parameters
+// - the query parameters only apply to one segment
+// - the navigation parameters apply to the entire navigation
+// - query parameters override navigation parameters
+var parameters = new NavigationParameters { "example", 456 };
+navigationService.Navigate("ProductPage?productid=123", parameters);
+
+// go back one page modally
+var parameters = new NavigationParameters();
+parameters.UseModalNavigation = true;
+navigationService.Navigate("..", parameters);
+
+// go back three pages and push one new page
+navigationService.Navigate("../../../AlphaPage");
+
+// it is good practice to use nameof(x) to provide a compile-time reference to the pages in your navigation
+navigationService.Navigate($"{nameof(YankeePage)}/{nameof(ZuluPage)}");
+```
+### Navigation URI builder
+Navigation to multiple pages simultaneously and passing parameters to them can start to get complicated quickly. The `NavigationUriBuilder` is a simple, typed way to build a complex navigation string.
+
+Below is an example where we go back a page (and pass a parameter that instructs the navigation to be performed modally), then push a `VictorPage`, and then push a `YankeePage` modally onto the stack:
+``` csharp
+var parameters = new NavigationParameters();
+parameters.UseModalNavigation = true;
+
+var navigationUri = new NavigationUriBuilder()
+    .AddGoBackSegment(parameters)
+    .AddSegment<VictorPage>()
+    .AddSegment<YankeePage>(parameters)
+    .Build() // produces the string: "..?UseModalNavigation=True/VictorPage/YankeePage/"
+
+navigationService.Navigate(navigationUri);
+```
 
 ## Choosing the start page of your app
 It is possible to have a service that decides which page is most appropriate to navigate to. This service could decide to:
@@ -236,11 +285,17 @@ If your viewmodel inherits from this interface, the below events will trigger fo
 Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.Maui` library to adjust how navigation is performed.
 
 - `ReservedNavigationParameters.UseAnimatedNavigation`
-  - Should an animation be used during the navigation?
-  - Defaults to: `true`
+  - If true, uses an animation during navigation.
+  - Type: `bool`
+  - Default: `true`
 - `ReservedNavigationParameters.UseModalNavigation`
-  - Should the navigation be performed modally?
-  - Defaults to: `false`
+  - If true, performs the navigation modally.
+  - Type: `bool`
+  - Default: `false`
+- `ReservedNavigationParameters.SelectTab` 
+  - If navigating to a `TabbedPage`, selects the tab with the name of the type passed. **⚠️ WARNING**: Not yet implemented.
+  - Type: `string`
+  - Default: `null`
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 
@@ -274,7 +329,6 @@ The below are some things of note that may help prevent issues from arising:
 - When you inherit from `BurkusMvvmApplication`, the `MainPage` of the app will be automatically set to a `NavigationPage`. This means the first page you push can be a `ContentPage` rather than needing to push a `NavigationPage`. This may change in the future.
 
 # Roadmap 🛣️
-- [URL-based navigation](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/1)
 - [View and viewmodel auto-registration](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/4)
 - [Popup pages](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/2)
 - [Nested viewmodels](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/5)

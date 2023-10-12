@@ -21,7 +21,7 @@ public partial class DemoTabsViewModel : BaseViewModel
     #region Commands
 
     /// <summary>
-    /// Navigate back to the homepage.
+    /// Navigate back one page.
     /// </summary>
     [RelayCommand]
     private async Task GoBack()

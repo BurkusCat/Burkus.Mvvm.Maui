@@ -10,5 +10,6 @@ The latest version of the package only will be supported with security fixes. If
 | < 0.1   | :x: |
 
 ## Reporting a Vulnerability
-
-Get in touch with @BurkusCat on Twitter/X. After making contact communicate via Direct Messages to disclose the vulnerability.
+Contact options:
+- Go to https://www.nuget.org/packages/Burkus.Mvvm.Maui and press the "Contact owners"
+- Get in touch with @BurkusCat on Twitter/X. After making contact, communicate via Direct Messages to disclose the vulnerability.

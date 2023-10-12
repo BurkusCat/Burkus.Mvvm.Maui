@@ -96,4 +96,30 @@ public class HomeViewModelTests
         // Assert
         mockNavigationService.Received().Push<DemoTabsPage>();
     }
+
+    [Fact]
+    public void LogoutCommand_WhenCalled_NavigatesToLoginPage()
+    {
+        // Arrange
+        var viewModel = ViewModel;
+
+        // Act
+        viewModel.LogoutCommand.Execute(null);
+
+        // Assert
+        mockNavigationService.Received().Navigate("/LoginPage");
+    }
+
+    [Fact]
+    public void AddMultiplePagesCommand_WhenCalled_NavigatesToSeveralPages()
+    {
+        // Arrange
+        var viewModel = ViewModel;
+
+        // Act
+        viewModel.AddMultiplePagesCommand.Execute(null);
+
+        // Assert
+        mockNavigationService.Received().Navigate("DemoTabsPage/RegisterPage/UriTestPage");
+    }
 }

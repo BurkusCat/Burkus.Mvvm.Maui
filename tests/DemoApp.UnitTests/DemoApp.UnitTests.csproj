@@ -28,4 +28,17 @@
     <ProjectReference Include="..\..\samples\DemoApp\DemoApp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="HomePage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </MauiXaml>
+  </ItemGroup>
+
 </Project>

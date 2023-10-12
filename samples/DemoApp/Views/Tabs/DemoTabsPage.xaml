@@ -4,9 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:views="clr-namespace:DemoApp.Views;assembly=DemoApp"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
-    Title="Tabbed Page"
+    Title="{x:Static properties:Resources.DemoTabs_Title}"
     x:DataType="vm:DemoTabsViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:DemoTabsViewModel}">
     <views:AlphaTabPage Title="Alpha" />

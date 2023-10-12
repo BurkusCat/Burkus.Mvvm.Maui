@@ -1,4 +1,4 @@
-namespace Burkus.Mvvm.Maui;
+﻿namespace Burkus.Mvvm.Maui;
 
 internal class NavigationService : INavigationService
 {
@@ -6,8 +6,7 @@ internal class NavigationService : INavigationService
 
     public async Task Push<T>() where T : Page
     {
-        var parameters = new NavigationParameters();
-        await Push<T>(parameters);
+        await Push<T>(new NavigationParameters());
     }
 
     public async Task Push<T>(NavigationParameters navigationParameters) where T : Page
@@ -30,8 +29,7 @@ internal class NavigationService : INavigationService
 
     public async Task Pop()
     {
-        var parameters = new NavigationParameters();
-        await Pop(parameters);
+        await Pop(new NavigationParameters());
     }
 
     public async Task Pop(NavigationParameters navigationParameters)
@@ -52,8 +50,7 @@ internal class NavigationService : INavigationService
 
     public async Task PopToRoot()
     {
-        var parameters = new NavigationParameters();
-        await PopToRoot(parameters);
+        await PopToRoot(new NavigationParameters());
     }
 
     public async Task PopToRoot(NavigationParameters navigationParameters)
@@ -72,8 +69,7 @@ internal class NavigationService : INavigationService
     public async Task ReplaceTopPage<T>()
         where T : Page
     {
-        var parameters = new NavigationParameters();
-        await ReplaceTopPage<T>(parameters);
+        await ReplaceTopPage<T>(new NavigationParameters());
     }
 
     public async Task ReplaceTopPage<T>(NavigationParameters navigationParameters)
@@ -93,8 +89,7 @@ internal class NavigationService : INavigationService
     public async Task ResetStackAndPush<T>()
         where T : Page
     {
-        var parameters = new NavigationParameters();
-        await ResetStackAndPush<T>(parameters);
+        await ResetStackAndPush<T>(new NavigationParameters());
     }
 
     public async Task ResetStackAndPush<T>(NavigationParameters navigationParameters)
@@ -123,35 +118,159 @@ internal class NavigationService : INavigationService
 
     #endregion Advanced navigation methods
 
+    #region URI navigation methods
+
+    public async Task Navigate(string uri)
+    {
+        await Navigate(uri, new NavigationParameters());
+    }
+
+    public async Task Navigate(string uri, NavigationParameters navigationParameters)
+    {
+        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
+        // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
+        // todo: need to consider what query parameter should and shouldn't be.
+        // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
+        var navigation = Application.Current.MainPage.Navigation;
+
+        var segments = UriUtility.GetUriSegments(uri);
+        var instructions = segments.Select(UriUtility.ParseUriSegment)
+            .ToList();
+
+        var pagesToRemove = new List<Page>();
+
+        if (UriUtility.IsUriAbsolute(uri))
+        {
+            if (instructions.Any(instruction => instruction.PageType == typeof(GoBackUriSegment)))
+            {
+                throw new BurkusMvvmException("You can't perform 'go back' actions during absolute URI navigation");
+            }
+
+            // add every page as a page to be removed
+            pagesToRemove.AddRange(navigation.NavigationStack);
+
+            foreach (var page in navigation.NavigationStack)
+            {
+                await LifecycleEventUtility.TriggerOnNavigatingFrom(page?.BindingContext, navigationParameters);
+            }
+        }
+
+        if (instructions.Count > 1)
+        {
+            // handle all but the last instruction
+            for (int i = 0; i < instructions.Count() - 1; i++)
+            {
+                if (instructions[i].PageType == typeof(GoBackUriSegment))
+                {
+                    // handle "Go Back" URI segments
+                    var pageToRemove = navigation.NavigationStack[^(i + 1)];
+                    pagesToRemove.Add(pageToRemove);
+
+                    await LifecycleEventUtility.TriggerOnNavigatingFrom(
+                        pageToRemove?.BindingContext,
+                        instructions[i].QueryParameters.MergeNavigationParameters(navigationParameters));
+                }
+                else
+                {
+                    // push pages relatively onto the stack
+                    var pageToNavigateTo = ServiceResolver.Resolve(instructions[i].PageType) as Page;
+                    var pushNavigationParameters = instructions[i].QueryParameters.MergeNavigationParameters(navigationParameters);
+
+                    if (pushNavigationParameters.UseModalNavigation)
+                    {
+                        await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    }
+
+                    await LifecycleEventUtility.TriggerOnNavigatedTo(
+                        pageToNavigateTo?.BindingContext,
+                        pushNavigationParameters);
+                }
+            }
+        }
+
+        // handle final instruction
+        var lastInstruction = instructions.Last();
+
+        if (lastInstruction.PageType == typeof(GoBackUriSegment))
+        {
+            // remove all the pages that needed removed
+            foreach (var pageToRemove in pagesToRemove)
+            {
+                navigation.RemovePage(pageToRemove);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                    pageToRemove?.BindingContext,
+                    lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters));
+            }
+
+            var pageToPop = navigation.NavigationStack.Last();
+            var popNavigationParameters = lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters);
+
+            // pop final page
+            if (popNavigationParameters.UseModalNavigation)
+            {
+                _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+            }
+            else
+            {
+                _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+            }
+
+            await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                pageToPop?.BindingContext,
+                popNavigationParameters);
+        }
+        else
+        {
+            // push page relatively onto the stack
+            var pageToNavigateTo = ServiceResolver.Resolve(lastInstruction.PageType) as Page;
+            var pushNavigationParameters = lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters);
+
+            if (pushNavigationParameters.UseModalNavigation)
+            {
+                await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+            }
+
+            // remove all the pages that needed removed
+            foreach (var pageToRemove in pagesToRemove)
+            {
+                navigation.RemovePage(pageToRemove);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                    pageToRemove?.BindingContext,
+                    pushNavigationParameters);
+            }
+        }
+
+        var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
+        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
+    }
+
+    #endregion URI navigation methods
+
     #region Internal implementation
 
     private async Task HandleNavigation<T>(Func<Task> navigationAction, NavigationParameters navigationParameters)
         where T : Page
     {
         var fromBindingContext = MauiPageUtility.GetTopPageBindingContext();
-        var navigatingFromViewModel = fromBindingContext as INavigatingEvents;
-        var navigatedFromViewModel = fromBindingContext as INavigatedEvents;
 
-        if (navigatingFromViewModel != null)
-        {
-            await navigatingFromViewModel.OnNavigatingFrom(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatingFrom(fromBindingContext, navigationParameters);
         
         await navigationAction.Invoke();
 
-        if (navigatedFromViewModel != null)
-        {
-            await navigatedFromViewModel.OnNavigatedFrom(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatedFrom(fromBindingContext, navigationParameters);
 
         var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
-        var navigatedToViewModel = toBindingContext as INavigatedEvents;
-
-        if (navigatedToViewModel != null)
-        {
-            await navigatedToViewModel.OnNavigatedTo(navigationParameters);
-        }
+        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
     }
+
 
     #endregion Internal implementation
 
