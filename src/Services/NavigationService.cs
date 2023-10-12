@@ -252,7 +252,7 @@ internal class NavigationService : INavigationService
         
         await navigationAction.Invoke();
 
-        await LifecycleEventUtility.TriggerOnNavigatingFrom(fromBindingContext, navigationParameters);
+        await LifecycleEventUtility.TriggerOnNavigatedFrom(fromBindingContext, navigationParameters);
 
         var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
         await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
