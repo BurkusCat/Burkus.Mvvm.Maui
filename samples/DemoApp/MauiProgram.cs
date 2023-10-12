@@ -1,4 +1,5 @@
 ﻿using DemoApp.Abstractions;
+using DemoApp.Models;
 using DemoApp.Services;
 using DemoApp.ViewModels;
 using DemoApp.Views;
@@ -15,9 +16,19 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseBurkusMvvm(burkusMvvm =>
             {
-                burkusMvvm.OnStart(async (navigationService) =>
+                burkusMvvm.OnStart(async (navigationService, serviceProvider) =>
                 {
-                    await navigationService.Push<LoginPage>();
+                    var preferences = serviceProvider.GetRequiredService<IPreferences>();
+
+                    if (preferences.ContainsKey(PreferenceKeys.Username))
+                    {
+                        // we are logged in to the app
+                        await navigationService.Push<HomePage>();
+                    }
+                    else
+                    {
+                        await navigationService.Push<LoginPage>();
+                    }
                 });
             })
             .RegisterViewModels()
@@ -62,6 +73,7 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
     {
+        mauiAppBuilder.Services.AddSingleton(Preferences.Default);
         mauiAppBuilder.Services.AddSingleton<IWeatherService, WeatherService>();
 
         return mauiAppBuilder;

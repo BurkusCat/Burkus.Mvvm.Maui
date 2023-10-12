@@ -1,20 +1,21 @@
-using DemoApp.Abstractions;
 using DemoApp.ViewModels;
-using DemoApp.Views;
 
 namespace DemoApp.UnitTests.Services;
 
 public class ChangeUsernameViewModelTests
 {
     private readonly INavigationService mockNavigationService;
+    private readonly IPreferences mockPreferences;
 
     public ChangeUsernameViewModelTests()
     {
         mockNavigationService = Substitute.For<INavigationService>();
+        mockPreferences = Substitute.For<IPreferences>();
     }
 
     public ChangeUsernameViewModel ViewModel => new ChangeUsernameViewModel(
-        mockNavigationService);
+        mockNavigationService,
+        mockPreferences);
 
     [Fact]
     public void Constructor_WhenResolved_ShouldSetNoProperties()
@@ -42,6 +43,8 @@ public class ChangeUsernameViewModelTests
         Assert.Equal("Burkus", parameters.GetValue<string>("username"));
         Assert.True(parameters.GetValue<bool>("UseModalNavigation"));
         Assert.False(parameters.GetValue<bool>("UseAnimatedNavigation"));
+
+        mockPreferences.Received().Set("username", "Burkus");
     }
 
     [Fact]
@@ -64,6 +67,29 @@ public class ChangeUsernameViewModelTests
         Assert.Equal("Burkus", navigatingFromParameters.GetValue<string>("username"));
         Assert.True(navigatingFromParameters.GetValue<bool>("UseModalNavigation"));
         Assert.True(navigatingFromParameters.GetValue<bool>("UseAnimatedNavigation"));
+
+        mockPreferences.Received().Set("username", "Burkus");
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public async Task OnNavigatingFrom_WhenInvalidUsername_ShouldSaveUsername(
+        string username)
+    {
+        // Arrange
+        var viewModel = ViewModel;
+        viewModel.Username = username;
+        var parameters = new NavigationParameters();
+
+        // Act
+        await viewModel.OnNavigatingFrom(parameters);
+
+        // Assert
+        Assert.False(parameters.ContainsKey("username"));
+
+        mockPreferences.DidNotReceiveWithAnyArgs();
     }
 
     [Fact]

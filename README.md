@@ -225,10 +225,46 @@ navigationService.Navigate(navigationUri);
 ```
 
 ## Choosing the start page of your app
+### (navigationService, serviceProvider)
+
+In the below example, we use both an `INavigationService` and an `IServiceProvider`. The `IServiceProvider` is used to resolve the .NET MAUI service, [`IPreferences`](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/preferences?tabs=android). If a username is stored in preferences, we use the `INavigationService` to go to the `HomePage` of the app. Otherwise, we go to the `LoginPage`.
+
+``` csharp
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .UseBurkusMvvm(burkusMvvm =>
+            {
+                burkusMvvm.OnStart(async (navigationService, serviceProvider) =>
+                {
+                    var preferences = serviceProvider.GetRequiredService<IPreferences>();
+
+                    if (preferences.ContainsKey(PreferenceKeys.Username))
+                    {
+                        // we are logged in to the app
+                        await navigationService.Push<HomePage>();
+                    }
+                    else
+                    {
+                        // logged out so we need to get the user to login
+                        await navigationService.Push<LoginPage>();
+                    }
+                });
+            })
+            ...
+```
+### (IServiceProvider serviceProvider)
+
 It is possible to have a service that decides which page is most appropriate to navigate to. This service could decide to:
   - Navigate to the "Terms & Conditions" page if the user has not agreed to the latest terms yet
   - Navigate to the "Signup / Login" page if the user is logged out
   - Navigate to the "Home" page if the user has used the app before and doesn't need to do anything
+
+In the below example, we only resolve a `IServiceProvider` which allows us to resolve `IAppStartupService`. The `IAppStartupService` will call the `INavigationService` internally to do the navigation.
 ```csharp
 public static class MauiProgram
 {
@@ -238,9 +274,9 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseBurkusMvvm(burkusMvvm =>
             {
-                burkusMvvm.OnStart(async (navigationService) =>
+                burkusMvvm.OnStart(async (IServiceProvider serviceProvider) =>
                 {
-                    var appStartupService = ServiceResolver.Resolve<IAppStartupService>();
+                    var appStartupService = serviceProvider.GetRequiredService<IAppStartupService>();
                     await appStartupService.NavigateToFirstPage();
                 });
             })
