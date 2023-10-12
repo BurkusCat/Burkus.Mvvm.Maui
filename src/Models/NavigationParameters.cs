@@ -31,6 +31,14 @@ public class NavigationParameters : Dictionary<string, object>
         set => this[ReservedNavigationParameters.SelectTab] = value;
     }
 
+    public NavigationParameters()
+    {
+    }
+
+    internal NavigationParameters(IDictionary<string, object> dictionary) : base(dictionary)
+    {
+    }
+
     /// <summary>
     /// Gets or sets the value of a parameter.
     /// Defaults to the specified default value if the parameter is not set.
@@ -39,8 +47,6 @@ public class NavigationParameters : Dictionary<string, object>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="defaultValue">The default value to return if the parameter is not set.</param>
     /// <returns>The value of the parameter or the default value.</returns>
-    
-    
     private T GetParameter<T>(string parameterName, T defaultValue)
     {
         return ContainsKey(parameterName)
@@ -87,6 +93,30 @@ public class NavigationParameters : Dictionary<string, object>
         }
     }
 
+    /// <summary>
+    /// Merge this NavigationParameter object with one or more NavigationParameters.
+    /// </summary>
+    /// <remarks> This object is the primary NavigationParameter and will override values with duplicate keys present
+    /// in the other NavigationParameter objects. The earlier in the array the NavigationParameter is, the more overriding
+    /// precendence it has over the later NavigationParameter</remarks>
+    /// <param name="navigationParameters">One or more NavigationParameters</param>
+    /// <returns>A new NavigationParameter with merged keys and values</returns>
+    public NavigationParameters MergeNavigationParameters(params NavigationParameters[] navigationParameters)
+    {
+        // add *this* NavigationParameter to the array of NavigationParameters
+        var allNavigationParameters = new NavigationParameters[] { this }.Concat(navigationParameters).ToArray();
+
+        var dictionary = allNavigationParameters
+            .SelectMany(dict => dict)
+            .GroupBy(kvp => kvp.Key)
+            .ToDictionary(g => g.Key, g => g.First().Value);
+        return new NavigationParameters(dictionary);
+    }
+
+    /// <summary>
+    /// Formats all navigation parameter keys and values as a URI query string.
+    /// </summary>
+    /// <returns>A URI query string</returns>
     public string ToQueryString()
     {
         var keyValuePairs = new List<string>();

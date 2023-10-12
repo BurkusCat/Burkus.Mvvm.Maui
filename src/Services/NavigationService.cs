@@ -166,14 +166,17 @@ internal class NavigationService : INavigationService
                     var pageToRemove = navigation.NavigationStack[^(i + 1)];
                     pagesToRemove.Add(pageToRemove);
 
-                    await LifecycleEventUtility.TriggerOnNavigatingFrom(pageToRemove?.BindingContext, navigationParameters);
+                    await LifecycleEventUtility.TriggerOnNavigatingFrom(
+                        pageToRemove?.BindingContext,
+                        instructions[i].QueryParameters.MergeNavigationParameters(navigationParameters));
                 }
                 else
                 {
                     // push pages relatively onto the stack
                     var pageToNavigateTo = ServiceResolver.Resolve(instructions[i].PageType) as Page;
+                    var pushNavigationParameters = instructions[i].QueryParameters.MergeNavigationParameters(navigationParameters);
 
-                    if (navigationParameters.UseModalNavigation)
+                    if (pushNavigationParameters.UseModalNavigation)
                     {
                         await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                     }
@@ -182,7 +185,9 @@ internal class NavigationService : INavigationService
                         await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                     }
 
-                    await LifecycleEventUtility.TriggerOnNavigatedTo(pageToNavigateTo?.BindingContext, navigationParameters);
+                    await LifecycleEventUtility.TriggerOnNavigatedTo(
+                        pageToNavigateTo?.BindingContext,
+                        pushNavigationParameters);
                 }
             }
         }
@@ -196,13 +201,16 @@ internal class NavigationService : INavigationService
             foreach (var pageToRemove in pagesToRemove)
             {
                 navigation.RemovePage(pageToRemove);
-                await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToRemove?.BindingContext, navigationParameters);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                    pageToRemove?.BindingContext,
+                    lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters));
             }
 
             var pageToPop = navigation.NavigationStack.Last();
+            var popNavigationParameters = lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters);
 
             // pop final page
-            if (navigationParameters.UseModalNavigation)
+            if (popNavigationParameters.UseModalNavigation)
             {
                 _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
             }
@@ -211,14 +219,17 @@ internal class NavigationService : INavigationService
                 _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
             }
 
-            await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToPop?.BindingContext, navigationParameters);
+            await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                pageToPop?.BindingContext,
+                popNavigationParameters);
         }
         else
         {
             // push page relatively onto the stack
             var pageToNavigateTo = ServiceResolver.Resolve(lastInstruction.PageType) as Page;
+            var pushNavigationParameters = lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters);
 
-            if (navigationParameters.UseModalNavigation)
+            if (pushNavigationParameters.UseModalNavigation)
             {
                 await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
             }
@@ -231,7 +242,9 @@ internal class NavigationService : INavigationService
             foreach (var pageToRemove in pagesToRemove)
             {
                 navigation.RemovePage(pageToRemove);
-                await LifecycleEventUtility.TriggerOnNavigatedFrom(pageToRemove?.BindingContext, navigationParameters);
+                await LifecycleEventUtility.TriggerOnNavigatedFrom(
+                    pageToRemove?.BindingContext,
+                    pushNavigationParameters);
             }
         }
 

@@ -157,6 +157,39 @@ public class NavigationParametersTests
     }
 
     [Fact]
+    public void MergeNavigationParameters_WhenCalledWithEmptyDictionaries_ReturnsEmptyDictionary()
+    {
+        // Arrange
+        var navParams1 = new NavigationParameters();
+        var navParams2 = new NavigationParameters();
+
+        // Act
+        var result = navParams1.MergeNavigationParameters(navParams2);
+
+        // Assert
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void MergeNavigationParameters_WhenCalledWithNonEmptyDictionaries_ReturnsMergedDictionary()
+    {
+        // Arrange
+        var navParams1 = new NavigationParameters { { "key1", "value1" } };
+        var navParams2 = new NavigationParameters { { "key2", "value2" }, { "key3", "value3" } };
+        var navParams3 = new NavigationParameters { { "key2", "value4" }, { "key4", "value5" } };
+
+        // Act
+        var result = navParams1.MergeNavigationParameters(navParams2, navParams3);
+
+        // Assert
+        Assert.Equal(4, result.Count);
+        Assert.Equal("value1", result["key1"]);
+        Assert.Equal("value2", result["key2"]);
+        Assert.Equal("value3", result["key3"]);
+        Assert.Equal("value5", result["key4"]);
+    }
+
+    [Fact]
     public void ToQueryString_ForEmptyParameters_ReturnsEmptyString()
     {
         // Arrange
