@@ -7,16 +7,19 @@ public class LoginViewModelTests
 {
     private readonly IDialogService mockDialogService;
     private readonly INavigationService mockNavigationService;
+    private readonly IPreferences mockPreferences;
 
     public LoginViewModelTests()
     {
         mockDialogService = Substitute.For<IDialogService>();
         mockNavigationService = Substitute.For<INavigationService>();
+        mockPreferences = Substitute.For<IPreferences>();
     }
 
     public LoginViewModel ViewModel => new LoginViewModel(
         mockDialogService,
-        mockNavigationService);
+        mockNavigationService,
+        mockPreferences);
 
     [Fact]
     public void Constructor_WhenResolved_ShouldSetNoProperties()
@@ -30,60 +33,72 @@ public class LoginViewModelTests
         Assert.Null(viewModel.Password);
     }
 
-    [Fact]
-    public void LoginCommand_WhenMissingUsername_ShouldShowErrorMessage()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void LoginCommand_WhenMissingUsername_ShouldShowErrorMessage(
+        string username)
     {
         // Arrange
         var viewModel = ViewModel;
+        viewModel.Username = username;
         viewModel.Password = "secure123";
 
         // Act
         viewModel.LoginCommand.Execute(null);
 
         // Assert
+        mockPreferences.DidNotReceiveWithAnyArgs();
         mockDialogService.Received().DisplayAlert(
             "Error",
             "You must enter a username.",
             "OK");
-        mockNavigationService.DidNotReceive().Push<HomePage>();
+        mockNavigationService.DidNotReceiveWithAnyArgs();
     }
 
-    [Fact]
-    public void LoginCommand_WhenMissingPassword_ShouldShowErrorMessage()
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    public void LoginCommand_WhenMissingPassword_ShouldShowErrorMessage(
+        string password)
     {
         // Arrange
         var viewModel = ViewModel;
         viewModel.Username = "burkus@test.com";
+        viewModel.Password = password;
 
         // Act
         viewModel.LoginCommand.Execute(null);
 
         // Assert
+        mockPreferences.DidNotReceiveWithAnyArgs();
         mockDialogService.Received().DisplayAlert(
             "Error",
             "You must enter a password.",
             "OK");
-        mockNavigationService.DidNotReceive().Push<HomePage>();
+        mockNavigationService.DidNotReceiveWithAnyArgs();
     }
 
-    [Fact]
-    public void LoginCommand_WhenValidLoginData_ShouldNavigateToHomePage()
+    [Theory]
+    [InlineData("secure123")]
+    [InlineData("   ")]
+    public void LoginCommand_WhenValidLoginData_ShouldNavigateToHomePage(
+        string password)
     {
         // Arrange
         var viewModel = ViewModel;
         viewModel.Username = "burkus@test.com";
-        viewModel.Password = "secure123";
+        viewModel.Password = password;
 
         // Act
         viewModel.LoginCommand.Execute(null);
 
         // Assert
+        mockPreferences.Received().Set("username", "burkus@test.com");
         mockNavigationService.Received().ResetStackAndPush<HomePage>(
             Arg.Is<NavigationParameters>(x => x.GetValue<string>("username") == "burkus@test.com"));
-        mockDialogService.DidNotReceive().DisplayAlert(
-            Arg.Any<string>(),
-            Arg.Any<string>(),
-            Arg.Any<string>());
+        mockDialogService.DidNotReceiveWithAnyArgs();
     }
 
     [Fact]

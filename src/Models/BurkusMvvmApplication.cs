@@ -8,11 +8,12 @@ public class BurkusMvvmApplication : Application
 
         var burkusMvvmBuilder = ServiceResolver.Resolve<IBurkusMvvmBuilder>();
         var navigationService = ServiceResolver.Resolve<INavigationService>();
+        var serviceProvider = ServiceResolver.GetServiceProvider();
 
         // perform the user's desired initialization logic
         if (burkusMvvmBuilder.onStartFunc != null)
         {
-            burkusMvvmBuilder.onStartFunc.Invoke(navigationService);
+            burkusMvvmBuilder.onStartFunc.Invoke(navigationService, serviceProvider);
         }
 
         return base.CreateWindow(activationState);

@@ -8,15 +8,18 @@ public class HomeViewModelTests
 {
     private readonly INavigationService mockNavigationService;
     private readonly IWeatherService mockWeatherService;
+    private readonly IPreferences mockPreferences;
 
     public HomeViewModelTests()
     {
         mockNavigationService = Substitute.For<INavigationService>();
+        mockPreferences = Substitute.For<IPreferences>();
         mockWeatherService = Substitute.For<IWeatherService>();
     }
 
     public HomeViewModel ViewModel => new HomeViewModel(
         mockNavigationService,
+        mockPreferences,
         mockWeatherService);
 
     [Fact]
@@ -53,20 +56,18 @@ public class HomeViewModelTests
     }
 
     [Fact]
-    public async Task OnNavigatedTo_WhenNoUsernamePassed_DoesNotSetUsernameValue()
+    public async Task OnNavigatedTo_WhenNoUsernamePassed_SetsUsernameFromPreferences()
     {
         // Arrange
         var viewModel = ViewModel;
-        var parameters = new NavigationParameters
-        {
-            { "username", string.Empty },
-        };
+        var parameters = new NavigationParameters();
+        mockPreferences.Get<string>("username", null).Returns("Smee");
 
         // Act
         await viewModel.OnNavigatedTo(parameters);
 
         // Assert
-        Assert.Null(viewModel.Username);
+        Assert.Equal("Smee", viewModel.Username);
     }
 
     [Fact]
@@ -108,6 +109,7 @@ public class HomeViewModelTests
 
         // Assert
         mockNavigationService.Received().Navigate("/LoginPage");
+        mockPreferences.Received().Remove("username");
     }
 
     [Fact]

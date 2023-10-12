@@ -6,9 +6,9 @@ public static class BurkusMvvmBuilderExtensions
     /// Define where the app should go first when starting. You must navigate to a page when starting.
     /// </summary>
     /// <param name="builder">BurkusMvvmBuilder</param>
-    /// <param name="onStartFunc">Function to perform when starting with access to the <see cref="INavigationService"/></param>
+    /// <param name="onStartFunc">Function to perform when starting with access to <see cref="INavigationService"/> and <see cref="IServiceProvider"/></param>
     /// <returns></returns>
-    public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<INavigationService, Task> onStartFunc)
+    public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<INavigationService, IServiceProvider, Task> onStartFunc)
     {
         var internalBuilder = builder as InternalBurkusMvvmBuilder;
 
@@ -18,5 +18,27 @@ public static class BurkusMvvmBuilderExtensions
         }
 
         return builder;
+    }
+
+    /// <summary>
+    /// Define where the app should go first when starting. You must navigate to a page when starting.
+    /// </summary>
+    /// <param name="builder">BurkusMvvmBuilder</param>
+    /// <param name="onStartFunc">Function to perform when starting with access to <see cref="INavigationService"/>.</param>
+    /// <returns></returns>
+    public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<INavigationService, Task> onStartFunc)
+    {
+        return OnStart(builder, (nav, sp) => onStartFunc(nav));
+    }
+
+    /// <summary>
+    /// Define where the app should go first when starting. You must navigate to a page when starting.
+    /// </summary>
+    /// <param name="builder">BurkusMvvmBuilder</param>
+    /// <param name="onStartFunc">Function to perform when starting with access to <see cref="IServiceProvider"/>.</param>
+    /// <returns></returns>
+    public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<IServiceProvider, Task> onStartFunc)
+    {
+        return OnStart(builder, (nav, sp) => onStartFunc(sp));
     }
 }

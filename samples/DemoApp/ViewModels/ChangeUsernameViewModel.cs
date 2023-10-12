@@ -1,11 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Burkus.Mvvm.Maui;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DemoApp.Models;
+using DemoApp.Properties;
 
 namespace DemoApp.ViewModels;
 
 public partial class ChangeUsernameViewModel : BaseViewModel
 {
     #region Fields
+
+    private IPreferences preferences { get; }
 
     private bool wasAnimatedNavigationUsed;
 
@@ -21,9 +26,11 @@ public partial class ChangeUsernameViewModel : BaseViewModel
     #region Constructors
 
     public ChangeUsernameViewModel(
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IPreferences preferences)
         : base(navigationService)
     {
+        this.preferences = preferences;
     }
 
     #endregion Constructors
@@ -43,9 +50,15 @@ public partial class ChangeUsernameViewModel : BaseViewModel
     {
         await base.OnNavigatingFrom(parameters);
 
-        // pass 'Username' back regardless if the user presses the button
-        // or uses a different method of closing the modal (e.g. Android back button)
-        parameters.Add("username", Username);
+        if (IsValidUsername())
+        {
+            // save username as a preference
+            preferences.Set(PreferenceKeys.Username, Username);
+
+            // pass 'Username' back regardless if the user presses the button
+            // or uses a different method of closing the modal (e.g. Android back button)
+            parameters.Add(NavigationParameterKeys.Username, Username);
+        }
 
         // this is a modal, so we need to close it modally
         parameters.UseModalNavigation = true;
@@ -70,4 +83,13 @@ public partial class ChangeUsernameViewModel : BaseViewModel
     }
 
     #endregion Commands
+
+    #region Private methods
+
+    private bool IsValidUsername()
+    {
+        return !string.IsNullOrWhiteSpace(Username);
+    }
+
+    #endregion Private methods
 }

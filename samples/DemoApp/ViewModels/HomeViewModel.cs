@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DemoApp.Abstractions;
+using DemoApp.Models;
 using DemoApp.Views;
 
 namespace DemoApp.ViewModels;
@@ -9,7 +10,9 @@ public partial class HomeViewModel : BaseViewModel
 {
     #region Fields
 
-    protected IWeatherService weatherService { get; }
+    private IPreferences preferences { get; }
+
+    private IWeatherService weatherService { get; }
 
     #endregion Fields
 
@@ -27,9 +30,11 @@ public partial class HomeViewModel : BaseViewModel
 
     public HomeViewModel(
         INavigationService navigationService,
+        IPreferences preferences,
         IWeatherService weatherService)
         : base(navigationService)
     {
+        this.preferences = preferences;
         this.weatherService = weatherService;
     }
 
@@ -41,11 +46,14 @@ public partial class HomeViewModel : BaseViewModel
     {
         await base.OnNavigatedTo(parameters);
 
-        var usernameValue = parameters.GetValue<string>("username");
-
-        if (!string.IsNullOrWhiteSpace(usernameValue))
+        if (parameters.ContainsKey(NavigationParameterKeys.Username))
         {
-            Username = usernameValue;
+            Username = parameters.GetValue<string>(NavigationParameterKeys.Username);
+        }
+        else
+        {
+            // load the username from preferences
+            Username = preferences.Get<string>(PreferenceKeys.Username, default);
         }
 
         CurrentWeatherDescription = weatherService.GetWeatherDescription();
@@ -95,6 +103,9 @@ public partial class HomeViewModel : BaseViewModel
     [RelayCommand]
     private async Task Logout()
     {
+        // remove the username preference
+        preferences.Remove(PreferenceKeys.Username);
+
         // use the navigate URI syntax to logout with an absolute URI
         await navigationService.Navigate("/LoginPage");
     }

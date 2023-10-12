@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DemoApp.Models;
 using DemoApp.Properties;
 using DemoApp.Views;
 
@@ -9,7 +10,9 @@ public partial class LoginViewModel : BaseViewModel
 {
     #region Fields
 
-    protected IDialogService dialogService { get; }
+    private IDialogService dialogService { get; }
+
+    private IPreferences preferences { get; }
 
     #endregion Fields
 
@@ -27,10 +30,12 @@ public partial class LoginViewModel : BaseViewModel
 
     public LoginViewModel(
         IDialogService dialogService,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IPreferences preferences)
         : base(navigationService)
     {
         this.dialogService = dialogService;
+        this.preferences = preferences;
     }
 
     #endregion Constructors
@@ -49,9 +54,12 @@ public partial class LoginViewModel : BaseViewModel
             return;
         }
 
+        // save username as a preference
+        preferences.Set(PreferenceKeys.Username, Username);
+
         var navigationParameters = new NavigationParameters
         {
-            { "username", Username },
+            { NavigationParameterKeys.Username, Username },
         };
 
         // after we login, we replace the stack so the user can't go back to the Login page
@@ -73,7 +81,7 @@ public partial class LoginViewModel : BaseViewModel
 
     private bool IsValidLoginForm()
     {
-        if (string.IsNullOrEmpty(Username))
+        if (string.IsNullOrWhiteSpace(Username))
         {
             dialogService.DisplayAlert(
                 Resources.Error,

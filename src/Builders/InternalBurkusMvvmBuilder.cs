@@ -5,5 +5,5 @@
 /// </summary>
 internal class InternalBurkusMvvmBuilder : BurkusMvvmBuilder, IBurkusMvvmBuilder
 {
-    public Func<INavigationService, Task> onStartFunc { get; set; }
+    public Func<INavigationService, IServiceProvider, Task> onStartFunc { get; set; }
 }

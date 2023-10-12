@@ -2,5 +2,5 @@
 
 internal interface IBurkusMvvmBuilder
 {
-    Func<INavigationService, Task> onStartFunc { get; set; }
+    Func<INavigationService, IServiceProvider, Task> onStartFunc { get; set; }
 }
