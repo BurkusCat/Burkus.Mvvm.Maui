@@ -174,18 +174,27 @@ navigationParameters.UseModalNavigation = true;
 await navigationService.Push<TestPage>(navigationParameters);
 ```
 
-The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation. **⚠️ WARNING**: URI-based navigation behavior is unstable and is likely to change in future releases.
+The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation.
+
+**⚠️ WARNING**: URI-based navigation behavior is unstable and is likely to change in future releases. Passing parameters, events triggered etc. are all inconsistent at present.
 
 Here are some examples of URI navigation:
 ``` csharp
 // use absolute navigation (starts with a "/") to go to the LoginPage
 navigationService.Navigate("/LoginPage");
 
-// push a page with query parameters
-navigationService.Navigate("HomePage?username=Ronan&loggedIn=True");
-
 // push multiple pages using relative navigation onto the stack
 navigationService.Navigate("AlphaPage/BetaPage/CharliePage");
+
+// push a page relatively with query parameters
+navigationService.Navigate("HomePage?username=Ronan&loggedIn=True");
+
+// push a page with query parameters *and* navigation parameters
+// - the query parameters only apply to one segment
+// - the navigation parameters apply to the entire navigation
+// - query parameters override navigation parameters
+var parameters = new NavigationParameters { "example", 456 };
+navigationService.Navigate("ProductPage?productid=123", parameters);
 
 // go back one page modally
 var parameters = new NavigationParameters();
@@ -201,7 +210,7 @@ navigationService.Navigate($"{nameof(YankeePage)}/{nameof(ZuluPage)}");
 ### Navigation URI builder
 Navigation to multiple pages simultaneously and passing parameters to them can start to get complicated quickly. The `NavigationUriBuilder` is a simple, typed way to build a complex navigation string.
 
-Below is an example where we go back a page (and pass a parameter that instructs the navigation to be performed modally), then push a `VictorPage`, and then push a `YankeePage` onto the stack:
+Below is an example where we go back a page (and pass a parameter that instructs the navigation to be performed modally), then push a `VictorPage`, and then push a `YankeePage` modally onto the stack:
 ``` csharp
 var parameters = new NavigationParameters();
 parameters.UseModalNavigation = true;
@@ -209,7 +218,7 @@ parameters.UseModalNavigation = true;
 var navigationUri = new NavigationUriBuilder()
     .AddGoBackSegment(parameters)
     .AddSegment<VictorPage>()
-    .AddSegment<YankeePage>()
+    .AddSegment<YankeePage>(parameters)
     .Build() // produces the string: "..?UseModalNavigation=True/VictorPage/YankeePage/"
 
 navigationService.Navigate(navigationUri);
@@ -320,7 +329,6 @@ The below are some things of note that may help prevent issues from arising:
 - When you inherit from `BurkusMvvmApplication`, the `MainPage` of the app will be automatically set to a `NavigationPage`. This means the first page you push can be a `ContentPage` rather than needing to push a `NavigationPage`. This may change in the future.
 
 # Roadmap 🛣️
-- [URL-based navigation](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/1)
 - [View and viewmodel auto-registration](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/4)
 - [Popup pages](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/2)
 - [Nested viewmodels](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/5)
