@@ -8,7 +8,7 @@ internal static class UriUtility
     {
         if (string.IsNullOrEmpty(uri))
         {
-            throw new Exception("URI cannot be null or empty");
+            throw new BurkusMvvmException("URI cannot be null or empty");
         }
 
         // split the URI by '/' and remove empty segments
@@ -17,7 +17,7 @@ internal static class UriUtility
 
         if (!segments.Any())
         {
-            throw new Exception("No URI segments were found");
+            throw new BurkusMvvmException("No URI segments were found");
         }
 
         return segments;
@@ -111,6 +111,6 @@ internal static class UriUtility
         }
 
         // could not find the type
-        return null;
+        throw new BurkusMvvmException($"Could not find a type in assemblies for page name: {pageName}");
     }
 }

@@ -143,7 +143,7 @@ internal class NavigationService : INavigationService
         {
             if (instructions.Any(instruction => instruction.PageType == typeof(GoBackUriSegment)))
             {
-                throw new Exception("You can't perform 'go back' actions during absolute URI navigation.");
+                throw new BurkusMvvmException("You can't perform 'go back' actions during absolute URI navigation");
             }
 
             // add every page as a page to be removed
