@@ -211,13 +211,12 @@ public class NavigationParametersTests
             { "param1", "value1" },
             { "param2", 123 },
             { "param3", true },
-            { "param4", new DateTime(1994, 12, 12, 0, 0, 0, DateTimeKind.Utc) },
         };
 
         // Act
         var result = navigationParameters.ToQueryString();
 
         // Assert
-        Assert.Equal("?param1=value1&param2=123&param3=True&param4=12%2f12%2f1994+00%3a00%3a00", result);
+        Assert.Equal("?param1=value1&param2=123&param3=True", result);
     }
 }

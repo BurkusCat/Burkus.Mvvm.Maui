@@ -25,3 +25,5 @@ jobs:
       run: dotnet restore samples\DemoApp\DemoApp.sln
     - name: Build
       run: dotnet build samples\DemoApp\DemoApp.sln -c Release
+    - name: Run Unit Tests
+      run: dotnet test tests\DemoApp.UnitTests\DemoApp.UnitTests.csproj --verbosity normal
