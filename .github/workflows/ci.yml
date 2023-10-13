@@ -1,4 +1,4 @@
-name: Build for CI
+name: Build Library for CI
 
 on:
   push:
@@ -25,3 +25,5 @@ jobs:
       run: dotnet restore src\Burkus.Mvvm.Maui.sln
     - name: Build
       run: dotnet build src\Burkus.Mvvm.Maui.sln -c Release
+    - name: Run Unit Tests
+      run: dotnet test tests\Burkus.Mvvm.Maui.UnitTests\Burkus.Mvvm.Maui.UnitTests.csproj --verbosity normal
