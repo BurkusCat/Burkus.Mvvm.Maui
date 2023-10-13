@@ -97,31 +97,31 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChangeUsernamePage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UriTestPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tabs\CharlieTabPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tabs\BetaTabPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tabs\DemoTabsPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RegisterPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tabs\AlphaTabPage.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
