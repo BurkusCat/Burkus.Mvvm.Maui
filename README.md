@@ -21,6 +21,21 @@
 
 **⚠️ WARNING**: `Burkus.Mvvm.Maui` is currently an experimental library. The API will change frequently and there will be frequent backwards compatibility breaking changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until a well-liked, stable API has been found. Only then would a version "1.y.z" and beyond be released.
 
+# Supporting the Project 💖
+<a href="https://github.com/sponsors/BurkusCat"><img align="right" src="art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
+
+Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it! I would greatly appreciate if you would be able to [sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat). There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
+
+- a sponsorship badge 🪙
+- prioritized bug reports 🐛
+- pair-programming sessions, consulting, or mentorship 🧑‍🏫
+- shout-outs in this `README` 📢
+- ... and more
+
+<iframe src="https://github.com/sponsors/BurkusCat/card" title="Sponsor BurkusCat" height="225" width="600" style="border: 0;"></iframe>
+
+<br clear="right"/>
+
 # Documentation 📗
 See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs. The [test project](/tests/DemoApp.UnitTests/) for the demo app demonstrates how you can write tests with code that calls this library.
 
@@ -374,9 +389,7 @@ The below are some things of note that may help prevent issues from arising:
 - [IPageVisibilityEvents](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/7)
 - [...and more](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues)
 
-[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions.
-
-![Green letters: M V V M laid out vertically](art/MvvmVertical.png)
+[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions. Or, support the project and help influence its direction by [sponsoring me](https://github.com/sponsors/BurkusCat).
 
 # Contributing 💁‍♀️
 Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING.MD) to get started.
@@ -387,3 +400,5 @@ Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING
 
 # License 🪪
 The project is distributed under the [MIT license](LICENSE). Contributors do not need to sign a CLA.
+
+![Green letters: M V V M laid out vertically](art/MvvmVertical.png)
