@@ -26,9 +26,10 @@
             <Entry
                 Grid.Row="2"
                 MaximumWidthRequest="{StaticResource VeryWideControlWidth}"
+                Placeholder="{x:Static properties:Resources.ChangeUsername_UsernamePlaceholder}"
                 ReturnCommand="{Binding FinishCommand}"
                 ReturnType="Done"
-                Text="{x:Static properties:Resources.ChangeUsername_UsernamePlaceholder}" />
+                Text="{Binding Username}" />
             <Button
                 Grid.Row="3"
                 Command="{Binding FinishCommand}"

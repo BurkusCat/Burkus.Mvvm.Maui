@@ -1,6 +1,8 @@
 ![Burkus.Mvvm.Maui](art/BurkusMvvmMauiLogo.png)
 #### Navigation - Parameter Passing - Lifecycle Events - Native Dialogs - Testability
 
+### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
+
 # Burkus.Mvvm.Maui (experimental)
 `Burkus.Mvvm.Maui` is an MVVM (Model–view–viewmodel) framework for .NET MAUI. The library has some key aims it wants to provide:
 - Be lightweight and only provide the parts of MVVM that MAUI needs 👟

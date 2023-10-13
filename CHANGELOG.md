@@ -8,11 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2023-10-15
 
 ### Added
-- Builder extensions and BurkusMvvmBuilder
-- ResolveBindingContext markup extension
+- Builder extensions and `BurkusMvvmBuilder`
+- `ResolveBindingContext` markup extension
 - Navigation parameters and reserved navigation parameters
-- INavigatingEvents
-- INavigatedEvents
-- DialogService
-- ServiceResolver
+- `INavigatingEvents`
+- `INavigatedEvents`
+- `NavigationService`
+  - Basic abstractions of MAUI navigation methods such as: `.Push(...)`, `.Pop`, etc.
+  - Modal and animation options for navigation
+  - Convenient, advanced navigation methods such as: `.ReplaceTopPage(...)`, `.ResetStackAndPush(...)`, etc.
+  - URI Navigation using the `.Navigate(...)` method (unstable behavior)
+  - `NavigationUriBuilder`
+- `DialogService` - abstractions over the native .NET MAUI alerts/pop-ups/prompts/action sheets
+- `ServiceResolver`
 - Initial documentation
+- Demo app and unit tests
