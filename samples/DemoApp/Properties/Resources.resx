@@ -197,6 +197,10 @@
     <value>Logout with URI syntax:</value>
     <comment>Translate</comment>
   </data>
+  <data name="Home_Button_StartTabbedPageOnBetaTab" xml:space="preserve">
+    <value>Start Tabbed Page on Beta tab</value>
+    <comment>Translate</comment>
+  </data>
   <data name="Home_Button_TabbedPageDemo" xml:space="preserve">
     <value>Tabbed Page demo</value>
     <comment>Translate</comment>

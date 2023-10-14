@@ -98,6 +98,18 @@ public partial class HomeViewModel : BaseViewModel
     }
 
     /// <summary>
+    /// Navigate to the example tabbed page and select Beta tab.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToTabbedPageDemoBetaTab()
+    {
+        var navigationParameters = new NavigationParameters();
+        navigationParameters.SelectTab = nameof(BetaTabPage);
+
+        await navigationService.Push<DemoTabsPage>(navigationParameters);
+    }
+
+    /// <summary>
     /// Logout of the application.
     /// </summary>
     [RelayCommand]

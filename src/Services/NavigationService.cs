@@ -248,8 +248,13 @@ internal class NavigationService : INavigationService
             }
         }
 
+        var lastNavigationParameters = lastInstruction.QueryParameters.MergeNavigationParameters(navigationParameters);
+
         var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
-        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
+        await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, lastNavigationParameters);
+
+        // if the SelectTab parameter is used, we will switch tab
+        SelectTabFromParameters(lastNavigationParameters);
     }
 
     #endregion URI navigation methods
@@ -262,21 +267,47 @@ internal class NavigationService : INavigationService
         var fromBindingContext = MauiPageUtility.GetTopPageBindingContext();
 
         await LifecycleEventUtility.TriggerOnNavigatingFrom(fromBindingContext, navigationParameters);
-        
+
         await navigationAction.Invoke();
 
         await LifecycleEventUtility.TriggerOnNavigatedFrom(fromBindingContext, navigationParameters);
 
         var toBindingContext = MauiPageUtility.GetTopPageBindingContext();
         await LifecycleEventUtility.TriggerOnNavigatedTo(toBindingContext, navigationParameters);
+
+        // if the SelectTab parameter is used, we will switch tab
+        SelectTabFromParameters(navigationParameters);
     }
 
+    private void SelectTabFromParameters(NavigationParameters navigationParameters)
+    {
+        if (string.IsNullOrWhiteSpace(navigationParameters.SelectTab))
+        {
+            // no tab to select
+            return;
+        }
+
+        var tabType = UriUtility.FindPageType(navigationParameters.SelectTab);
+        SelectTabWithType(tabType);
+    }
+
+    /// <summary>
+    /// This method allows the <see cref="SelectTab{T}()"/> to be called with reflection.
+    /// </summary>
+    private async void SelectTabWithType(Type tabType)
+    {
+        var selectTabMethod = GetType()
+            .GetMethod(nameof(SelectTab))
+            .MakeGenericMethod(tabType);
+        selectTabMethod.Invoke(this, null);
+    }
 
     #endregion Internal implementation
 
     #region Tab navigation methods
 
-    public void SelectTab<T>() where T : Page
+    public void SelectTab<T>()
+        where T : Page
     {
         var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
 
@@ -286,19 +317,19 @@ internal class NavigationService : INavigationService
             return;
         }
 
-        foreach (var child in tabbedPage.Children)
+        foreach (var childPage in tabbedPage.Children)
         {
-            if (child.GetType() == typeof(T))
+            if (childPage.GetType() == typeof(T))
             {
-                tabbedPage.CurrentPage = child;
+                tabbedPage.CurrentPage = childPage;
                 return;
             }
 
-            if (child is NavigationPage)
+            if (childPage is NavigationPage)
             {
-                if (((NavigationPage)child).CurrentPage.GetType() == typeof(T))
+                if (((NavigationPage)childPage).CurrentPage.GetType() == typeof(T))
                 {
-                    tabbedPage.CurrentPage = child;
+                    tabbedPage.CurrentPage = childPage;
                     return;
                 }
             }

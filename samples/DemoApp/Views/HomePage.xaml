@@ -41,6 +41,10 @@
                 Command="{Binding GoToTabbedPageDemoCommand}"
                 Style="{StaticResource PrimaryButton}"
                 Text="{x:Static properties:Resources.Home_Button_TabbedPageDemo}" />
+            <Button
+                Command="{Binding GoToTabbedPageDemoBetaTabCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_StartTabbedPageOnBetaTab}" />
             <Label
                 Margin="0,20,0,0"
                 HorizontalOptions="Center"

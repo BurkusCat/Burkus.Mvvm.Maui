@@ -69,7 +69,11 @@ public class UriUtilityTests
     [InlineData("MockYankeePage?foo=bar", typeof(MockYankeePage), "foo", "bar")]
     [InlineData("..", typeof(GoBackUriSegment), null, null)]
     [InlineData("MockZuluPage?person={\"name\":\"Ronan\",\"age\":28}", typeof(MockZuluPage), "person", "{\"name\":\"Ronan\",\"age\":28}")]
-    public void ParseUriSegment_WhenValidSegment_ReturnsPageTypeAndQueryParameters(string segment, Type expectedPageType, string expectedKey, object expectedValue)
+    public void ParseUriSegment_WhenValidSegment_ReturnsPageTypeAndQueryParameters(
+        string segment,
+        Type expectedPageType,
+        string expectedKey,
+        object expectedValue)
     {
         // Arrange
         // Act
@@ -94,11 +98,43 @@ public class UriUtilityTests
     [InlineData("")]
     [InlineData(" ")]
     [InlineData("invalid")]
-    public void ParseUriSegment_Should_Throw_BurkusMvvmException_When_Segment_Is_Invalid(string segment)
+    public void ParseUriSegment_WhenSegmentIsInvalid_ShouldThrowBurkusMvvmException(
+        string segment)
     {
         // Arrange
         // Act
         // Assert
         Assert.Throws<BurkusMvvmException>(() => UriUtility.ParseUriSegment(segment));
+    }
+
+    [Theory]
+    [InlineData("..", typeof(GoBackUriSegment))]
+    [InlineData("MockVictorPage", typeof(MockVictorPage))]
+    [InlineData("MockYankeePage", typeof(MockYankeePage))]
+    [InlineData("MockZuluPage", typeof(MockZuluPage))]
+    public void FindPageType_PageNameExists_ReturnsExpectedPageType(
+        string pageName,
+        Type expectedType)
+    {
+        // Arrange
+        // Act
+        Type result = UriUtility.FindPageType(pageName);
+
+        // Assert
+        Assert.Equal(expectedType, result);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData(" ")]
+    [InlineData("invalid")]
+    public void FindPageType_PageNameDoesNotExist_ShouldThrowBurkusMvvmException(
+        string pageName)
+    {
+        // Arrange
+        // Act
+        // Assert
+        Assert.Throws<BurkusMvvmException>(() => UriUtility.FindPageType(pageName));
     }
 }
