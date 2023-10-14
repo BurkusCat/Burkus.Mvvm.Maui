@@ -4,40 +4,50 @@
 ### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
 
 # Burkus.Mvvm.Maui (experimental)
-`Burkus.Mvvm.Maui` is an MVVM (Model–view–viewmodel) framework for .NET MAUI. The library has some key aims it wants to provide:
-- Be lightweight and only provide the parts of MVVM that MAUI needs 👟
+`Burkus.Mvvm.Maui` is an MVVM (Model–view–viewmodel) framework designed for .NET MAUI. The library is developed with these key principles:
+- Be **lightweight** and only provide the parts of MVVM that MAUI needs 👟
   - MAUI has dependency injection built-in now, `Burkus.Mvvm.Maui` takes advantage of this.
   - `CommunityToolkit.Mvvm` provides excellent: commanding, observable properties, source generating attributes, and fast messaging. `Burkus.Mvvm.Maui` does not compete with any of this and the idea is that you should pair both libraries together (or another library that does those things). This is not forced upon you, however.
-  - MAUI [without Shell] needs: navigation, passing parameters, lifecycle events, and modals. `Burkus.Mvvm.Maui` wants to provide these things.
-- Be unit testable 🧪
-  - .NET MAUI itself is difficult to unit test outside the box and sometimes third-party MAUI libraries can be too.
-  - You *should* be easily able to assert that when you press a button, that the command that fires navigates you to a particular page.
-- Be easy to understand and setup 📄
-  - The APIs and syntax should be easy to setup/understand
-  - The library should be well documented (the current plan is to document the library in this README)
-- Be dependable for the future 🔮
-  - The library is OSS and released under the MIT license. Contributors do not need to sign a CLA.
-  - Individuals and businesses can fork it if it ever doesn't meet their needs.
+  - MAUI [without Shell] needs: navigation, passing parameters, lifecycle events, and dialogs. `Burkus.Mvvm.Maui` provides these things.
+- Be **unit testable** 🧪
+  - This library and its APIs are designed to ensure you can easily include `Burkus.Mvvm.Maui` calls in unit tests.
+  - For example, you can confidently validate that button clicks lead to specific page navigations.
+- Be **easy to understand** and setup 📄
+  - The APIs and syntax are easy to setup & understand.
+  - We are committed to providing comprehensive documentation this `README`.
+- Be **dependable** for the future 🔮
+  - `Burkus.Mvvm.Maui` is open source and released under the MIT license. No CLAs are required for contributors.
+  - Individuals and businesses can fork the library if it ever falls short of their needs.
 
-**⚠️ WARNING**: `Burkus.Mvvm.Maui` is currently an experimental library. The API will change frequently and there will be frequent backwards compatibility breaking changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until a well-liked, stable API has been found. Only then would a version "1.y.z" and beyond be released.
+**⚠️ Warning**: `Burkus.Mvvm.Maui` is currently an experimental library. Expect frequent breaking API changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until we establish a stable, well-liked API. Only then will we release versions "1.y.z" and beyond.
 
 # Supporting the Project 💖
 <a href="https://github.com/sponsors/BurkusCat"><img align="right" src="art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
 
-Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it! I would greatly appreciate if you would be able to [sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat). There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
+Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it!  If you've found value in Burkus.Mvvm.Maui, I would greatly appreciate if you would be able to **[sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat)**. There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
 
 - a sponsorship badge 🪙
 - prioritized bug reports 🐛
-- pair-programming sessions, consulting, or mentorship 🧑‍🏫
-- shout-outs in this `README` 📢
+- opportunities for pair-programming sessions, consulting, or mentorship 🧑‍🏫
+- shout-outs right here in this `README` 📢
 - ... and more
-
-<iframe src="https://github.com/sponsors/BurkusCat/card" title="Sponsor BurkusCat" height="225" width="600" style="border: 0;"></iframe>
 
 <br clear="right"/>
 
 # Documentation 📗
-See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action. The [demo app](/samples/DemoApp/) has examples of different types of navigation, configuring the library, using lifecycle events, passing parameters, and showing native dialogs. The [test project](/tests/DemoApp.UnitTests/) for the demo app demonstrates how you can write tests with code that calls this library.
+See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
+
+🚀 [Run the Demo App](/samples/DemoApp/) to see interactive examples of features in this library. With the code examples you can learn about:
+- different types of navigation
+- the standard way to configure this library
+- utilizing lifecycle events
+- passing parameters
+- displaying native dialogs
+
+🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
+
+| <img src="art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="art/android-home.png" width="200" alt="The Home page of the demo app running on Android"> | <img src="art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
+| -------- | ------- | ------- |
 
 ## Getting started
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
@@ -120,8 +130,6 @@ In your `xaml` page, you need to use the `ResolveBindingContext` markup extensio
     ...>
 ```
 
-[NOTE: You may get an error when using the above syntax that will go away when you actually run the app.](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/13)
-
 Complete example (`x:DataType` has also been added for [improved performance and better auto-complete suggestions in XAML](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/data-binding/compiled-bindings)):
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -193,7 +201,7 @@ await navigationService.Push<TestPage>(navigationParameters);
 
 The `INavigationService` supports URI/URL-based navigation. Use the `.Navigate(string uri)` or `.Navigate(string uri, NavigationParameters navigationParameters)` methods to do more complex navigation.
 
-**⚠️ WARNING**: URI-based navigation behavior is unstable and is likely to change in future releases. Passing parameters, events triggered etc. are all inconsistent at present.
+**⚠️ Warning**: URI-based navigation behavior is unstable and is likely to change in future releases. Passing parameters, events triggered etc. are all inconsistent at present.
 
 Here are some examples of URI navigation:
 ``` csharp
@@ -242,6 +250,8 @@ navigationService.Navigate(navigationUri);
 ```
 
 ## Choosing the start page of your app
+In the [Getting Started guide](#getting-started), it shows how you can use `INavigationService` in `.OnStart(...)` to choose a single start page. To accomplish more complicated startup navigation scenarios, you can use the below `.OnStart(...)` overloads.
+
 ### (navigationService, serviceProvider)
 
 In the below example, we use both an `INavigationService` and an `IServiceProvider`. The `IServiceProvider` is used to resolve the .NET MAUI service, [`IPreferences`](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/preferences?tabs=android). If a username is stored in preferences, we use the `INavigationService` to go to the `HomePage` of the app. Otherwise, we go to the `LoginPage`.
@@ -346,7 +356,8 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
   - Type: `bool`
   - Default: `false`
 - `ReservedNavigationParameters.SelectTab` 
-  - If navigating to a `TabbedPage`, selects the tab with the name of the type passed. **⚠️ WARNING**: Not yet implemented.
+  - If navigating to a `TabbedPage`, selects the tab with the name of the type passed.
+  - **⚠️ Warning**: Not yet implemented.
   - Type: `string`
   - Default: `null`
 
@@ -387,9 +398,10 @@ The below are some things of note that may help prevent issues from arising:
 - [Nested viewmodels](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/5)
 - [OnNavigatingTo()](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/6)
 - [IPageVisibilityEvents](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/7)
+- [Navigation Guards](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/28)
 - [...and more](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues)
 
-[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions. Or, support the project and help influence its direction by [sponsoring me](https://github.com/sponsors/BurkusCat).
+[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions. Or, **support the project** and help influence its direction by [sponsoring me](https://github.com/sponsors/BurkusCat).
 
 # Contributing 💁‍♀️
 Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING.MD) to get started.

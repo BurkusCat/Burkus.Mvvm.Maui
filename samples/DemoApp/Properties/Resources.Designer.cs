@@ -241,6 +241,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Tabbed Page on Beta tab.
+        /// </summary>
+        internal static string Home_Button_StartTabbedPageOnBetaTab {
+            get {
+                return ResourceManager.GetString("Home_Button_StartTabbedPageOnBetaTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tabbed Page demo.
         /// </summary>
         internal static string Home_Button_TabbedPageDemo {

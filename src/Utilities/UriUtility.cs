@@ -95,7 +95,7 @@ internal static class UriUtility
         return valueString;
     }
 
-    private static Type FindPageType(string pageName)
+    internal static Type FindPageType(string pageName)
     {
         if (pageName == Constants.GoBackUriSegment)
         {
