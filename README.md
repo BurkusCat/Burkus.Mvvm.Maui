@@ -81,7 +81,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseBurkusMvvm(burkusMvvm =>
             {
-                burkusMvvm.OnStart(async (navigationService) =>
+                burkusMvvm.OnStart(async (INavigationService navigationService) =>
                 {
                     await navigationService.Push<LoginPage>();
                 });
@@ -390,6 +390,10 @@ See the [IDialogService interface in the repository](https://github.com/BurkusCa
 ## Advanced / complexities
 The below are some things of note that may help prevent issues from arising:
 - When you inherit from `BurkusMvvmApplication`, the `MainPage` of the app will be automatically set to a `NavigationPage`. This means the first page you push can be a `ContentPage` rather than needing to push a `NavigationPage`. This may change in the future.
+- Adding this package to a project will automatically import the `Burkus.Mvvm.Maui` namespace globally if you have [`ImplicitUsings`](https://devblogs.microsoft.com/dotnet/welcome-to-csharp-10/#implicit-usings) enabled in your project. You can opt out of this by including the following in your `.csproj` file:
+``` xml
+<Using Remove="Burkus.Mvvm.Maui" />
+```
 
 # Roadmap 🛣️
 - [View and viewmodel auto-registration](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/4)

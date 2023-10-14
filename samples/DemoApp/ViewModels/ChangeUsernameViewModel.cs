@@ -1,8 +1,6 @@
-﻿using Burkus.Mvvm.Maui;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DemoApp.Models;
-using DemoApp.Properties;
 
 namespace DemoApp.ViewModels;
 
