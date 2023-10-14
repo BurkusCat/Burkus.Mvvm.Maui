@@ -1,7 +1,7 @@
 ![Burkus.Mvvm.Maui](art/BurkusMvvmMauiLogo.png)
 #### Navigation - Parameter Passing - Lifecycle Events - Native Dialogs - Testability
 
-### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
+### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) Latest Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
 
 # Burkus.Mvvm.Maui (experimental)
 `Burkus.Mvvm.Maui` is an MVVM (Model–view–viewmodel) framework designed for .NET MAUI. The library is developed with these key principles:
@@ -357,7 +357,6 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
   - Default: `false`
 - `ReservedNavigationParameters.SelectTab` 
   - If navigating to a `TabbedPage`, selects the tab with the name of the type passed.
-  - **⚠️ Warning**: Not yet implemented.
   - Type: `string`
   - Default: `null`
 
