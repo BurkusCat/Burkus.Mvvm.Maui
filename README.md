@@ -15,6 +15,7 @@
 - Be **easy to understand** and setup 📄
   - The APIs and syntax are easy to setup & understand.
   - We are committed to providing comprehensive documentation this `README`.
+  - The library uses source generators to reduce boilerplate and setup time. No special base classes for `App` or `Pages` required.
 - Be **dependable** for the future 🔮
   - `Burkus.Mvvm.Maui` is open source and released under the MIT license. No CLAs are required for contributors.
   - Individuals and businesses can fork the library if it ever falls short of their needs.
