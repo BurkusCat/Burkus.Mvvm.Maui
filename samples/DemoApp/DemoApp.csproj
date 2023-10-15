@@ -48,6 +48,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\contacts.png" />
+	  <None Remove="Resources\Images\reminders.png" />
+	  <None Remove="Resources\Images\todo.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
@@ -66,6 +72,18 @@
 		</Compile>
 		<Compile Update="Views\ChangeUsernamePage.xaml.cs">
 			<DependentUpon>ChangeUsernamePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Flyouts\TodoPage.xaml.cs">
+		  <DependentUpon>TodoPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Flyouts\RemindersPage.xaml.cs">
+		  <DependentUpon>RemindersPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Flyouts\ContactsPage.xaml.cs">
+		  <DependentUpon>ContactsPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Flyouts\DemoFlyoutPage.xaml.cs">
+		  <DependentUpon>DemoFlyoutPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Views\UriTestPage.xaml.cs">
 			<DependentUpon>UriTestPage.xaml</DependentUpon>
@@ -100,6 +118,21 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\ChangeUsernamePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Flyouts\TodoPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Flyouts\RemindersPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Flyouts\ContactsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Flyouts\DemoFlyoutPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Flyouts\FlyoutMenuPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\HomePage.xaml">
 			<Generator>MSBuild:Compile</Generator>

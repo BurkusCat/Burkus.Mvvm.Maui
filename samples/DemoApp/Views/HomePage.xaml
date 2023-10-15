@@ -57,6 +57,14 @@
                 Command="{Binding AddMultiplePagesCommand}"
                 Style="{StaticResource PrimaryButton}"
                 Text="{x:Static properties:Resources.Home_Button_AddMultiplePages}" />
+            <Label
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_FlyoutNavigation}" />
+            <Button
+                Command="{Binding GoToFlyoutPageDemoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_FlyoutPageDemo}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

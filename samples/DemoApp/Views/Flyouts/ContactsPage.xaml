@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.ContactsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="{x:Static properties:Resources.Contacts_Title}"
+    x:DataType="vm:ContactsViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:ContactsViewModel}">
+    <ScrollView>
+        <Grid
+            Margin="15"
+            RowDefinitions="*"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                Style="{StaticResource HeadingLabel}"
+                Text="{x:Static properties:Resources.Contacts_Title}"
+                VerticalOptions="CenterAndExpand" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

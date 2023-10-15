@@ -302,6 +302,32 @@ internal class NavigationService : INavigationService
         selectTabMethod.Invoke(this, null);
     }
 
+    /// <summary>
+    /// This method searches for and tries to find a TabbedPage that is visible to the user.
+    /// </summary>
+    /// <param name="page">Page to search for a TabbedPage in</param>
+    /// <returns>A tabbeed page if found</returns>
+    private TabbedPage FindVisibleTabbedPage(Page page)
+    {
+        return page switch
+        {
+            TabbedPage tabbedPage => tabbedPage,
+            FlyoutPage { Detail: TabbedPage flyoutTabbedPage } => flyoutTabbedPage,
+            FlyoutPage { Detail: var detail } => GetTabbedPageFromNavigationPage(detail),
+            _ => GetTabbedPageFromNavigationPage(page)
+        };
+    }
+
+    private TabbedPage GetTabbedPageFromNavigationPage(Page page)
+    {
+        if (page is NavigationPage { CurrentPage: TabbedPage tabbedPage })
+        {
+            return tabbedPage;
+        }
+
+        return null;
+    }
+
     #endregion Internal implementation
 
     #region Tab navigation methods
@@ -309,7 +335,8 @@ internal class NavigationService : INavigationService
     public void SelectTab<T>()
         where T : Page
     {
-        var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
+        var topPage = MauiPageUtility.GetTopPage();
+        var tabbedPage = FindVisibleTabbedPage(topPage);
 
         if (tabbedPage == null)
         {
@@ -337,4 +364,37 @@ internal class NavigationService : INavigationService
     }
 
     #endregion Tab navigation methods
+
+    #region Flyout navigation methods
+
+    public void SwitchFlyoutDetail(Type detailPage)
+    {
+        var switchFlyoutDetailMethod = GetType()
+            .GetMethods()
+            .First(methodInfo => methodInfo.Name == nameof(SwitchFlyoutDetail) && methodInfo.IsGenericMethod)
+            .MakeGenericMethod(detailPage);
+        switchFlyoutDetailMethod.Invoke(this, null);
+    }
+
+    public void SwitchFlyoutDetail<T>()
+        where T : Page
+    {
+        var flyoutPage = MauiPageUtility.GetTopPage() as FlyoutPage;
+
+        if (flyoutPage == null)
+        {
+            // todo: warn about this in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            return;
+        }
+
+        var pageToNavigateTo = ServiceResolver.Resolve<T>();
+
+        // wrap the detail in a NavigationPage
+        flyoutPage.Detail = new NavigationPage(pageToNavigateTo);
+
+        // close the flyout
+        flyoutPage.IsPresented = false;
+    }
+
+    #endregion Flyout navigation methods
 }
