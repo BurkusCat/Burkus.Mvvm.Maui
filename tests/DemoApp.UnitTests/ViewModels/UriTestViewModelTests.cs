@@ -1,6 +1,6 @@
 using DemoApp.ViewModels;
 
-namespace DemoApp.UnitTests.Services;
+namespace DemoApp.UnitTests.ViewModels;
 
 public class UriTestViewModelTests
 {

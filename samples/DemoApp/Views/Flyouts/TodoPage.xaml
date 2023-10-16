@@ -10,15 +10,20 @@
     x:DataType="vm:TodoViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:TodoViewModel}">
     <ScrollView>
-        <Grid
+        <VerticalStackLayout
             Margin="15"
-            RowDefinitions="*"
-            RowSpacing="10">
+            Spacing="10">
             <Label
-                Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.Todo_Title}"
-                VerticalOptions="CenterAndExpand" />
-        </Grid>
+                VerticalOptions="EndAndExpand" />
+            <Label
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Todo_TodoList}" />
+            <Button
+                Command="{Binding PushNewPageToFlyoutDetailCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Todo_Button_PushNewPageIntoDetail}" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

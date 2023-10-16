@@ -127,7 +127,6 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
-        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
         // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
         // todo: need to consider what query parameter should and shouldn't be.
         // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
@@ -395,6 +394,11 @@ internal class NavigationService : INavigationService
         // close the flyout
         flyoutPage.IsPresented = false;
     }
+
+    // TODO: push to flyout, push to tab, push to navigation page?
+    // push to navigation page might be the most versatile since it would allow you to add to tabs, add to flyouts
+    // then if you wanted to push above a tabbedpage you would use the normal push
+    // a parameter? ToNavigationPage could be used so it could be used with URL navigation or the existing methods
 
     #endregion Flyout navigation methods
 }

@@ -1,12 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using DemoApp.Views;
 
 namespace DemoApp.ViewModels;
 
-public partial class TodoViewModel : BaseViewModel
+public partial class RemindersViewModel : BaseViewModel
 {
     #region Constructors
 
-    public TodoViewModel(
+    public RemindersViewModel(
         INavigationService navigationService)
         : base(navigationService)
     {
@@ -17,12 +18,12 @@ public partial class TodoViewModel : BaseViewModel
     #region Commands
 
     /// <summary>
-    /// Push a new page to this detail on top of this one.
+    /// Switch the flyout detail to the reminders page.
     /// </summary>
     [RelayCommand]
-    private void PushNewPageToFlyoutDetail()
+    private void SwitchFlyoutDetailToContacts()
     {
-        // TODO: implement this command
+        navigationService.SwitchFlyoutDetail<ContactsPage>();
     }
 
     #endregion Commands

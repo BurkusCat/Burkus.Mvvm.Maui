@@ -17,7 +17,7 @@
     <FlyoutPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <views:ContactsPage />
+                <views:RemindersPage />
             </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>

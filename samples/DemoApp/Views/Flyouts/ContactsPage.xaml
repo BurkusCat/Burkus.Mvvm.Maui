@@ -10,15 +10,33 @@
     x:DataType="vm:ContactsViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:ContactsViewModel}">
     <ScrollView>
-        <Grid
+        <VerticalStackLayout
             Margin="15"
-            RowDefinitions="*"
-            RowSpacing="10">
+            Spacing="10">
             <Label
-                Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.Contacts_Title}"
-                VerticalOptions="CenterAndExpand" />
-        </Grid>
+                VerticalOptions="EndAndExpand" />
+            <Label
+                Margin="0,20,0,0"
+                FontAttributes="Italic"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Contacts_MyContacts}" />
+            <CollectionView
+                HorizontalOptions="Center"
+                ItemsSource="{Binding ContactNames}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Command="{Binding GoToTabbedPageDemoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_TabbedPageDemo}" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

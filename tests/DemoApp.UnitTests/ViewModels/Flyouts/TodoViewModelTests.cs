@@ -1,29 +1,30 @@
 using DemoApp.ViewModels;
+using DemoApp.Views;
 
 namespace DemoApp.UnitTests.ViewModels;
 
-public class RegisterViewModelTests
+public class TodoViewModelTests
 {
     private readonly INavigationService mockNavigationService;
 
-    public RegisterViewModelTests()
+    public TodoViewModelTests()
     {
         mockNavigationService = Substitute.For<INavigationService>();
     }
 
-    public RegisterViewModel ViewModel => new RegisterViewModel(
+    public TodoViewModel ViewModel => new TodoViewModel(
         mockNavigationService);
 
     [Fact]
-    public void GoBackCommand_WhenCalled_NavigatesToPreviousPage()
+    public void PushNewPageToFlyoutDetailCommand_WhenCalled_DoesNothing()
     {
         // Arrange
         var viewModel = ViewModel;
 
         // Act
-        viewModel.GoBackCommand.Execute(null);
+        viewModel.PushNewPageToFlyoutDetailCommand.Execute(null);
 
         // Assert
-        mockNavigationService.Received().Pop();
+        mockNavigationService.DidNotReceiveWithAnyArgs();
     }
 }

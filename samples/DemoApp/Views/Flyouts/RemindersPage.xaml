@@ -10,15 +10,22 @@
     x:DataType="vm:RemindersViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:RemindersViewModel}">
     <ScrollView>
-        <Grid
-            Margin="15"
-            RowDefinitions="*"
-            RowSpacing="10">
-            <Label
-                Grid.Row="0"
-                Style="{StaticResource HeadingLabel}"
-                Text="{x:Static properties:Resources.Reminders_Title}"
-                VerticalOptions="CenterAndExpand" />
-        </Grid>
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="15"
+                Spacing="10">
+                <Label
+                    Style="{StaticResource HeadingLabel}"
+                    Text="{x:Static properties:Resources.Reminders_Title}"
+                    VerticalOptions="EndAndExpand" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{x:Static properties:Resources.Reminders_ReminderList}" />
+                <Button
+                    Command="{Binding SwitchFlyoutDetailToContactsCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    Text="{x:Static properties:Resources.Reminders_Button_SwitchFlyoutToContacts}" />
+            </VerticalStackLayout>
+        </ScrollView>
     </ScrollView>
 </ContentPage>
