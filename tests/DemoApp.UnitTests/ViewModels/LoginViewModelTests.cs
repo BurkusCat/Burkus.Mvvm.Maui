@@ -1,7 +1,7 @@
 using DemoApp.ViewModels;
 using DemoApp.Views;
 
-namespace DemoApp.UnitTests.Services;
+namespace DemoApp.UnitTests.ViewModels;
 
 public class LoginViewModelTests
 {

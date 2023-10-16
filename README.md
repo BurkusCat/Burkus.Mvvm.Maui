@@ -1,7 +1,7 @@
-![Burkus.Mvvm.Maui](art/BurkusMvvmMauiLogo.png)
+![Burkus.Mvvm.Maui](https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/BurkusMvvmMauiLogo.png)
 #### Navigation - Parameter Passing - Lifecycle Events - Native Dialogs - Testability
 
-### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) Latest Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
+### Stable: [![NuGet Stable](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) [![Nuget](https://img.shields.io/nuget/dt/Burkus.Mvvm.Maui)](https://www.nuget.org/packages/Burkus.Mvvm.Maui) Latest Preview: [![NuGet Preview](https://img.shields.io/nuget/vpre/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/) 
 
 # Burkus.Mvvm.Maui (experimental)
 `Burkus.Mvvm.Maui` is an MVVM (Model–view–viewmodel) framework designed for .NET MAUI. The library is developed with these key principles:
@@ -22,7 +22,7 @@
 **⚠️ Warning**: `Burkus.Mvvm.Maui` is currently an experimental library. Expect frequent breaking API changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until we establish a stable, well-liked API. Only then will we release versions "1.y.z" and beyond.
 
 # Supporting the Project 💖
-<a href="https://github.com/sponsors/BurkusCat"><img align="right" src="art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
+<a href="https://github.com/sponsors/BurkusCat"><img align="right" src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
 
 Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it!  If you've found value in Burkus.Mvvm.Maui, I would greatly appreciate if you would be able to **[sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat)**. There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
 
@@ -46,7 +46,7 @@ See the `DemoApp` in the `/samples` folder of this repository for a full example
 
 🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
 
-| <img src="art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="art/android-home.png" width="200" alt="The Home page of the demo app running on Android"> | <img src="art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
+| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-home.png" width="200" alt="The Home page of the demo app running on Android"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
 | -------- | ------- | ------- |
 
 ## Getting started
@@ -416,4 +416,4 @@ Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING
 # License 🪪
 The project is distributed under the [MIT license](LICENSE). Contributors do not need to sign a CLA.
 
-![Green letters: M V V M laid out vertically](art/MvvmVertical.png)
+![Green letters: M V V M laid out vertically](https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/MvvmVertical.png)

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.RemindersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="{x:Static properties:Resources.Reminders_Title}"
+    x:DataType="vm:RemindersViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:RemindersViewModel}">
+    <ScrollView>
+        <ScrollView>
+            <VerticalStackLayout
+                Margin="15"
+                Spacing="10">
+                <Label
+                    Style="{StaticResource HeadingLabel}"
+                    Text="{x:Static properties:Resources.Reminders_Title}"
+                    VerticalOptions="EndAndExpand" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{x:Static properties:Resources.Reminders_ReminderList}" />
+                <Button
+                    Command="{Binding SwitchFlyoutDetailToContactsCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    Text="{x:Static properties:Resources.Reminders_Button_SwitchFlyoutToContacts}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoApp.Views.ContactsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="{x:Static properties:Resources.Contacts_Title}"
+    x:DataType="vm:ContactsViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:ContactsViewModel}">
+    <ScrollView>
+        <VerticalStackLayout
+            Margin="15"
+            Spacing="10">
+            <Label
+                Style="{StaticResource HeadingLabel}"
+                Text="{x:Static properties:Resources.Contacts_Title}"
+                VerticalOptions="EndAndExpand" />
+            <Label
+                Margin="0,20,0,0"
+                FontAttributes="Italic"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Contacts_MyContacts}" />
+            <CollectionView
+                HorizontalOptions="Center"
+                ItemsSource="{Binding ContactNames}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Command="{Binding GoToTabbedPageDemoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_TabbedPageDemo}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

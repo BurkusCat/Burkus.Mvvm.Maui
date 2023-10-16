@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage
+    x:Class="DemoApp.Views.DemoFlyoutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:views="clr-namespace:DemoApp.Views;assembly=DemoApp"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    Title="{x:Static properties:Resources.DemoFlyout_Title}"
+    x:DataType="vm:DemoFlyoutViewModel"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:DemoFlyoutViewModel}"
+    FlyoutLayoutBehavior="Popover">
+    <FlyoutPage.Flyout>
+        <views:FlyoutMenuPage x:Name="flyoutPage" />
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <views:RemindersPage />
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

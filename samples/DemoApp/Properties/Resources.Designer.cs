@@ -187,6 +187,33 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My contacts:.
+        /// </summary>
+        internal static string Contacts_MyContacts {
+            get {
+                return ResourceManager.GetString("Contacts_MyContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string Contacts_Title {
+            get {
+                return ResourceManager.GetString("Contacts_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flyout.
+        /// </summary>
+        internal static string DemoFlyout_Title {
+            get {
+                return ResourceManager.GetString("DemoFlyout_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tabbed Page.
         /// </summary>
         internal static string DemoTabs_Title {
@@ -232,6 +259,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flyout Page demo.
+        /// </summary>
+        internal static string Home_Button_FlyoutPageDemo {
+            get {
+                return ResourceManager.GetString("Home_Button_FlyoutPageDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout with URI syntax:.
         /// </summary>
         internal static string Home_Button_LogoutWithUriSyntax {
@@ -255,6 +291,15 @@ namespace DemoApp.Properties {
         internal static string Home_Button_TabbedPageDemo {
             get {
                 return ResourceManager.GetString("Home_Button_TabbedPageDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flyout navigation:.
+        /// </summary>
+        internal static string Home_SubHeading_FlyoutNavigation {
+            get {
+                return ResourceManager.GetString("Home_SubHeading_FlyoutNavigation", resourceCulture);
             }
         }
         
@@ -390,6 +435,64 @@ namespace DemoApp.Properties {
         internal static string Register_Title {
             get {
                 return ResourceManager.GetString("Register_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Flyout to Contacts.
+        /// </summary>
+        internal static string Reminders_Button_SwitchFlyoutToContacts {
+            get {
+                return ResourceManager.GetString("Reminders_Button_SwitchFlyoutToContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Remember to eat breakfast.
+        ///2. Remember to smile :)
+        ///3. Remember to git rebase.
+        /// </summary>
+        internal static string Reminders_ReminderList {
+            get {
+                return ResourceManager.GetString("Reminders_ReminderList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders.
+        /// </summary>
+        internal static string Reminders_Title {
+            get {
+                return ResourceManager.GetString("Reminders_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Push new page into detail.
+        /// </summary>
+        internal static string Todo_Button_PushNewPageIntoDetail {
+            get {
+                return ResourceManager.GetString("Todo_Button_PushNewPageIntoDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Todo.
+        /// </summary>
+        internal static string Todo_Title {
+            get {
+                return ResourceManager.GetString("Todo_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ☑ Phase 1: Collect underpants
+        ///☐ Phase 2: ?????
+        ///☐ Phase 3: Profit.
+        /// </summary>
+        internal static string Todo_TodoList {
+            get {
+                return ResourceManager.GetString("Todo_TodoList", resourceCulture);
             }
         }
         

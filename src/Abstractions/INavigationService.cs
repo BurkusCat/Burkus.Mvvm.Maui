@@ -2,6 +2,8 @@
 
 public interface INavigationService
 {
+    #region Core navigation methods
+
     /// <summary>
     /// Push a new page onto the navigation stack.
     /// </summary>
@@ -45,6 +47,10 @@ public interface INavigationService
     /// <returns>A completed task</returns>
     Task PopToRoot(NavigationParameters navigationParameters);
 
+    #endregion Core navigation methods
+
+    #region Advanced navigation methods
+
     /// <summary>
     /// Replace the top page of the stack with a new page.
     /// </summary>
@@ -79,12 +85,9 @@ public interface INavigationService
     Task ResetStackAndPush<T>(NavigationParameters navigationParameters)
         where T : Page;
 
-    /// <summary>
-    /// When within a <see cref="TabbedPage"/>, use this method to select a tab.
-    /// </summary>
-    /// <typeparam name="T">Type of Page</typeparam>
-    void SelectTab<T>()
-        where T : Page;
+    #endregion Advanced navigation methods
+
+    #region URI navigation methods
 
     /// <summary>
     /// Navigate using a string URI.
@@ -126,4 +129,34 @@ public interface INavigationService
     /// <remarks>This method is *very* experimental and likely to change.</remarks>
     /// <returns>A completed task</returns>
     Task Navigate(string uri, NavigationParameters navigationParameters);
+
+    #endregion URI navigation methods
+
+    #region Tab navigation methods
+
+    /// <summary>
+    /// When within a <see cref="TabbedPage"/>, use this method to select a tab.
+    /// </summary>
+    /// <typeparam name="T">Type of Page</typeparam>
+    void SelectTab<T>()
+        where T : Page;
+
+    #endregion Tab navigation methods
+
+    #region Flyout navigation methods
+
+    /// <summary>
+    /// When within a <see cref="FlyoutPage"/>, use this method to switch out the current detail page.
+    /// </summary>
+    /// <param name="detailType"></param>
+    void SwitchFlyoutDetail(Type detailType);
+
+    /// <summary>
+    /// When within a <see cref="FlyoutPage"/>, use this method to switch out the current detail page.
+    /// </summary>
+    /// <typeparam name="T">Type of Page</typeparam>
+    void SwitchFlyoutDetail<T>()
+        where T : Page;
+
+    #endregion Flyout navigation methods
 }

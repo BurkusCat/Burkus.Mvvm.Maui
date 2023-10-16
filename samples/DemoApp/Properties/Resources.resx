@@ -173,6 +173,18 @@
     <value>Charlie</value>
     <comment>Translate</comment>
   </data>
+  <data name="Contacts_MyContacts" xml:space="preserve">
+    <value>My contacts:</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Contacts_Title" xml:space="preserve">
+    <value>Contacts</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="DemoFlyout_Title" xml:space="preserve">
+    <value>Flyout</value>
+    <comment>Translate</comment>
+  </data>
   <data name="DemoTabs_Title" xml:space="preserve">
     <value>Tabbed Page</value>
     <comment>Translate</comment>
@@ -193,6 +205,10 @@
     <value>Change Username (no animation)</value>
     <comment>Translate</comment>
   </data>
+  <data name="Home_Button_FlyoutPageDemo" xml:space="preserve">
+    <value>Flyout Page demo</value>
+    <comment>Translate</comment>
+  </data>
   <data name="Home_Button_LogoutWithUriSyntax" xml:space="preserve">
     <value>Logout with URI syntax:</value>
     <comment>Translate</comment>
@@ -203,6 +219,10 @@
   </data>
   <data name="Home_Button_TabbedPageDemo" xml:space="preserve">
     <value>Tabbed Page demo</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_SubHeading_FlyoutNavigation" xml:space="preserve">
+    <value>Flyout navigation:</value>
     <comment>Translate</comment>
   </data>
   <data name="Home_SubHeading_ModalNavigation" xml:space="preserve">
@@ -263,6 +283,34 @@
   </data>
   <data name="Register_Title" xml:space="preserve">
     <value>Register</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Reminders_Button_SwitchFlyoutToContacts" xml:space="preserve">
+    <value>Switch Flyout to Contacts</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Reminders_ReminderList" xml:space="preserve">
+    <value>1. Remember to eat breakfast.
+2. Remember to smile :)
+3. Remember to git rebase</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Reminders_Title" xml:space="preserve">
+    <value>Reminders</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Todo_Button_PushNewPageIntoDetail" xml:space="preserve">
+    <value>Push new page into detail</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Todo_Title" xml:space="preserve">
+    <value>Todo</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Todo_TodoList" xml:space="preserve">
+    <value>☑ Phase 1: Collect underpants
+☐ Phase 2: ?????
+☐ Phase 3: Profit</value>
     <comment>Translate</comment>
   </data>
   <data name="UriTest_Button_GoBackThreeTimes" xml:space="preserve">

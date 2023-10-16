@@ -127,7 +127,6 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
-        // todo: use navigation parameters and combine with query parameters. query parameters take precendence?
         // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
         // todo: need to consider what query parameter should and shouldn't be.
         // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
@@ -302,6 +301,32 @@ internal class NavigationService : INavigationService
         selectTabMethod.Invoke(this, null);
     }
 
+    /// <summary>
+    /// This method searches for and tries to find a TabbedPage that is visible to the user.
+    /// </summary>
+    /// <param name="page">Page to search for a TabbedPage in</param>
+    /// <returns>A tabbeed page if found</returns>
+    private TabbedPage FindVisibleTabbedPage(Page page)
+    {
+        return page switch
+        {
+            TabbedPage tabbedPage => tabbedPage,
+            FlyoutPage { Detail: TabbedPage flyoutTabbedPage } => flyoutTabbedPage,
+            FlyoutPage { Detail: var detail } => GetTabbedPageFromNavigationPage(detail),
+            _ => GetTabbedPageFromNavigationPage(page)
+        };
+    }
+
+    private TabbedPage GetTabbedPageFromNavigationPage(Page page)
+    {
+        if (page is NavigationPage { CurrentPage: TabbedPage tabbedPage })
+        {
+            return tabbedPage;
+        }
+
+        return null;
+    }
+
     #endregion Internal implementation
 
     #region Tab navigation methods
@@ -309,7 +334,8 @@ internal class NavigationService : INavigationService
     public void SelectTab<T>()
         where T : Page
     {
-        var tabbedPage = MauiPageUtility.GetTopPage() as TabbedPage;
+        var topPage = MauiPageUtility.GetTopPage();
+        var tabbedPage = FindVisibleTabbedPage(topPage);
 
         if (tabbedPage == null)
         {
@@ -337,4 +363,42 @@ internal class NavigationService : INavigationService
     }
 
     #endregion Tab navigation methods
+
+    #region Flyout navigation methods
+
+    public void SwitchFlyoutDetail(Type detailPage)
+    {
+        var switchFlyoutDetailMethod = GetType()
+            .GetMethods()
+            .First(methodInfo => methodInfo.Name == nameof(SwitchFlyoutDetail) && methodInfo.IsGenericMethod)
+            .MakeGenericMethod(detailPage);
+        switchFlyoutDetailMethod.Invoke(this, null);
+    }
+
+    public void SwitchFlyoutDetail<T>()
+        where T : Page
+    {
+        var flyoutPage = MauiPageUtility.GetTopPage() as FlyoutPage;
+
+        if (flyoutPage == null)
+        {
+            // todo: warn about this in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            return;
+        }
+
+        var pageToNavigateTo = ServiceResolver.Resolve<T>();
+
+        // wrap the detail in a NavigationPage
+        flyoutPage.Detail = new NavigationPage(pageToNavigateTo);
+
+        // close the flyout
+        flyoutPage.IsPresented = false;
+    }
+
+    // TODO: push to flyout, push to tab, push to navigation page?
+    // push to navigation page might be the most versatile since it would allow you to add to tabs, add to flyouts
+    // then if you wanted to push above a tabbedpage you would use the normal push
+    // a parameter? ToNavigationPage could be used so it could be used with URL navigation or the existing methods
+
+    #endregion Flyout navigation methods
 }

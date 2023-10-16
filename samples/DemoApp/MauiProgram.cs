@@ -49,8 +49,18 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddTransient<ChangeUsernameViewModel>();
+        // flyouts
+        mauiAppBuilder.Services.AddTransient<ContactsViewModel>();
+        mauiAppBuilder.Services.AddTransient<DemoFlyoutViewModel>();
+        mauiAppBuilder.Services.AddTransient<FlyoutMenuViewModel>();
+        mauiAppBuilder.Services.AddTransient<RemindersViewModel>();
+        mauiAppBuilder.Services.AddTransient<TodoViewModel>();
+
+        // tabs
         mauiAppBuilder.Services.AddTransient<DemoTabsViewModel>();
+
+        // pages
+        mauiAppBuilder.Services.AddTransient<ChangeUsernameViewModel>();
         mauiAppBuilder.Services.AddTransient<HomeViewModel>();
         mauiAppBuilder.Services.AddTransient<LoginViewModel>();
         mauiAppBuilder.Services.AddTransient<RegisterViewModel>();
@@ -61,8 +71,18 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddTransient<ChangeUsernamePage>();
+        // flyouts
+        mauiAppBuilder.Services.AddTransient<ContactsPage>();
+        mauiAppBuilder.Services.AddTransient<DemoFlyoutPage>();
+        mauiAppBuilder.Services.AddTransient<FlyoutMenuPage>();
+        mauiAppBuilder.Services.AddTransient<RemindersPage>();
+        mauiAppBuilder.Services.AddTransient<TodoPage>();
+
+        // tabs
         mauiAppBuilder.Services.AddTransient<DemoTabsPage>();
+
+        // pages
+        mauiAppBuilder.Services.AddTransient<ChangeUsernamePage>();
         mauiAppBuilder.Services.AddTransient<HomePage>();
         mauiAppBuilder.Services.AddTransient<LoginPage>();
         mauiAppBuilder.Services.AddTransient<RegisterPage>();

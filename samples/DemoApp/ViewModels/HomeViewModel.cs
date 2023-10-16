@@ -132,5 +132,18 @@ public partial class HomeViewModel : BaseViewModel
         await navigationService.Navigate($"{nameof(DemoTabsPage)}/{nameof(RegisterPage)}/{nameof(UriTestPage)}");
     }
 
+    /// <summary>
+    /// Navigate to the example flyout page.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToFlyoutPageDemo()
+    {
+        // hack: flyout page must be the root page so I've made it a modal
+        var navigationParameters = new NavigationParameters();
+        navigationParameters.UseModalNavigation = true;
+
+        await navigationService.Navigate($"{nameof(DemoFlyoutPage)}", navigationParameters);
+    }
+
     #endregion Commands
 }

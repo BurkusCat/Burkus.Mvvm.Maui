@@ -1,0 +1,42 @@
+<ContentPage
+    x:Class="DemoApp.Views.FlyoutMenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:burkus="http://burkus.co.uk"
+    xmlns:models="clr-namespace:DemoApp.Models"
+    xmlns:properties="clr-namespace:DemoApp.Properties"
+    xmlns:views="clr-namespace:DemoApp.Views;assembly=DemoApp"
+    xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    x:Name="page"
+    Title="{x:Static properties:Resources.DemoFlyout_Title}"
+    Padding="0,40,0,0"
+    x:DataType="vm:FlyoutMenuViewModel"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
+                                      Light={StaticResource Gray200}}"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:FlyoutMenuViewModel}">
+    <CollectionView ItemsSource="{Binding MenuPages}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:FlyoutPageItem">
+                <Grid Padding="5,10">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding BindingContext.SwitchFlyoutDetailPageCommand, Source={x:Reference page}}"
+                            CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding IconSource}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="20,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Title}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
