@@ -30,7 +30,7 @@
                     TargetType="{x:Type views:RemindersPage}" />
                 <models:FlyoutPageItem
                     Title="{x:Static properties:Resources.DemoTabs_Title}"
-                    IconSource="reminders.png"
+                    IconSource="tabs.png"
                     TargetType="{x:Type views:DemoTabsPage}" />
             </x:Array>
         </CollectionView.ItemsSource>

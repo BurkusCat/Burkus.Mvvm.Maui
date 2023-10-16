@@ -50,6 +50,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\reminders.png" />
+	  <None Remove="Resources\Images\tabs.png" />
 	  <None Remove="Resources\Images\todo.png" />
 	</ItemGroup>
 
