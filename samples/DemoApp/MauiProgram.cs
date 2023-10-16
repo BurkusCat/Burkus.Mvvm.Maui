@@ -52,6 +52,7 @@ public static class MauiProgram
         // flyouts
         mauiAppBuilder.Services.AddTransient<ContactsViewModel>();
         mauiAppBuilder.Services.AddTransient<DemoFlyoutViewModel>();
+        mauiAppBuilder.Services.AddTransient<FlyoutMenuViewModel>();
         mauiAppBuilder.Services.AddTransient<RemindersViewModel>();
         mauiAppBuilder.Services.AddTransient<TodoViewModel>();
 
@@ -73,6 +74,7 @@ public static class MauiProgram
         // flyouts
         mauiAppBuilder.Services.AddTransient<ContactsPage>();
         mauiAppBuilder.Services.AddTransient<DemoFlyoutPage>();
+        mauiAppBuilder.Services.AddTransient<FlyoutMenuPage>();
         mauiAppBuilder.Services.AddTransient<RemindersPage>();
         mauiAppBuilder.Services.AddTransient<TodoPage>();
 

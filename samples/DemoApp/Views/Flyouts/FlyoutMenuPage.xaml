@@ -7,36 +7,22 @@
     xmlns:properties="clr-namespace:DemoApp.Properties"
     xmlns:views="clr-namespace:DemoApp.Views;assembly=DemoApp"
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
+    x:Name="page"
     Title="{x:Static properties:Resources.DemoFlyout_Title}"
     Padding="0,40,0,0"
+    x:DataType="vm:FlyoutMenuViewModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource Gray600},
-                                      Light={StaticResource Gray200}}">
-    <CollectionView
-        x:Name="collectionView"
-        SelectionMode="Single">
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type models:FlyoutPageItem}">
-                <models:FlyoutPageItem
-                    Title="{x:Static properties:Resources.Contacts_Title}"
-                    IconSource="contacts.png"
-                    TargetType="{x:Type views:ContactsPage}" />
-                <models:FlyoutPageItem
-                    Title="{x:Static properties:Resources.Todo_Title}"
-                    IconSource="todo.png"
-                    TargetType="{x:Type views:TodoPage}" />
-                <models:FlyoutPageItem
-                    Title="{x:Static properties:Resources.Reminders_Title}"
-                    IconSource="reminders.png"
-                    TargetType="{x:Type views:RemindersPage}" />
-                <models:FlyoutPageItem
-                    Title="{x:Static properties:Resources.DemoTabs_Title}"
-                    IconSource="tabs.png"
-                    TargetType="{x:Type views:DemoTabsPage}" />
-            </x:Array>
-        </CollectionView.ItemsSource>
+                                      Light={StaticResource Gray200}}"
+    BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:FlyoutMenuViewModel}">
+    <CollectionView ItemsSource="{Binding MenuPages}">
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="models:FlyoutPageItem">
                 <Grid Padding="5,10">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding BindingContext.SwitchFlyoutDetailPageCommand, Source={x:Reference page}}"
+                            CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30" />
                         <ColumnDefinition Width="*" />

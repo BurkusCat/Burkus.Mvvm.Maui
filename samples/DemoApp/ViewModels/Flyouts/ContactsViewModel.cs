@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DemoApp.Views;
 
@@ -10,17 +9,7 @@ public partial class ContactsViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private ObservableCollection<string> contactNames;
-
-    #endregion Properties
-
-    #region Constructors
-
-    public ContactsViewModel(
-        INavigationService navigationService)
-        : base(navigationService)
-    {
-        var mockContactNames = new List<string>()
+    private List<string> contactNames = new List<string>()
         {
             "Ronan",
             "Claire",
@@ -30,7 +19,14 @@ public partial class ContactsViewModel : BaseViewModel
             "Veronica",
         };
 
-        contactNames = new ObservableCollection<string>(mockContactNames);
+    #endregion Properties
+
+    #region Constructors
+
+    public ContactsViewModel(
+        INavigationService navigationService)
+        : base(navigationService)
+    {
     }
 
     #endregion Constructors
