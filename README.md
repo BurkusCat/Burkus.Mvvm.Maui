@@ -34,6 +34,8 @@ Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spar
 
 <br clear="right"/>
 
+⭐ If you like the project, please consider giving it a __GitHub Star__ ⭐
+
 # Documentation 📗
 See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
 
