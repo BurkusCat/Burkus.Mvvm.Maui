@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.UnitTests", "tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj", "{84B2F0BB-074F-4040-96F0-60307BEA371D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burkus.Mvvm.Maui.SourceGenerators", "src\Burkus.Mvvm.Maui.SourceGenerators\Burkus.Mvvm.Maui.SourceGenerators.csproj", "{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

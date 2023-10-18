@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj" />
+		<ProjectReference Include="..\..\src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj"  OutputItemType="Analyzer" />
 	</ItemGroup>
 
 	<Import Project="..\..\src\Burkus.Mvvm.Maui\buildTransitive\Burkus.Mvvm.Maui.props" />
