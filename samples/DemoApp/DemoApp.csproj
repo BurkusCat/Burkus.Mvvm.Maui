@@ -60,10 +60,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Burkus.Mvvm.Maui.csproj" />
+		<ProjectReference Include="..\..\src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\..\src\buildTransitive\Burkus.Mvvm.Maui.props" />
+	<Import Project="..\..\src\Burkus.Mvvm.Maui\buildTransitive\Burkus.Mvvm.Maui.props" />
 
 	<ItemGroup>
 		<Compile Update="Properties\Resources.Designer.cs">

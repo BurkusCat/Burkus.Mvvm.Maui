@@ -49,8 +49,8 @@
 
 	<!-- Package additions -->
 	<ItemGroup>
-		<None Include="..\art\MvvmVertical.png" PackagePath="icon.png" Pack="true" />
-		<None Include="..\README.md" PackagePath="README.md" Pack="true" />
+		<None Include="..\..\art\MvvmVertical.png" PackagePath="icon.png" Pack="true" />
+		<None Include="..\..\README.md" PackagePath="README.md" Pack="true" />
 		<Content Include="buildTransitive\Burkus.Mvvm.Maui.props" PackagePath="buildTransitive\Burkus.Mvvm.Maui.props"  Pack="true" />
 	</ItemGroup>
 </Project>

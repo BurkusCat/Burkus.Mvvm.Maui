@@ -24,7 +24,7 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<Import Project="..\..\src\buildTransitive\Burkus.Mvvm.Maui.props" />
+	<Import Project="..\..\src\Burkus.Mvvm.Maui\buildTransitive\Burkus.Mvvm.Maui.props" />
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\samples\DemoApp\DemoApp.csproj" />
