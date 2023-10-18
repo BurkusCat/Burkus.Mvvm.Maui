@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: dotnet build src\Burkus.Mvvm.Maui.sln -c Release /p:Version=${{ steps.get_version.outputs.version-without-v }}
       - name: Pack
-        run: dotnet pack src\Burkus.Mvvm.Maui.sln -c Release /p:Version=${{ steps.get_version.outputs.version-without-v }} --no-build --output .
+        run: dotnet pack src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj -c Release /p:Version=${{ steps.get_version.outputs.version-without-v }} --no-build --output .
       - name: Push
         run: dotnet nuget push Burkus.Mvvm.Maui.${{ steps.get_version.outputs.version-without-v }}.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
         env:

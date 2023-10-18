@@ -5,11 +5,13 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "samples\DemoApp\DemoApp.csproj", "{E8625BA3-0495-44AB-AFE7-397CCAFD4520}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "src\Burkus.Mvvm.Maui.csproj", "{C289478A-DA7F-4B87-A909-CF7FC5BBFF4D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui.UnitTests", "tests\Burkus.Mvvm.Maui.UnitTests\Burkus.Mvvm.Maui.UnitTests.csproj", "{9E4BA358-5402-487E-B412-4864B3371BB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.UnitTests", "tests\DemoApp.UnitTests\DemoApp.UnitTests.csproj", "{F209686B-FF98-430D-8C97-85CDEB503DFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.UnitTests", "tests\DemoApp.UnitTests\DemoApp.UnitTests.csproj", "{F209686B-FF98-430D-8C97-85CDEB503DFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj", "{84B2F0BB-074F-4040-96F0-60307BEA371D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burkus.Mvvm.Maui.SourceGenerators", "src\Burkus.Mvvm.Maui.SourceGenerators\Burkus.Mvvm.Maui.SourceGenerators.csproj", "{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,6 @@ Global
 		{E8625BA3-0495-44AB-AFE7-397CCAFD4520}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8625BA3-0495-44AB-AFE7-397CCAFD4520}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8625BA3-0495-44AB-AFE7-397CCAFD4520}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{C289478A-DA7F-4B87-A909-CF7FC5BBFF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C289478A-DA7F-4B87-A909-CF7FC5BBFF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C289478A-DA7F-4B87-A909-CF7FC5BBFF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C289478A-DA7F-4B87-A909-CF7FC5BBFF4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4BA358-5402-487E-B412-4864B3371BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,6 +33,14 @@ Global
 		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F209686B-FF98-430D-8C97-85CDEB503DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B2F0BB-074F-4040-96F0-60307BEA371D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
