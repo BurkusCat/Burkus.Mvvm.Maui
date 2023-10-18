@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj", "{CBADEC33-74CC-48B8-8A37-3F762D2BFA73}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui.SourceGenerators", "Burkus.Mvvm.Maui.SourceGenerators\Burkus.Mvvm.Maui.SourceGenerators.csproj", "{2A77DBE0-0405-40F6-BC49-9BC82C322333}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CBADEC33-74CC-48B8-8A37-3F762D2BFA73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBADEC33-74CC-48B8-8A37-3F762D2BFA73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBADEC33-74CC-48B8-8A37-3F762D2BFA73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A77DBE0-0405-40F6-BC49-9BC82C322333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A77DBE0-0405-40F6-BC49-9BC82C322333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A77DBE0-0405-40F6-BC49-9BC82C322333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A77DBE0-0405-40F6-BC49-9BC82C322333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
