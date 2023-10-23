@@ -47,7 +47,7 @@ public class NavigationParameters : Dictionary<string, object>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <param name="defaultValue">The default value to return if the parameter is not set.</param>
     /// <returns>The value of the parameter or the default value.</returns>
-    private T GetParameter<T>(string parameterName, T defaultValue)
+    private T? GetParameter<T>(string parameterName, T defaultValue)
     {
         return ContainsKey(parameterName)
             ? GetValue<T>(parameterName)
@@ -66,7 +66,7 @@ public class NavigationParameters : Dictionary<string, object>
     /// <exception cref="ArgumentException">
     /// Thrown when the parameter value cannot be converted to the specified type.
     /// </exception>
-    public T GetValue<T>(string parameterName)
+    public T? GetValue<T>(string parameterName)
     {
         if (!ContainsKey(parameterName))
         {
@@ -78,13 +78,25 @@ public class NavigationParameters : Dictionary<string, object>
 
         try
         {
+            if (value == null)
+            {
+                return default;
+            }
+
             if (typeof(T).IsEnum)
             {
                 return (T)Enum.Parse(typeof(T), value.ToString());
             }
             else
             {
-                return (T)Convert.ChangeType(value, typeof(T));
+                // get the non-nullable type of T
+                var underlyingType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+
+                // convert the value to the non-nullable type
+                var convertedValue = Convert.ChangeType(value, underlyingType);
+
+                // cast the converted value to T
+                return (T)convertedValue;
             }
         }
         catch (Exception ex)
