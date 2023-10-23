@@ -157,6 +157,34 @@ public class NavigationParametersTests
     }
 
     [Fact]
+    public void GetValue_NullableValueParameters_ReturnsNullValue()
+    {
+        // Arrange
+        var navigationParameters = new NavigationParameters();
+        navigationParameters["NullableCharParam"] = null;
+
+        // Act
+        var result = navigationParameters.GetValue<char?>("NullableCharParam");
+
+        // Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GetValue_NullableValueParameters_ReturnsCharValue()
+    {
+        // Arrange
+        var navigationParameters = new NavigationParameters();
+        navigationParameters["NullableCharParam"] = 'C';
+
+        // Act
+        var result = navigationParameters.GetValue<char?>("NullableCharParam");
+
+        // Assert
+        Assert.Equal('C', result);
+    }
+
+    [Fact]
     public void MergeNavigationParameters_WhenCalledWithEmptyDictionaries_ReturnsEmptyDictionary()
     {
         // Arrange
