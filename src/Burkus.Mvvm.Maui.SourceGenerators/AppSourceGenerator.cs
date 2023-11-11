@@ -26,7 +26,7 @@ public class AppSourceGenerator : ISourceGenerator
 
         // check if the App class is partial and inherits from Application
         var appSymbol = semanticModel.GetDeclaredSymbol(receiver.AppClass);
-        if (appSymbol is null || !isPartial || !appSymbol.BaseType.Equals(semanticModel.Compilation.GetTypeByMetadataName("Application")))
+        if (appSymbol is null || !isPartial || !appSymbol.BaseType.Equals(semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application")))
             return;
 
         // generate the source code for the CreateWindow method
