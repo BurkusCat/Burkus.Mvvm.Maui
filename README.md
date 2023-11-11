@@ -53,9 +53,9 @@ See the `DemoApp` in the `/samples` folder of this repository for a full example
 
 ## Getting started
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
-2. In your shared project's `App.xaml.cs`, remove any line where `MainPage` is set to a `Page` or an `AppShell`. Make `App` inherit from `BurkusMvvmApplication`. You should be left with a simpler `App` class like this:
+2. In your shared project's `App.xaml.cs`, remove any line where `MainPage` is set to a `Page` or an `AppShell`. You should be left with a simpler `App` class like this:
 ``` csharp
-public partial class App : BurkusMvvmApplication
+public partial class App : Application
 {
     public App()
     {
@@ -63,16 +63,7 @@ public partial class App : BurkusMvvmApplication
     }
 }
 ```
-3. Update `App.xaml` in your shared project to be a `burkus:BurkusMvvmApplication`.
-``` xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<burkus:BurkusMvvmApplication
-    ...
-    xmlns:burkus="http://burkus.co.uk">
-    ...
-</burkus:BurkusMvvmApplication>
-```
-4. In your `MauiProgram.cs` file, call `.UseBurkusMvvm()` in your builder creation e.g.:
+3. In your `MauiProgram.cs` file, call `.UseBurkusMvvm()` in your builder creation e.g.:
 
 ```csharp
 public static class MauiProgram
@@ -90,7 +81,7 @@ public static class MauiProgram
             })
             ...
 ```
-5. **💡 RECOMMENDED**: This library pairs great with the amazing `CommunityToolkit.Mvvm`. Follow its [Getting started](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/#getting-started) guide to add it.
+4. **💡 RECOMMENDED**: This library pairs great with the amazing `CommunityToolkit.Mvvm`. Follow its [Getting started](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/#getting-started) guide to add it.
 
 ## Registering views, viewmodels, and services
 A recommended way to register your views, viewmodels, and services is by creating extension methods in your `MauiProgram.cs` file.
