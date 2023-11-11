@@ -1,6 +1,6 @@
 ﻿namespace DemoApp;
 
-public partial class App : BurkusMvvmApplication
+public partial class App : Application
 {
     public App()
     {

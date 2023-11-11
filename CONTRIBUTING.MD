@@ -9,7 +9,9 @@
 If an issue doesn't already exist, it is probably a good idea to raise an issue on the GitHub for the bug/feature suggestion (see above). If you were to spend time making changes without doing this, then your pull request may not be accepted if the change is not wanted or it is implemented in a way that the project does not want. Especially for more significant changes, it is always better to discuss a proposed implementation on an issue first.
 
 ## Pre-requisites
-- [Visual Studio 2022 - 17.7.0 or greater](https://visualstudio.microsoft.com/vs/community/) with the .NET Multi-platform App UI workload installed
+- [Visual Studio 2022 - 17.7.0 or greater](https://visualstudio.microsoft.com/vs/community/) 
+  - Required: the .NET Multi-platform App UI workload installed
+  - Optional: the Visual Studio extension development workload installed (for debugging source generators)
   - [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022) for ensuring XAML is formatted consistently. It is a good idea to set it to run automatically on save.
 
 NOTE: The above software is the recommended basics. You may be able to use other software versions or different pieces of software to contribute to this project.
@@ -35,3 +37,9 @@ NOTE: The above software is the recommended basics. You may be able to use other
 - Update the unit tests (fix any existing tests and ensure new code has unit test coverage)
 - Update the sample app with the change/feature in action
 - Ensure you have the [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022) extension installed and have run it on any XAML files you have changed to format them
+
+## Source generators
+### Debugging source generators
+1. Set `Burkus.Mvvm.Maui.SourceGenerators` as your startup project.
+2. Start debugging by running "Debug Source Gen Demo App" Debug mode.
+3. Your breakpoints will now work in the source generator project.
