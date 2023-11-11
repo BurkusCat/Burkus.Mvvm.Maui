@@ -364,6 +364,26 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 
+### Handling back button presses
+By default, back button presses on Android/Windows will bypass `Burkus.Mvvm.Maui` which would mean lifecycle events and parameter passing may not happen when you expect them to. You can allow `Burkus.Mvvm.Maui` to handle the back button navigation for a page by turning it into a `Burkus...Page`. For example, below a `ContentPage` is turned into a `BurkusContentPage`.
+
+``` xml
+<burkus:BurkusContentPage
+    ...
+    xmlns:burkus="http://burkus.co.uk"
+    ...>
+```
+
+``` csharp
+public partial class HomePage : BurkusContentPage
+```
+
+The page types available are:
+- `BurkusContentPage`
+- `BurkusNavigationPage`
+- `BurkusTabbedPage`
+- `BurkusFlyoutPage`
+
 ## Dialog service
 `IDialogService` is automatically registered by `.UseBurkusMvvm(...)`. It is a testable service that is an abstraction over [the MAUI alerts/pop-ups/prompts/action sheets](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pop-ups).
 

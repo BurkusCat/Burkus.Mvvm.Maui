@@ -14,6 +14,11 @@ public partial class RegisterViewModel : BaseViewModel
 
     #endregion Constructors
 
+    public override async Task OnNavigatingFrom(NavigationParameters parameters)
+    {
+        await base.OnNavigatingFrom(parameters);
+    }
+
     #region Commands
 
     /// <summary>

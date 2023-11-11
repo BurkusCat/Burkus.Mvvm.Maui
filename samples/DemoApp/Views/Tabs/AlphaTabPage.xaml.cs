@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class AlphaTabPage : ContentPage
+public partial class AlphaTabPage : BurkusContentPage
 {
     public AlphaTabPage()
     {

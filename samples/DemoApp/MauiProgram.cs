@@ -4,6 +4,7 @@ using DemoApp.Services;
 using DemoApp.ViewModels;
 using DemoApp.Views;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace DemoApp;
 
@@ -23,11 +24,11 @@ public static class MauiProgram
                     if (preferences.ContainsKey(PreferenceKeys.Username))
                     {
                         // we are logged in to the app
-                        await navigationService.Push<HomePage>();
+                        await navigationService.Navigate("/HomePage");
                     }
                     else
                     {
-                        await navigationService.Push<LoginPage>();
+                        await navigationService.Navigate("/LoginPage");
                     }
                 });
             })
