@@ -47,6 +47,14 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
+  <!-- Source generators -->
+  <!-- Uncomment to debug the output of the source generators
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+  -->
+ 
   <ItemGroup>
     <None Remove="Resources\Images\contacts.png" />
     <None Remove="Resources\Images\reminders.png" />
