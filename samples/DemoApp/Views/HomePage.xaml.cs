@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class HomePage : BurkusContentPage
+public partial class HomePage : ContentPage
 {
     public HomePage()
     {

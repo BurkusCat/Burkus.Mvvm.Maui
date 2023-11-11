@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class RemindersPage : BurkusContentPage
+public partial class RemindersPage : ContentPage
 {
     public RemindersPage()
     {
