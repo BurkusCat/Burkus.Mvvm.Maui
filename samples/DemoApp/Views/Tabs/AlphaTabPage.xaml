@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<burkus:BurkusContentPage
+<ContentPage
     x:Class="DemoApp.Views.AlphaTabPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -35,4 +35,4 @@
                 Text="{x:Static properties:Resources.Button_GoBack}" />
         </Grid>
     </ScrollView>
-</burkus:BurkusContentPage>
+</ContentPage>

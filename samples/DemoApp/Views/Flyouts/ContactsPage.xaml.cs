@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class ContactsPage : BurkusContentPage
+public partial class ContactsPage : ContentPage
 {
     public ContactsPage()
     {

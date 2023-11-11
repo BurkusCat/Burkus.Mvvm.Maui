@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class RegisterPage : BurkusContentPage
+public partial class RegisterPage : ContentPage
 {
     public RegisterPage()
     {

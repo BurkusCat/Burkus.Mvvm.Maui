@@ -355,26 +355,6 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 
-### Handling back button presses
-By default, back button presses on Android/Windows will bypass `Burkus.Mvvm.Maui` which would mean lifecycle events and parameter passing may not happen when you expect them to. You can allow `Burkus.Mvvm.Maui` to handle the back button navigation for a page by turning it into a `Burkus...Page`. For example, below a `ContentPage` is turned into a `BurkusContentPage`.
-
-``` xml
-<burkus:BurkusContentPage
-    ...
-    xmlns:burkus="http://burkus.co.uk"
-    ...>
-```
-
-``` csharp
-public partial class HomePage : BurkusContentPage
-```
-
-The page types available are:
-- `BurkusContentPage`
-- `BurkusNavigationPage`
-- `BurkusTabbedPage`
-- `BurkusFlyoutPage`
-
 ## Dialog service
 `IDialogService` is automatically registered by `.UseBurkusMvvm(...)`. It is a testable service that is an abstraction over [the MAUI alerts/pop-ups/prompts/action sheets](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pop-ups).
 
@@ -401,12 +381,28 @@ dialogService.DisplayAlert(
 See the [IDialogService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/IDialogService.cs) for all the possible method options.
 
 ## Advanced / complexities
-The below are some things of note that may help prevent issues from arising:
+Below are some things of note that may help prevent issues from arising:
 - The `MainPage` of the app will be automatically set to a `NavigationPage`. This means the first page you push can be a `ContentPage` rather than needing to push a `NavigationPage`. This may change in the future.
 - A source generator will automatically add code overriding `Window CreateWindow(IActivationState? activationState)` in your `App.xaml.cs` class.
 - Adding this package to a project will automatically import the `Burkus.Mvvm.Maui` namespace globally if you have [`ImplicitUsings`](https://devblogs.microsoft.com/dotnet/welcome-to-csharp-10/#implicit-usings) enabled in your project. You can opt out of this by including the following in your `.csproj` file:
 ``` xml
 <Using Remove="Burkus.Mvvm.Maui" />
+```
+
+### Handling back button presses
+A source generator will automatically override `bool OnBackButtonPressed()` for every `ContentPage`, `FlyoutPage`, `TabbedPage`, and `NavigationPage`. This generated source code allows `Burkus.Mvvm.Maui` to handle back button presses on Android & Windows.
+
+To disable this for a particular page, annotate the page with the `[DisableBackButtonNavigator]` attribute like this:
+```csharp
+[DisableBackButtonNavigator]
+public partial class FlyoutMenuPage : ContentPage
+{
+    ...
+```
+
+The source generator calls the following code, which may be useful if you need to create some custom `OnBackButtonPressed` logic:
+``` csharp
+return BackButtonNavigator.HandleBackButtonPressed();
 ```
 
 # Roadmap 🛣️

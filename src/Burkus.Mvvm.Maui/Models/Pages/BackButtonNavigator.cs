@@ -1,8 +1,8 @@
 ﻿namespace Burkus.Mvvm.Maui;
 
-internal static class BackButtonNavigator
+public static class BackButtonNavigator
 {
-    internal static bool HandleBackButtonPressed()
+    public static bool HandleBackButtonPressed()
     {
         var navigationService = ServiceResolver.Resolve<INavigationService>();
 

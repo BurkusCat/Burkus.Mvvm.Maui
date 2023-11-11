@@ -8,7 +8,7 @@ using System.Text;
 namespace Burkus.Mvvm.Maui;
 
 [Generator]
-public class AppSourceGenerator : ISourceGenerator
+internal class AppSourceGenerator : ISourceGenerator
 {
     public void Initialize(GeneratorInitializationContext context)
     {
@@ -33,7 +33,6 @@ public class AppSourceGenerator : ISourceGenerator
         }
 
         // get the MAUI program we are running in
-
         var assembly = context.Compilation.Assembly;
         var mauiProgramName = $"{assembly.Name}.MauiProgram";
         var mauiProgram = context.Compilation
@@ -54,7 +53,7 @@ public class AppSourceGenerator : ISourceGenerator
 
 namespace {mauiProgram.ContainingNamespace.ToDisplayString()};
 
-public partial class App : Application
+partial class App
 {{
     protected override Window CreateWindow(IActivationState? activationState)
     {{

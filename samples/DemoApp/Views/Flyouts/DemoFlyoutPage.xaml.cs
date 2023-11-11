@@ -1,6 +1,7 @@
 ﻿namespace DemoApp.Views;
 
-public partial class DemoFlyoutPage : BurkusFlyoutPage
+[DisableBackButtonNavigator]
+public partial class DemoFlyoutPage : FlyoutPage
 {
     public DemoFlyoutPage()
     {

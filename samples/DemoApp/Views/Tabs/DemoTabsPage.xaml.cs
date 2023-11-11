@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class DemoTabsPage : BurkusTabbedPage
+public partial class DemoTabsPage : TabbedPage
 {
     public DemoTabsPage()
     {

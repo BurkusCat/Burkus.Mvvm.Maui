@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class CharlieTabPage : BurkusContentPage
+public partial class CharlieTabPage : ContentPage
 {
     public CharlieTabPage()
     {
