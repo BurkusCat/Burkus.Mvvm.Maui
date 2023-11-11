@@ -32,7 +32,7 @@ public class AppSourceGenerator : ISourceGenerator
         // generate the source code for the CreateWindow method
         var sourceBuilder = """
                             using System;
-                            partial class App
+                            partial class App : Application
                             {
                                 protected override Window CreateWindow(IActivationState? activationState)
                                 {
