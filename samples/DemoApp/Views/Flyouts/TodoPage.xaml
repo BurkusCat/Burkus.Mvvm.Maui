@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<burkus:BurkusContentPage
     x:Class="DemoApp.Views.TodoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -26,4 +26,4 @@
                 Text="{x:Static properties:Resources.Todo_Button_PushNewPageIntoDetail}" />
         </VerticalStackLayout>
     </ScrollView>
-</ContentPage>
+</burkus:BurkusContentPage>

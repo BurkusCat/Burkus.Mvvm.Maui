@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage
+<burkus:BurkusTabbedPage
     x:Class="DemoApp.Views.DemoTabsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -13,4 +13,4 @@
     <views:AlphaTabPage Title="Alpha" />
     <views:BetaTabPage Title="Beta" />
     <views:CharlieTabPage Title="Charlie" />
-</TabbedPage>
+</burkus:BurkusTabbedPage>

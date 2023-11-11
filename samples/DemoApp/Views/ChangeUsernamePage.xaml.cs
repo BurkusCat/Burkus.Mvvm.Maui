@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class ChangeUsernamePage : ContentPage
+public partial class ChangeUsernamePage : BurkusContentPage
 {
     public ChangeUsernamePage()
     {

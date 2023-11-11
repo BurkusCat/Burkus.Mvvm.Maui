@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Views;
 
-public partial class DemoFlyoutPage : FlyoutPage
+public partial class DemoFlyoutPage : BurkusFlyoutPage
 {
     public DemoFlyoutPage()
     {
