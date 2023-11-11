@@ -10,7 +10,7 @@ public static class ServiceResolver
         scope = serviceScope;
     }
 
-    internal static IServiceProvider GetServiceProvider()
+    public static IServiceProvider GetServiceProvider()
     {
         return scope.ServiceProvider;
     }
