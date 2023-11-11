@@ -259,6 +259,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string Home_Button_Exit {
+            get {
+                return ResourceManager.GetString("Home_Button_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flyout Page demo.
         /// </summary>
         internal static string Home_Button_FlyoutPageDemo {

@@ -65,6 +65,11 @@
                 Command="{Binding GoToFlyoutPageDemoCommand}"
                 Style="{StaticResource PrimaryButton}"
                 Text="{x:Static properties:Resources.Home_Button_FlyoutPageDemo}" />
+            <Button
+                Margin="0,40,0,0"
+                Command="{Binding ExitCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_Exit}" />
         </VerticalStackLayout>
     </ScrollView>
 </burkus:BurkusContentPage>

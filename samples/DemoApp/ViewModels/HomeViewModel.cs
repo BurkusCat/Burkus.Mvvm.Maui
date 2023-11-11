@@ -145,5 +145,15 @@ public partial class HomeViewModel : BaseViewModel
         await navigationService.Navigate($"{nameof(DemoFlyoutPage)}", navigationParameters);
     }
 
+    /// <summary>
+    /// Exit the application.
+    /// </summary>
+    [RelayCommand]
+    private async Task Exit()
+    {
+        // Pop the homepage off the stack, closing the app.
+        await navigationService.GoBack();
+    }
+
     #endregion Commands
 }

@@ -205,6 +205,10 @@
     <value>Change Username (no animation)</value>
     <comment>Translate</comment>
   </data>
+  <data name="Home_Button_Exit" xml:space="preserve">
+    <value>Exit</value>
+    <comment>Translate</comment>
+  </data>
   <data name="Home_Button_FlyoutPageDemo" xml:space="preserve">
     <value>Flyout Page demo</value>
     <comment>Translate</comment>

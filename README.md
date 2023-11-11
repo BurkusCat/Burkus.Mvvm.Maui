@@ -174,7 +174,7 @@ ServiceResolver.Resolve(IExampleService);
 ```
 
 ## Navigation service
-`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, replace the top page of the app, reset the navigation stack, switch tabs, and more. 
+`INavigationService` is automatically registered by `.UseBurkusMvvm(...)`. You can use it to: push pages, pop pages, pop to the root page, go back, replace the top page of the app, reset the navigation stack, switch tabs, and more. 
 See the [INavigationService interface in the repository](https://github.com/BurkusCat/Burkus.Mvvm.Maui/blob/main/src/Abstractions/INavigationService.cs) for all possible navigation method options.
 
 This is a simple navigation example where we push a "`TestPage`" onto the navigation stack:
