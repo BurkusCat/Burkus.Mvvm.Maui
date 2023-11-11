@@ -66,6 +66,35 @@ internal class NavigationService : INavigationService
 
     #region Advanced navigation methods
 
+    public async Task GoBack()
+    {
+        await GoBack(new NavigationParameters());
+    }
+
+    public async Task GoBack(NavigationParameters navigationParameters)
+    {
+        await HandleNavigation<Page>(async () =>
+            {
+                if (navigationParameters.UseModalNavigation)
+                {
+                    _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+                }
+                else
+                {
+                    if (Application.Current.MainPage.Navigation.NavigationStack.Count <= 1)
+                    {
+                        // quit the app as this page is the last one
+                        Application.Current.Quit();
+                    }
+                    else
+                    {
+                        _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+                    }
+                }
+            },
+            navigationParameters);
+    }
+
     public async Task ReplaceTopPage<T>()
         where T : Page
     {

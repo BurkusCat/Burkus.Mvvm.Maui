@@ -124,4 +124,17 @@ public class HomeViewModelTests
         // Assert
         mockNavigationService.Received().Navigate("DemoTabsPage/RegisterPage/UriTestPage");
     }
+
+    [Fact]
+    public void ExitCommand_WhenCalled_ClosesTheApp()
+    {
+        // Arrange
+        var viewModel = ViewModel;
+
+        // Act
+        viewModel.ExitCommand.Execute(null);
+
+        // Assert
+        mockNavigationService.Received().GoBack();
+    }
 }

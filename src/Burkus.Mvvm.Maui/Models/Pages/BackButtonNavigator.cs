@@ -6,7 +6,7 @@ internal static class BackButtonNavigator
     {
         var navigationService = ServiceResolver.Resolve<INavigationService>();
 
-        _ = navigationService.Pop();
+        _ = navigationService.GoBack();
 
         // On Android and Windows, prevent the default back button behaviour
         return true;

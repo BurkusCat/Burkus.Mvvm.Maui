@@ -52,6 +52,19 @@ public interface INavigationService
     #region Advanced navigation methods
 
     /// <summary>
+    /// Pops the top page of the navigation stack or closes the app if it is the last page.
+    /// </summary>
+    /// <returns>A completed task</returns>
+    Task GoBack();
+
+    /// <summary>
+    /// Pops the top page of the navigation stack or closes the app if it is the last page.
+    /// </summary>
+    /// <param name="navigationParameters">Navigation parameters to pass</param>
+    /// <returns>A completed task</returns>
+    Task GoBack(NavigationParameters navigationParameters);
+
+    /// <summary>
     /// Replace the top page of the stack with a new page.
     /// </summary>
     /// <typeparam name="T">Type of Page</typeparam>
