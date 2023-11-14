@@ -6,10 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2023-11-14
 
 ### Added
 - `Burkus.Mvvm.Maui` now automatically imported globally
+- Basic FlyoutPage support
+- Advanced navigation method: `.GoBack()`
+- Source generators for project setup
+  - Initial app launch requirements now handled automatically
+  - Native back button handled on pages (opt a page out by using `DisableBackButtonNavigator`)
 
 ### Changed
 - TargetFramework is now `net8.0` (instead of `net7.0`)
