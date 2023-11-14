@@ -1,57 +1,61 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<UseMaui>true</UseMaui>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UseMaui>true</UseMaui>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 
-		<!-- NuGet -->
-		<Authors>Burkus</Authors>
-		<Copyright>Copyright © Burkus Ltd., Ronan Burke</Copyright>
-		<IsPackable>True</IsPackable>
-		<PackageProjectUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>burkus;dotnet-maui;maui;mvvm;</PackageTags>
-		<IncludeSymbols>True</IncludeSymbols>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Title>Burkus.Mvvm.Maui</Title>
-		<Description>Burkus.Mvvm.Maui is a simple MVVM (Model–view–viewmodel) framework for .NET MAUI. It provides: navigation, lifecycle events, parameter passing, native dialog abstractions, and testability.</Description>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<DebugType>portable</DebugType>
-		<PackageIcon>icon.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
+    <!-- NuGet -->
+    <Authors>Burkus</Authors>
+    <Copyright>Copyright © Burkus Ltd., Ronan Burke</Copyright>
+    <IsPackable>True</IsPackable>
+    <PackageProjectUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>burkus;dotnet-maui;maui;mvvm;</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Title>Burkus.Mvvm.Maui</Title>
+    <Description>Burkus.Mvvm.Maui is a simple MVVM (Model–view–viewmodel) framework for .NET MAUI. It provides: navigation, lifecycle events, parameter passing, native dialog abstractions, and testability.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <DebugType>portable</DebugType>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Compile Update="Properties\Resources.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+  </ItemGroup>
 
-		<EmbeddedResource Update="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
 
-	<!-- Package additions -->
-	<ItemGroup>
-		<None Include="..\..\art\MvvmVertical.png" PackagePath="icon.png" Pack="true" />
-		<None Include="..\..\README.md" PackagePath="README.md" Pack="true" />
-		<Content Include="buildTransitive\Burkus.Mvvm.Maui.props" PackagePath="buildTransitive\Burkus.Mvvm.Maui.props" Pack="true" />
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Package additions -->
+  <ItemGroup>
+    <None Include="..\..\art\MvvmVertical.png" PackagePath="icon.png" Pack="true" />
+    <None Include="..\..\README.md" PackagePath="README.md" Pack="true" />
+    <Content Include="buildTransitive\Burkus.Mvvm.Maui.props" PackagePath="buildTransitive\Burkus.Mvvm.Maui.props" Pack="true" />
     <None Include="..\Burkus.Mvvm.Maui.SourceGenerators\bin\$(Configuration)\netstandard2.0\Burkus.Mvvm.Maui.SourceGenerators.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 </Project>
