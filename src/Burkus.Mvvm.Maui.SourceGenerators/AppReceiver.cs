@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace Burkus.Mvvm.Maui;
 
@@ -8,16 +9,16 @@ namespace Burkus.Mvvm.Maui;
 /// </summary>
 internal class AppReceiver : ISyntaxReceiver
 {
-    public ClassDeclarationSyntax? AppClass { get; private set; }
+    public List<ClassDeclarationSyntax> AppClasses { get; } = new List<ClassDeclarationSyntax>();
 
     public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
     {
         // look for a class declaration named App
-        if (syntaxNode is ClassDeclarationSyntax classDeclaration &&
-            classDeclaration.Identifier.ValueText == "App")
+        if (syntaxNode is ClassDeclarationSyntax classDeclaration
+            && classDeclaration.Identifier.ValueText == "App")
         {
-            // store the first one found
-            AppClass ??= classDeclaration;
+            // store all the ones found
+            AppClasses.Add(classDeclaration);
         }
     }
 }

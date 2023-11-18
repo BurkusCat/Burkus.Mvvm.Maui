@@ -21,15 +21,28 @@ internal class AppSourceGenerator : ISourceGenerator
         if (context.SyntaxReceiver is not AppReceiver receiver)
             return;
 
-        var semanticModel = context.Compilation.GetSemanticModel(receiver.AppClass.SyntaxTree);
-        var isPartial = receiver.AppClass.Modifiers
+        INamedTypeSymbol chosenAppSymbol = null;
+
+        foreach (var appClass in receiver.AppClasses)
+        {
+            var semanticModel = context.Compilation.GetSemanticModel(appClass.SyntaxTree);
+
+            var isPartial = appClass.Modifiers
                 .Any(m => m.IsKind(SyntaxKind.PartialKeyword));
 
-        // check if the App class is partial and inherits from Application
-        var appSymbol = semanticModel.GetDeclaredSymbol(receiver.AppClass);
-        if (appSymbol is null || !isPartial || !appSymbol.BaseType.Equals(semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application")))
+            // check if the App class is partial and inherits from Application
+            var appSymbol = semanticModel.GetDeclaredSymbol(appClass);
+
+            if (appSymbol is not null && isPartial && appSymbol.BaseType.Equals(semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application")))
+            {
+                chosenAppSymbol = appSymbol;
+                break;
+            }
+        }
+
+        if (chosenAppSymbol == null)
         {
-            throw new Exception("You must have a partial class called \"App\" that inherits from Application in your .NET MAUI project.");
+            return;
         }
 
         // get the MAUI program we are running in
