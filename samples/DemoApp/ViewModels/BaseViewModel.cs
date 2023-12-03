@@ -22,16 +22,19 @@ public abstract class BaseViewModel : ObservableObject, INavigatedEvents, INavig
 
     #region Lifecycle events
 
-    public virtual async Task OnNavigatedTo(NavigationParameters parameters)
+    public virtual Task OnNavigatedTo(NavigationParameters parameters)
     {
+        return Task.CompletedTask;
     }
 
-    public virtual async Task OnNavigatedFrom(NavigationParameters parameters)
+    public virtual Task OnNavigatedFrom(NavigationParameters parameters)
     {
+        return Task.CompletedTask;
     }
 
-    public virtual async Task OnNavigatingFrom(NavigationParameters parameters)
+    public virtual Task OnNavigatingFrom(NavigationParameters parameters)
     {
+        return Task.CompletedTask;
     }
 
     #endregion Lifecycle events
