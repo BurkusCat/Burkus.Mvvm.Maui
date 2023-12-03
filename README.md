@@ -49,7 +49,7 @@ See the `DemoApp` in the `/samples` folder of this repository for a full example
 
 🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
 
-| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-home.png" width="200" alt="The Home page of the demo app running on Android"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
+| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
 | -------- | ------- | ------- |
 
 ## Getting started
