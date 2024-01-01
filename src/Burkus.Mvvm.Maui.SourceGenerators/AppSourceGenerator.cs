@@ -82,7 +82,16 @@ partial class App
             burkusMvvmBuilder.onStartFunc.Invoke(navigationService, serviceProvider);
         }}
 
-        return base.CreateWindow(activationState);
+        var window = base.CreateWindow(activationState);
+
+#if WINDOWS
+        if (window != null)
+        {{
+            window.Title = AppInfo.Current.Name;
+        }}
+#endif
+
+        return window;
     }}
 }}";
 
