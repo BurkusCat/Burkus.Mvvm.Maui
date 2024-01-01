@@ -33,7 +33,7 @@ internal class AppSourceGenerator : ISourceGenerator
             // check if the App class is partial and inherits from Application
             var appSymbol = semanticModel.GetDeclaredSymbol(appClass);
 
-            if (appSymbol is not null && isPartial && appSymbol.BaseType.Equals(semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application")))
+            if (appSymbol is not null && isPartial && SymbolEqualityComparer.Default.Equals(appSymbol.BaseType, semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application")))
             {
                 chosenAppSymbol = appSymbol;
                 break;
@@ -82,7 +82,16 @@ partial class App
             burkusMvvmBuilder.onStartFunc.Invoke(navigationService, serviceProvider);
         }}
 
-        return base.CreateWindow(activationState);
+        var window = base.CreateWindow(activationState);
+
+#if WINDOWS
+        if (window != null)
+        {{
+            window.Title = AppInfo.Current.Name;
+        }}
+#endif
+
+        return window;
     }}
 }}";
 
