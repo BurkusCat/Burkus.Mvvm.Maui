@@ -20,7 +20,7 @@
     <PackageProjectUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BurkusCat/Burkus.Mvvm.Maui</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>burkus;dotnet-maui;maui;mvvm;</PackageTags>
+    <PackageTags>burkus;dotnet-maui;maui;mvvm;dotnet;android;ios;windows;winui;</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
