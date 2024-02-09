@@ -38,21 +38,9 @@ Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spar
 ⭐ If you like the project, please consider giving it a __GitHub Star__ ⭐
 
 # Documentation 📗
-See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
-
-🚀 [Run the Demo App](/samples/DemoApp/) to see interactive examples of features in this library. With the code examples you can learn about:
-- different types of navigation
-- the standard way to configure this library
-- utilizing lifecycle events
-- passing parameters
-- displaying native dialogs
-
-🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
-
-| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
-| -------- | ------- | ------- |
 
 ## Getting started
+
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
 2. In your shared project's `App.xaml.cs`, remove any line where `MainPage` is set to a `Page` or an `AppShell`. You should be left with a simpler `App` class like this:
 ``` csharp
@@ -83,6 +71,21 @@ public static class MauiProgram
             ...
 ```
 4. **💡 RECOMMENDED**: This library pairs great with the amazing `CommunityToolkit.Mvvm`. Follow its [Getting started](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/#getting-started) guide to add it.
+
+## Demo app
+See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
+
+🚀 [Run the Demo App](/samples/DemoApp/) to see interactive examples of features in this library. With the code examples you can learn about:
+- different types of navigation
+- the standard way to configure this library
+- utilizing lifecycle events
+- passing parameters
+- displaying native dialogs
+
+🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
+
+| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
+| -------- | ------- | ------- |
 
 ## Registering views, viewmodels, and services
 A recommended way to register your views, viewmodels, and services is by creating extension methods in your `MauiProgram.cs` file.
