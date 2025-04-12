@@ -87,6 +87,13 @@ See the `DemoApp` in the `/samples` folder of this repository for a full example
 | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
 | -------- | ------- | ------- |
 
+## Sample/reference application
+"Next Page" is a Personal Book Application developed using `Burkus.Mvvm.Maui`. It may give you some ideas and inspiration on how best to build a production application using `Burkus.Mvvm.Maui`.
+
+📗 [Clone the Next Page sample application](https://github.com/BurkusCat/NextPage)
+
+**⚠️ Warning**: Next Page is built with an older version of `Burkus.Mvvm.Maui` and .NET 8. However, it may still serve as a useful reference.
+
 ## Registering views, viewmodels, and services
 A recommended way to register your views, viewmodels, and services is by creating extension methods in your `MauiProgram.cs` file.
 
