@@ -4,7 +4,7 @@ internal static class LifecycleEventUtility
 {
     #region INavigatingEvents
 
-    internal static async Task TriggerOnNavigatingFrom(object bindingContext, NavigationParameters navigationParameters)
+    internal static async Task TriggerOnNavigatingFrom(object? bindingContext, NavigationParameters navigationParameters)
     {
         var navigatingFromViewModel = bindingContext as INavigatingEvents;
 
@@ -18,7 +18,7 @@ internal static class LifecycleEventUtility
 
     #region INavigatedEvents
 
-    internal static async Task TriggerOnNavigatedFrom(object bindingContext, NavigationParameters navigationParameters)
+    internal static async Task TriggerOnNavigatedFrom(object? bindingContext, NavigationParameters navigationParameters)
     {
         var navigatedFromViewModel = bindingContext as INavigatedEvents;
 
@@ -28,7 +28,7 @@ internal static class LifecycleEventUtility
         }
     }
 
-    internal static async Task TriggerOnNavigatedTo(object bindingContext, NavigationParameters navigationParameters)
+    internal static async Task TriggerOnNavigatedTo(object? bindingContext, NavigationParameters navigationParameters)
     {
         // map properties specified in attributes
         var type = bindingContext.GetType();

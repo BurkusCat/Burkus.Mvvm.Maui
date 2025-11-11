@@ -17,11 +17,11 @@ internal class NavigationService : INavigationService
 
                 if (navigationParameters.UseModalNavigation)
                 {
-                    await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    await MauiPageUtility.GetFirstWindow().Page.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                 }
                 else
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                    await MauiPageUtility.GetFirstWindow().Page.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                 }
             },
             navigationParameters);
@@ -38,11 +38,11 @@ internal class NavigationService : INavigationService
             {
                 if (navigationParameters.UseModalNavigation)
                 {
-                    _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+                    _ = await MauiPageUtility.GetFirstWindow().Page.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
                 }
                 else
                 {
-                    _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+                    _ = await MauiPageUtility.GetFirstWindow().Page.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
                 }
             },
             navigationParameters);
@@ -57,7 +57,7 @@ internal class NavigationService : INavigationService
     {
         await HandleNavigation<Page>(async () =>
             {
-                await Application.Current.MainPage.Navigation.PopToRootAsync(navigationParameters.UseAnimatedNavigation);
+                await MauiPageUtility.GetFirstWindow().Page.Navigation.PopToRootAsync(navigationParameters.UseAnimatedNavigation);
             },
             navigationParameters);
     }
@@ -75,20 +75,22 @@ internal class NavigationService : INavigationService
     {
         await HandleNavigation<Page>(async () =>
             {
+                var window = MauiPageUtility.GetFirstWindow();
+
                 if (navigationParameters.UseModalNavigation)
                 {
-                    _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+                    _ = await window.Page.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
                 }
                 else
                 {
-                    if (Application.Current.MainPage.Navigation.NavigationStack.Count <= 1)
+                    if (window.Page.Navigation.NavigationStack.Count <= 1)
                     {
                         // quit the app as this page is the last one
-                        Application.Current.Quit();
+                        Application.Current?.Quit();
                     }
                     else
                     {
-                        _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+                        _ = await window.Page.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
                     }
                 }
             },
@@ -106,7 +108,7 @@ internal class NavigationService : INavigationService
     {
         await HandleNavigation<Page>(async () =>
             {
-                var navigation = Application.Current.MainPage.Navigation;
+                var navigation = MauiPageUtility.GetFirstWindow().Page.Navigation;
                 var pageToNavigateTo = GetPageToNavigateTo<T>();
 
                 navigation.InsertPageBefore(pageToNavigateTo, navigation.NavigationStack.Last());
@@ -126,7 +128,7 @@ internal class NavigationService : INavigationService
     {
         await HandleNavigation<Page>(async () =>
             {
-                var navigation = Application.Current.MainPage.Navigation;
+                var navigation = MauiPageUtility.GetFirstWindow().Page.Navigation;
                 var pageToNavigateTo = GetPageToNavigateTo<T>();
 
                 if (navigation.NavigationStack.Count > 0)
@@ -156,10 +158,12 @@ internal class NavigationService : INavigationService
 
     public async Task Navigate(string uri, NavigationParameters navigationParameters)
     {
+        var window = MauiPageUtility.GetFirstWindow();
+
         // todo: how to consider modal navigation/animations/parameters etc. at each segment of the navigation
         // todo: need to consider what query parameter should and shouldn't be.
         // should they be only for passing simple variables (strings, bools etc.) rather than complex json objects
-        var navigation = Application.Current.MainPage.Navigation;
+        var navigation = window.Page.Navigation;
 
         var segments = UriUtility.GetUriSegments(uri);
         var instructions = segments.Select(UriUtility.ParseUriSegment)
@@ -206,11 +210,11 @@ internal class NavigationService : INavigationService
 
                     if (pushNavigationParameters.UseModalNavigation)
                     {
-                        await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                        await window.Page.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                     }
                     else
                     {
-                        await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                        await window.Page.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
                     }
 
                     await LifecycleEventUtility.TriggerOnNavigatedTo(
@@ -240,11 +244,11 @@ internal class NavigationService : INavigationService
             // pop final page
             if (popNavigationParameters.UseModalNavigation)
             {
-                _ = await Application.Current.MainPage.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
+                _ = await window.Page.Navigation.PopModalAsync(navigationParameters.UseAnimatedNavigation);
             }
             else
             {
-                _ = await Application.Current.MainPage.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
+                _ = await window.Page.Navigation.PopAsync(navigationParameters.UseAnimatedNavigation);
             }
 
             await LifecycleEventUtility.TriggerOnNavigatedFrom(
@@ -259,11 +263,11 @@ internal class NavigationService : INavigationService
 
             if (pushNavigationParameters.UseModalNavigation)
             {
-                await Application.Current.MainPage.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                await window.Page.Navigation.PushModalAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
             }
             else
             {
-                await Application.Current.MainPage.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
+                await window.Page.Navigation.PushAsync(pageToNavigateTo, navigationParameters.UseAnimatedNavigation);
             }
 
             // remove all the pages that needed removed
@@ -372,7 +376,7 @@ internal class NavigationService : INavigationService
         return pageToNavigateTo;
     }
 
-    private Page GetPageToNavigateTo(Type pageType)
+    private Page? GetPageToNavigateTo(Type pageType)
     {
         var pageToNavigateTo = ServiceResolver.Resolve(pageType) as Page;
 

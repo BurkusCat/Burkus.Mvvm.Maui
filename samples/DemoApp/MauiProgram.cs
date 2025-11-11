@@ -4,7 +4,6 @@ using DemoApp.Services;
 using DemoApp.ViewModels;
 using DemoApp.Views;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.LifecycleEvents;
 
 namespace DemoApp;
 
