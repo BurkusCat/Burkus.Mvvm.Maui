@@ -23,10 +23,10 @@ internal class AppSourceGenerator : IIncrementalGenerator
                     var symbol = semanticModel.GetDeclaredSymbol(classDecl);
 
                     // check if the App class is partial and inherits from Application
-                    var isPartial = classDecl.Modifiers.Any(m => m.IsKind(Microsoft.CodeAnalysis.CSharp.SyntaxKind.PartialKeyword));
+                    var isPartial = classDecl.Modifiers.Any(m => m.IsKind(SyntaxKind.PartialKeyword));
                     var baseType = symbol?.BaseType;
                     var appType = semanticModel.Compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Application");
-                    if (symbol != null && isPartial && Microsoft.CodeAnalysis.SymbolEqualityComparer.Default.Equals(baseType, appType))
+                    if (symbol != null && isPartial && SymbolEqualityComparer.Default.Equals(baseType, appType))
                     {
                         return symbol;
                     }
@@ -61,7 +61,21 @@ partial class App
 {{
     protected override Window CreateWindow(IActivationState? activationState)
     {{
-        Current.MainPage = new NavigationPage();
+        var window = new Window(new NavigationPage());
+
+#if WINDOWS
+        if (window != null)
+        {{
+            window.Title = AppInfo.Current.Name;
+        }}
+#endif
+
+        return window;
+    }}
+
+    protected override void OnStart()
+    {{
+        base.OnStart();
 
         var burkusMvvmBuilder = ServiceResolver.Resolve<IBurkusMvvmBuilder>();
         var navigationService = ServiceResolver.Resolve<INavigationService>();
@@ -72,17 +86,6 @@ partial class App
         {{
             burkusMvvmBuilder.onStartFunc.Invoke(navigationService, serviceProvider);
         }}
-
-        var window = base.CreateWindow(activationState);
-
-#if WINDOWS
-        if (window != null)
-        {{
-            window.Title = AppInfo.Current.Name;
-        }}
-#endif
-
-        return window;
     }}
 }}";
 
