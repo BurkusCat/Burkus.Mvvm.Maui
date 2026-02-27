@@ -10,10 +10,10 @@ public partial class MapPropertiesViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private bool showLabel;
+    public partial bool ShowLabel { get; set; }
 
     [ObservableProperty]
-    private string labelText;
+    public partial string LabelText { get; set; }
 
     #endregion Properties
 

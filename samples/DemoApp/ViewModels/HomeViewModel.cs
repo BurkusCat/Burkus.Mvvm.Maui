@@ -19,10 +19,10 @@ public partial class HomeViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private string username;
+    public partial string Username { get; set; }
 
     [ObservableProperty]
-    private string currentWeatherDescription;
+    public partial string CurrentWeatherDescription { get; set; }
 
     #endregion Properties
 

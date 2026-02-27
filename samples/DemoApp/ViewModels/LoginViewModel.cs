@@ -19,10 +19,10 @@ public partial class LoginViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private string username;
+    public partial string Username;
 
     [ObservableProperty]
-    private string password;
+    public partial string Password;
 
     #endregion Properties
 

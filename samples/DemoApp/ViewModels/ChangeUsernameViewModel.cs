@@ -17,7 +17,7 @@ public partial class ChangeUsernameViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private string username;
+    public partial string Username;
 
     #endregion Properties
 
