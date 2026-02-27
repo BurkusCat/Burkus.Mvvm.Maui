@@ -158,12 +158,26 @@ public partial class HomeViewModel : BaseViewModel
     /// Navigate to the map properties demo and pass two parameters.
     /// </summary>
     [RelayCommand]
-    private async Task GoToMapPropertiesDemo()
+    private async Task GoToMapPropertiesDemoWithRequiredParameter()
     {
         var navigationParameters = new NavigationParameters
         {
             { NavigationParameterKeys.ShowLabel, true },
             { NavigationParameterKeys.LabelText, "This text has been mapped for you" },
+        };
+
+        await navigationService.Push<MapPropertiesPage>(navigationParameters);
+    }
+
+    /// <summary>
+    /// Navigate to the map properties demo without all required parameters.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToMapPropertiesDemoWithoutRequiredParameter()
+    {
+        var navigationParameters = new NavigationParameters
+        {
+            { NavigationParameterKeys.ShowLabel, true },
         };
 
         await navigationService.Push<MapPropertiesPage>(navigationParameters);

@@ -217,8 +217,12 @@
     <value>Logout with URI syntax:</value>
     <comment>Translate</comment>
   </data>
-  <data name="Home_Button_MapPropertiesDemo" xml:space="preserve">
+  <data name="Home_Button_MapPropertiesDemoWithProperties" xml:space="preserve">
     <value>Map Properties demo</value>
+    <comment>Translate</comment>
+  </data>
+  <data name="Home_Button_MapPropertiesDemoWithoutProperties" xml:space="preserve">
+    <value>Map Required Properties Exception</value>
     <comment>Translate</comment>
   </data>
   <data name="Home_Button_PageVisibilityEventsDemo" xml:space="preserve">

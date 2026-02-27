@@ -10,9 +10,7 @@
     x:DataType="vm:HomeViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:HomeViewModel}">
     <ScrollView>
-        <VerticalStackLayout
-            Margin="15"
-            Spacing="10">
+        <VerticalStackLayout Margin="15" Spacing="10">
             <Label
                 Style="{StaticResource HeadingLabel}"
                 Text="{Binding Username, StringFormat={x:Static properties:Resources.Home_WelcomeMessage}}"
@@ -78,9 +76,13 @@
                 HorizontalOptions="Center"
                 Text="{x:Static properties:Resources.Home_SubHeading_ParameterPassing}" />
             <Button
-                Command="{Binding GoToMapPropertiesDemoCommand}"
+                Command="{Binding GoToMapPropertiesDemoWithRequiredParameterCommand}"
                 Style="{StaticResource PrimaryButton}"
-                Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemo}" />
+                Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemoWithProperties}" />
+            <Button
+                Command="{Binding GoToMapPropertiesDemoWithoutRequiredParameterCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemoWithoutProperties}" />
             <Button
                 Margin="0,40,0,0"
                 Command="{Binding ExitCommand}"

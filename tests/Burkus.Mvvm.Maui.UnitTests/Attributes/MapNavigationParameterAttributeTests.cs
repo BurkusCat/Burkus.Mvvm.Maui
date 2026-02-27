@@ -10,10 +10,12 @@ public class MapNavigationParameterAttributeTests
         // Act
         var attribute = new MapNavigationParameterAttribute(
             "PropertyName",
-            "navigation_key");
+            "navigation_key",
+            true);
 
         // Assert
         Assert.Equal("PropertyName", attribute.PropertyName);
         Assert.Equal("navigation_key", attribute.NavigationParameterKey);
+        Assert.True(attribute.Required);
     }
 }

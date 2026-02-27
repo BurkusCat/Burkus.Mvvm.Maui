@@ -154,18 +154,32 @@ public class HomeViewModelTests
     }
 
     [Fact]
-    public void GoToMapPropertiesDemoCommand_WhenCalled_NavigatesToDemoFlyoutPage()
+    public void GoToMapPropertiesDemoWithRequiredParameterCommand_WhenCalled_NavigatesToDemoFlyoutPage()
     {
         // Arrange
         var viewModel = ViewModel;
 
         // Act
-        viewModel.GoToMapPropertiesDemoCommand.Execute(null);
+        viewModel.GoToMapPropertiesDemoWithRequiredParameterCommand.Execute(null);
 
         // Assert
         mockNavigationService.Received().Push<MapPropertiesPage>(
             Arg.Is<NavigationParameters>(x => x.GetValue<bool>("showLabel") == true
                 && x.GetValue<string>("labelText") == "This text has been mapped for you"));
+    }
+
+    [Fact]
+    public void GoToMapPropertiesDemoWithoutRequiredParameterCommand_WhenCalled_ThrowsException()
+    {
+        // Arrange
+        var viewModel = ViewModel;
+
+        // Act
+        viewModel.GoToMapPropertiesDemoWithoutRequiredParameterCommand.Execute(null);
+
+        // Assert
+        mockNavigationService.Received().Push<MapPropertiesPage>(
+            Arg.Is<NavigationParameters>(x => x.GetValue<bool>("showLabel") == true));
     }
 
     [Fact]

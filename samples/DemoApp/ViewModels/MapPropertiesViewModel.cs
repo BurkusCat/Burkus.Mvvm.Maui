@@ -4,7 +4,7 @@ using DemoApp.Models;
 namespace DemoApp.ViewModels;
 
 [MapNavigationParameter(nameof(ShowLabel), NavigationParameterKeys.ShowLabel)]
-[MapNavigationParameter(nameof(LabelText), NavigationParameterKeys.LabelText)]
+[MapNavigationParameter(nameof(LabelText), NavigationParameterKeys.LabelText, required: true)]
 public partial class MapPropertiesViewModel : BaseViewModel
 {
     #region Properties
