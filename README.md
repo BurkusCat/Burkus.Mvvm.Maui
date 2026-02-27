@@ -23,17 +23,9 @@
 **⚠️ Warning**: `Burkus.Mvvm.Maui` is currently an experimental library. Expect frequent breaking API changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until we establish a stable, well-liked API. Only then will we release versions "1.y.z" and beyond.
 
 # Supporting the Project 💖
-<a href="https://github.com/sponsors/BurkusCat"><img align="right" src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
+Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I hope it is a helpful project for you!
 
-Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it!  If you've found value in Burkus.Mvvm.Maui, I would greatly appreciate if you would be able to **[sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat)**. There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
-
-- a sponsorship badge 🪙
-- prioritized bug reports 🐛
-- opportunities for pair-programming sessions, consulting, or mentorship 🧑‍🏫
-- shout-outs right here in this `README` 📢
-- ... and more
-
-<br clear="right"/>
+I won't always have time to work on this project, but it would be greatly appreciated if you are able to file issues, raise PRs, and review others' PRs.
 
 ⭐ If you like the project, please consider giving it a __GitHub Star__ ⭐
 
@@ -474,7 +466,7 @@ The source generator calls the following code, which may be useful if you need t
 return BackButtonNavigator.HandleBackButtonPressed();
 ```
 
-# Roadmap 🛣️
+# Features we need your help with 🫵
 - [View and viewmodel auto-registration](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/4)
 - [Popup pages](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/2)
 - [Nested viewmodels](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/5)
@@ -482,7 +474,7 @@ return BackButtonNavigator.HandleBackButtonPressed();
 - [Navigation Guards](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/28)
 - [...and more](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues)
 
-[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions. Or, **support the project** and help influence its direction by [sponsoring me](https://github.com/sponsors/BurkusCat).
+[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions.
 
 # Built with Burkus.Mvvm.Maui 🚀
 Examples of projects and companies that use Burkus.Mvvm.Maui:
