@@ -7,7 +7,7 @@ public partial class PageVisibilityEventViewModel : BaseViewModel, IPageVisibili
     #region Properties
 
     [ObservableProperty]
-    public partial bool ShowLabel;
+    public partial bool ShowLabel { get; set; }
 
     #endregion Properties
 

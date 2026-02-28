@@ -135,9 +135,7 @@ public class HomeViewModelTests
         viewModel.GoToFlyoutPageDemoCommand.Execute(null);
 
         // Assert
-        mockNavigationService.Received().Navigate(
-            "DemoFlyoutPage",
-            Arg.Is<NavigationParameters>(x => x.GetValue<bool>("UseModalNavigation") == true));
+        mockNavigationService.Received().Navigate("DemoFlyoutPage");
     }
 
     [Fact]
@@ -154,7 +152,7 @@ public class HomeViewModelTests
     }
 
     [Fact]
-    public void GoToMapPropertiesDemoWithRequiredParameterCommand_WhenCalled_NavigatesToDemoFlyoutPage()
+    public void GoToMapPropertiesDemoWithRequiredParameterCommand_WhenCalled_NavigatesToMapPropertiesPage()
     {
         // Arrange
         var viewModel = ViewModel;
@@ -165,7 +163,8 @@ public class HomeViewModelTests
         // Assert
         mockNavigationService.Received().Push<MapPropertiesPage>(
             Arg.Is<NavigationParameters>(x => x.GetValue<bool>("showLabel") == true
-                && x.GetValue<string>("labelText") == "This text has been mapped for you"));
+                && x.GetValue<string>("labelText") == "This text has been mapped for you"
+                && x.GetValue<int>("FontSize") == 48));
     }
 
     [Fact]
@@ -179,7 +178,8 @@ public class HomeViewModelTests
 
         // Assert
         mockNavigationService.Received().Push<MapPropertiesPage>(
-            Arg.Is<NavigationParameters>(x => x.GetValue<bool>("showLabel") == true));
+            Arg.Is<NavigationParameters>(x => x.GetValue<bool>("showLabel") == true
+                && x.GetValue<int>("FontSize") == 48));
     }
 
     [Fact]

@@ -138,11 +138,7 @@ public partial class HomeViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoToFlyoutPageDemo()
     {
-        // hack: flyout page must be the root page so I've made it a modal
-        var navigationParameters = new NavigationParameters();
-        navigationParameters.UseModalNavigation = true;
-
-        await navigationService.Navigate($"{nameof(DemoFlyoutPage)}", navigationParameters);
+        await navigationService.Navigate($"{nameof(DemoFlyoutPage)}");
     }
 
     /// <summary>
@@ -155,7 +151,7 @@ public partial class HomeViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Navigate to the map properties demo and pass two parameters.
+    /// Navigate to the map properties demo and pass three parameters.
     /// </summary>
     [RelayCommand]
     private async Task GoToMapPropertiesDemoWithRequiredParameter()
@@ -164,6 +160,7 @@ public partial class HomeViewModel : BaseViewModel
         {
             { NavigationParameterKeys.ShowLabel, true },
             { NavigationParameterKeys.LabelText, "This text has been mapped for you" },
+            { nameof(MapPropertiesViewModel.FontSize), 48 },
         };
 
         await navigationService.Push<MapPropertiesPage>(navigationParameters);
@@ -178,6 +175,7 @@ public partial class HomeViewModel : BaseViewModel
         var navigationParameters = new NavigationParameters
         {
             { NavigationParameterKeys.ShowLabel, true },
+            { nameof(MapPropertiesViewModel.FontSize), 48 },
         };
 
         await navigationService.Push<MapPropertiesPage>(navigationParameters);

@@ -18,6 +18,7 @@
                 IsVisible="{Binding ShowLabel}"
                 Style="{StaticResource HeadingLabel}"
                 Text="{Binding LabelText}"
+                FontSize="{Binding FontSize}"
                 VerticalOptions="CenterAndExpand" />
         </VerticalStackLayout>
     </ScrollView>

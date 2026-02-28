@@ -5,6 +5,7 @@ namespace DemoApp.ViewModels;
 
 [MapNavigationParameter(nameof(ShowLabel), NavigationParameterKeys.ShowLabel)]
 [MapNavigationParameter(nameof(LabelText), NavigationParameterKeys.LabelText, required: true)]
+[MapNavigationParameter(nameof(FontSize))]
 public partial class MapPropertiesViewModel : BaseViewModel
 {
     #region Properties
@@ -14,6 +15,9 @@ public partial class MapPropertiesViewModel : BaseViewModel
 
     [ObservableProperty]
     public partial string LabelText { get; set; }
+
+    [ObservableProperty]
+    public partial int FontSize { get; set; } = 14;
 
     #endregion Properties
 

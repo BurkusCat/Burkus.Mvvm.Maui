@@ -9,7 +9,7 @@ public partial class ContactsViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    public partial List<string> ContactNames = new List<string>()
+    public partial List<string> ContactNames { get; set; } = new List<string>()
         {
             "Ronan",
             "Claire",

@@ -25,4 +25,15 @@ public class MapNavigationParameterAttribute : Attribute
         NavigationParameterKey = navigationParameterKey;
         Required = required;
     }
+
+    /// <param name="propertyName">The property name on the viewmodel to map to and the navigation parameter to map from</param>
+    /// <param name="required">Throws an exception if required is set to false</param>
+    public MapNavigationParameterAttribute(
+        string propertyName,
+        bool required = false)
+    {
+        PropertyName = propertyName;
+        NavigationParameterKey = propertyName;
+        Required = required;
+    }
 }
