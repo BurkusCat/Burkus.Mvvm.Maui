@@ -313,7 +313,7 @@ public static class MauiProgram
 If your viewmodel inherits from this interface, the below events will trigger for it.
 - `OnNavigatedTo(parameters)`
   - You can use this lifecycle event to retrieve parameters passed to this page
-  - Is similar to MAUI's `Page`' [OnNavigatedTo](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onnavigatedto) event.
+  - Is similar to MAUI's `Page`'s [OnNavigatedTo](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onnavigatedto) event.
   ``` csharp
   public async Task OnNavigatedTo(NavigationParameters parameters)
   {
@@ -349,7 +349,7 @@ If your viewmodel inherits from this interface, the below events will trigger fo
 If your viewmodel inherits from this interface, the below events will trigger for it.
 - `OnAppearing()`
   - Allows you to customize behavior immediately prior to the page becoming visible
-  - Is triggered by MAUI's `Page`' [OnAppearing](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onappearing) event.
+  - Is triggered by MAUI's `Page`'s [OnAppearing](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onappearing) event.
   ``` csharp
   public void OnAppearing()
   {
@@ -386,7 +386,7 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 
-### MapNavigationParameterAttribute
+### `MapNavigationParameterAttribute`
 
 The `MapNavigationParameterAttribute` allows you to map navigation parameters to properties in a simpler way. Add the attribute to the top of a viewmodel class with the parameter you want to populate and the navigation parameter key you want to map from.
 
@@ -470,6 +470,7 @@ See the [IDialogService interface in the repository](https://github.com/BurkusCa
 Below are some things of note that may help prevent issues from arising:
 - The `MainPage` of the app will be automatically set to a `NavigationPage`. This means the first page you push can be a `ContentPage` rather than needing to push a `NavigationPage`. This may change in the future.
 - A source generator will automatically add code overriding `Window CreateWindow(IActivationState? activationState)` in your `App.xaml.cs` class.
+- A source generator will automatically add code overriding `void OnStart()` in your `App.xaml.cs` class. If you need logic to occur on startup, use the `.OnStart(...)` method in the `UseBurkusMvvm` configuration in your `MauiProgram.cs` file instead.
 - Adding this package to a project will automatically import the `Burkus.Mvvm.Maui` namespace globally if you have [`ImplicitUsings`](https://devblogs.microsoft.com/dotnet/welcome-to-csharp-10/#implicit-usings) enabled in your project. You can opt out of this by including the following in your `.csproj` file:
 ``` xml
 <Using Remove="Burkus.Mvvm.Maui" />
