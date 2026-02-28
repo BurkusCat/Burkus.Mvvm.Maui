@@ -43,28 +43,48 @@ internal static class LifecycleEventUtility
 
     private static void MapAttributeNavigationParameters(object? bindingContext, NavigationParameters navigationParameters)
     {
-        // map properties specified in attributes
-        var type = bindingContext?.GetType();
-        var attributes = type?.GetCustomAttributes(typeof(MapNavigationParameterAttribute), true);
+        if (bindingContext is null)
+        {
+            return;
+        }
 
-        if (attributes == null)
+        // map properties specified in attributes
+        var type = bindingContext.GetType();
+        var attributes = type.GetCustomAttributes(typeof(MapNavigationParameterAttribute), true)
+            as MapNavigationParameterAttribute[];
+
+        if (attributes == null || attributes.Length == 0)
         {
             return;
         }
 
         foreach (MapNavigationParameterAttribute attribute in attributes)
         {
-            // throw an exception if the attribute is required but not found
-            if (attribute.Required && !navigationParameters.ContainsKey(attribute.NavigationParameterKey))
+            if (navigationParameters.ContainsKey(attribute.NavigationParameterKey))
             {
+                // get the property on the ViewModel
+                var propertyInfo = type.GetProperty(attribute.PropertyName);
+
+                // ensure property exists
+                if (propertyInfo == null)
+                {
+                    throw new BurkusMvvmException($"The property \"{attribute.PropertyName}\" specified in the {nameof(MapNavigationParameterAttribute)} was not found on the ViewModel.");
+                }
+
+                // ensure property has a setter
+                if (!propertyInfo.CanWrite)
+                {
+                    throw new BurkusMvvmException($"The property \"{attribute.PropertyName}\" specified in the {nameof(MapNavigationParameterAttribute)} does not have a valid setter.");
+                }
+
+                var matchingParameterValue = navigationParameters.GetUntypedValue(attribute.NavigationParameterKey);
+                propertyInfo.SetValue(bindingContext, matchingParameterValue);
+            }
+            else if (attribute.Required)
+            {
+                // throw an exception if the attribute is required but not found
                 throw new BurkusMvvmException($"The navigation parameter \"{attribute.PropertyName}\" is required but the key was not found.");
             }
-
-            // get the property on the ViewModel
-            var propertyInfo = type?.GetProperty(attribute.PropertyName);
-
-            var matchingParameterValue = navigationParameters.GetUntypedValue(attribute.NavigationParameterKey);
-            propertyInfo?.SetValue(bindingContext, matchingParameterValue);
         }
     }
 
