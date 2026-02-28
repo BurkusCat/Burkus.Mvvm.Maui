@@ -1,7 +1,12 @@
-﻿namespace Burkus.Mvvm.Maui;
+﻿using Microsoft.Extensions.Logging;
 
-internal class NavigationService : INavigationService
+namespace Burkus.Mvvm.Maui;
+
+internal class NavigationService(ILogger<NavigationService> logger)
+    : INavigationService
 {
+    internal ILogger<NavigationService>? Logger { get; } = logger;
+
     #region Core navigation methods
 
     public async Task Push<T>() where T : Page
@@ -301,7 +306,7 @@ internal class NavigationService : INavigationService
 
         if (tabbedPage == null)
         {
-            // todo: warn about this in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            Logger?.LogWarning($"No visible {nameof(TabbedPage)} was found. {nameof(SelectTab)} must be called when a {nameof(TabbedPage)} is the top page.");
             return;
         }
 
@@ -344,7 +349,7 @@ internal class NavigationService : INavigationService
 
         if (flyoutPage == null)
         {
-            // todo: warn about this in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            Logger?.LogWarning($"No visible {nameof(FlyoutPage)} was found. {nameof(SwitchFlyoutDetail)} must be called when a {nameof(FlyoutPage)} is the top page.");
             return;
         }
 
@@ -386,7 +391,7 @@ internal class NavigationService : INavigationService
         }
         else
         {
-            // todo: warn about this being null in https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/17 ?
+            Logger?.LogWarning($"The type {pageType} could not be resolved to a {nameof(Page)}. It must be registered in the service container and inherit from {nameof(Page)}.");
         }
 
         return pageToNavigateTo;
