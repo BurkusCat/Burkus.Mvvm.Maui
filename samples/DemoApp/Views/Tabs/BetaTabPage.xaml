@@ -17,7 +17,7 @@
                 Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.BetaTab_Title}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalTextAlignment="Center" />
             <Button
                 Grid.Row="1"
                 Command="{Binding SwitchToAlphaTabPageCommand}"

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34003.232
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "samples\DemoApp\DemoApp.csproj", "{E8625BA3-0495-44AB-AFE7-397CCAFD4520}"
 EndProject
@@ -12,6 +12,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burkus.Mvvm.Maui", "src\Burkus.Mvvm.Maui\Burkus.Mvvm.Maui.csproj", "{84B2F0BB-074F-4040-96F0-60307BEA371D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burkus.Mvvm.Maui.SourceGenerators", "src\Burkus.Mvvm.Maui.SourceGenerators\Burkus.Mvvm.Maui.SourceGenerators.csproj", "{62AC2552-B7B4-4330-90F7-6F3CCADF63CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Non-Solution Items", "Non-Solution Items", "{CB6267DB-4075-4D7E-B48C-99DA4E78C2B8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.MD = CONTRIBUTING.MD
+		LICENSE = LICENSE
+		README.md = README.md
+		SECURITY.MD = SECURITY.MD
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -72,8 +72,8 @@ public class UriUtilityTests
     public void ParseUriSegment_WhenValidSegment_ReturnsPageTypeAndQueryParameters(
         string segment,
         Type expectedPageType,
-        string expectedKey,
-        object expectedValue)
+        string? expectedKey,
+        object? expectedValue)
     {
         // Arrange
         // Act
@@ -99,7 +99,7 @@ public class UriUtilityTests
     [InlineData(" ")]
     [InlineData("invalid")]
     public void ParseUriSegment_WhenSegmentIsInvalid_ShouldThrowBurkusMvvmException(
-        string segment)
+        string? segment)
     {
         // Arrange
         // Act
@@ -113,7 +113,7 @@ public class UriUtilityTests
     [InlineData("MockYankeePage", typeof(MockYankeePage))]
     [InlineData("MockZuluPage", typeof(MockZuluPage))]
     public void FindPageType_PageNameExists_ReturnsExpectedPageType(
-        string pageName,
+        string? pageName,
         Type expectedType)
     {
         // Arrange
@@ -130,7 +130,7 @@ public class UriUtilityTests
     [InlineData(" ")]
     [InlineData("invalid")]
     public void FindPageType_PageNameDoesNotExist_ShouldThrowBurkusMvvmException(
-        string pageName)
+        string? pageName)
     {
         // Arrange
         // Act

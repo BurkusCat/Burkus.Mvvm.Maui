@@ -29,7 +29,7 @@ internal static class UriUtility
         return uri.StartsWith("/", StringComparison.OrdinalIgnoreCase);
     }
 
-    internal static (Type PageType, NavigationParameters QueryParameters) ParseUriSegment(string segment)
+    internal static (Type PageType, NavigationParameters QueryParameters) ParseUriSegment(string? segment)
     {
         if (string.IsNullOrWhiteSpace(segment))
         {
@@ -95,8 +95,13 @@ internal static class UriUtility
         return valueString;
     }
 
-    internal static Type FindPageType(string pageName)
+    internal static Type FindPageType(string? pageName)
     {
+        if (string.IsNullOrWhiteSpace(pageName))
+        {
+            throw new BurkusMvvmException($"Page name was null or empty");
+        }
+
         if (pageName == Constants.GoBackUriSegment)
         {
             // handle special case of going back one page

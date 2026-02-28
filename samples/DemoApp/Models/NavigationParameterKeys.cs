@@ -2,5 +2,9 @@
 
 public static class NavigationParameterKeys
 {
-    public static readonly string Username = "username";
+    public const string LabelText = "labelText";
+
+    public const string ShowLabel = "showLabel";
+
+    public const string Username = "username";
 }

@@ -8,53 +8,53 @@ using System.Text;
 namespace Burkus.Mvvm.Maui;
 
 [Generator]
-public class PageSourceGenerator : ISourceGenerator
+public class PageSourceGenerator : IIncrementalGenerator
 {
-    public void Initialize(GeneratorInitializationContext context)
-    {
-        // No initialization required
-    }
-
-    public void Execute(GeneratorExecutionContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         // Get the compilation object that represents the user code
-        var compilation = context.Compilation;
+        var classDeclarations = context.SyntaxProvider
+            .CreateSyntaxProvider(
+                predicate: static (node, _) => node is ClassDeclarationSyntax,
+                transform: static (ctx, _) => (ClassDeclarationSyntax)ctx.Node)
+            .Where(static c => c != null);
 
-        // Get the symbols for the base types
-        var contentPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.ContentPage");
-        var flyoutPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.FlyoutPage");
-        var navigationPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.NavigationPage");
-        var tabbedPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.TabbedPage");
-
-        var skipBackButtonGenerationSymbol = compilation.GetTypeByMetadataName("Burkus.Mvvm.Maui.DisableBackButtonNavigatorAttribute");
-
-        // for each syntax tree, find the class declarations that derive from the base types
-        foreach (var syntaxTree in compilation.SyntaxTrees)
-        {
-            var root = syntaxTree.GetRoot();
-            var semanticModel = compilation.GetSemanticModel(syntaxTree);
-            var classDeclarations = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
-
-            // for each class declaration, check if it derives from any of the base types
-            foreach (var classDeclaration in classDeclarations)
+        context.RegisterSourceOutput(
+            classDeclarations.Combine(context.CompilationProvider),
+            (spc, tuple) =>
             {
-                // get the symbol for the class declaration
+                var classDeclaration = tuple.Left;
+                var compilation = tuple.Right;
+
+                var semanticModel = compilation.GetSemanticModel(classDeclaration.SyntaxTree);
                 var classSymbol = semanticModel.GetDeclaredSymbol(classDeclaration);
 
+                if (classSymbol == null)
+                {
+                    return;
+                }
+
+                // Get the symbols for the base types
+                var contentPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.ContentPage");
+                var flyoutPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.FlyoutPage");
+                var navigationPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.NavigationPage");
+                var tabbedPageSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.TabbedPage");
+                var skipBackButtonGenerationSymbol = compilation.GetTypeByMetadataName("Burkus.Mvvm.Maui.DisableBackButtonNavigatorAttribute");
+
                 var attributes = classSymbol.GetAttributes();
-                var hasAttribute = attributes.Any(a => a.AttributeClass.Equals(skipBackButtonGenerationSymbol, SymbolEqualityComparer.Default));
+                var hasAttribute = attributes.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, skipBackButtonGenerationSymbol));
 
                 if (hasAttribute)
                 {
                     // don't generate back button handling for this class
-                    continue;
+                    return;
                 }
 
                 // check if the class symbol inherits from any of the base type symbols
-                if (classSymbol.BaseType.Equals(contentPageSymbol, SymbolEqualityComparer.Default) ||
-                    classSymbol.BaseType.Equals(flyoutPageSymbol, SymbolEqualityComparer.Default) ||
-                    classSymbol.BaseType.Equals(navigationPageSymbol, SymbolEqualityComparer.Default) ||
-                    classSymbol.BaseType.Equals(tabbedPageSymbol, SymbolEqualityComparer.Default))
+                if (SymbolEqualityComparer.Default.Equals(classSymbol.BaseType, contentPageSymbol) ||
+                    SymbolEqualityComparer.Default.Equals(classSymbol.BaseType, flyoutPageSymbol) ||
+                    SymbolEqualityComparer.Default.Equals(classSymbol.BaseType, navigationPageSymbol) ||
+                    SymbolEqualityComparer.Default.Equals(classSymbol.BaseType, tabbedPageSymbol))
                 {
                     // get the name and namespace of the class symbol
                     var typeName = classSymbol.Name;
@@ -79,9 +79,8 @@ partial class {typeName}
 }}";
 
                     // Add the source file to the generator output
-                    context.AddSource($"{typeName}-HandleBackButton.g.cs", SourceText.From(sourceBuilder, Encoding.UTF8));
+                    spc.AddSource($"{typeName}-HandleBackButton.g.cs", SourceText.From(sourceBuilder, Encoding.UTF8));
                 }
-            }
-        }
+            });
     }
 }

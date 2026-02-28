@@ -4,7 +4,6 @@ using DemoApp.Services;
 using DemoApp.ViewModels;
 using DemoApp.Views;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.LifecycleEvents;
 
 namespace DemoApp;
 
@@ -64,6 +63,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<ChangeUsernameViewModel>();
         mauiAppBuilder.Services.AddTransient<HomeViewModel>();
         mauiAppBuilder.Services.AddTransient<LoginViewModel>();
+        mauiAppBuilder.Services.AddTransient<MapPropertiesViewModel>();
+        mauiAppBuilder.Services.AddTransient<PageVisibilityEventViewModel>();
         mauiAppBuilder.Services.AddTransient<RegisterViewModel>();
         mauiAppBuilder.Services.AddTransient<UriTestViewModel>();
 
@@ -86,6 +87,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<ChangeUsernamePage>();
         mauiAppBuilder.Services.AddTransient<HomePage>();
         mauiAppBuilder.Services.AddTransient<LoginPage>();
+        mauiAppBuilder.Services.AddTransient<MapPropertiesPage>();
+        mauiAppBuilder.Services.AddTransient<PageVisibilityEventPage>();
         mauiAppBuilder.Services.AddTransient<RegisterPage>();
         mauiAppBuilder.Services.AddTransient<UriTestPage>();
 

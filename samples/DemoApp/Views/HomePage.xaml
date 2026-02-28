@@ -16,10 +16,10 @@
             <Label
                 Style="{StaticResource HeadingLabel}"
                 Text="{Binding Username, StringFormat={x:Static properties:Resources.Home_WelcomeMessage}}"
-                VerticalOptions="EndAndExpand" />
+                VerticalTextAlignment="End" />
             <Label
                 FontAttributes="Bold"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Text="{Binding CurrentWeatherDescription}" />
             <Label
                 Margin="0,20,0,0"
@@ -65,6 +65,26 @@
                 Command="{Binding GoToFlyoutPageDemoCommand}"
                 Style="{StaticResource PrimaryButton}"
                 Text="{x:Static properties:Resources.Home_Button_FlyoutPageDemo}" />
+            <Label
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_Events}" />
+            <Button
+                Command="{Binding GoToPageVisibilityEventsDemoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_PageVisibilityEventsDemo}" />
+            <Label
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="{x:Static properties:Resources.Home_SubHeading_ParameterPassing}" />
+            <Button
+                Command="{Binding GoToMapPropertiesDemoWithRequiredParameterCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemoWithProperties}" />
+            <Button
+                Command="{Binding GoToMapPropertiesDemoWithoutRequiredParameterCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemoWithoutProperties}" />
             <Button
                 Margin="0,40,0,0"
                 Command="{Binding ExitCommand}"

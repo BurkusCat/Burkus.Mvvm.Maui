@@ -76,6 +76,22 @@ public class NavigationParameters : Dictionary<string, object>
 
         var value = this[parameterName];
 
+        return ConvertUntypedParameterToTypedParameter<T>(value);
+    }
+
+    internal object? GetUntypedValue(string parameterName)
+    {
+        if (!ContainsKey(parameterName))
+        {
+            // return default for keys that don't exist
+            return default;
+        }
+
+        return this[parameterName];
+    }
+
+    internal static T? ConvertUntypedParameterToTypedParameter<T>(object value)
+    {
         try
         {
             if (value == null)

@@ -9,7 +9,7 @@
 If an issue doesn't already exist, it is probably a good idea to raise an issue on the GitHub for the bug/feature suggestion (see above). If you were to spend time making changes without doing this, then your pull request may not be accepted if the change is not wanted or it is implemented in a way that the project does not want. Especially for more significant changes, it is always better to discuss a proposed implementation on an issue first.
 
 ## Pre-requisites
-- [Visual Studio 2022 - 17.7.0 or greater](https://visualstudio.microsoft.com/vs/community/) 
+- [Visual Studio 2026 - 18.0.0 or greater](https://visualstudio.microsoft.com/vs/community/) 
   - Required: the .NET Multi-platform App UI workload installed
   - Optional: the Visual Studio extension development workload installed (for debugging source generators)
   - [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022) for ensuring XAML is formatted consistently. It is a good idea to set it to run automatically on save.

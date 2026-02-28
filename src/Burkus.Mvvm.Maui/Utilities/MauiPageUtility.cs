@@ -2,11 +2,14 @@
 
 internal static class MauiPageUtility
 {
-    internal static Page GetTopPage()
-    {
-        var navigationStack = Application.Current.MainPage?.Navigation.NavigationStack;
+    internal static Window? GetFirstWindow() => Application.Current?.Windows?.FirstOrDefault();
 
-        var modalStack = Application.Current.MainPage?.Navigation.ModalStack;
+    internal static Page? GetTopPage()
+    {
+        var window = GetFirstWindow();
+        var navigationStack = window?.Page?.Navigation.NavigationStack;
+
+        var modalStack = window?.Navigation.ModalStack;
 
         if (modalStack != null && modalStack.Any())
         {
@@ -23,8 +26,31 @@ internal static class MauiPageUtility
         return null;
     }
 
-    internal static object GetTopPageBindingContext()
+    internal static object? GetTopPageBindingContext() => GetTopPage()?.BindingContext;
+
+    /// <summary>
+    /// This method searches for and tries to find a TabbedPage that is visible to the user.
+    /// </summary>
+    /// <param name="page">Page to search for a TabbedPage in</param>
+    /// <returns>A tabbeed page if found</returns>
+    internal static TabbedPage? FindVisibleTabbedPage(Page? page)
     {
-        return GetTopPage()?.BindingContext;
+        return page switch
+        {
+            TabbedPage tabbedPage => tabbedPage,
+            FlyoutPage { Detail: TabbedPage flyoutTabbedPage } => flyoutTabbedPage,
+            FlyoutPage { Detail: var detail } => GetTabbedPageFromNavigationPage(detail),
+            _ => GetTabbedPageFromNavigationPage(page)
+        };
+    }
+
+    internal static TabbedPage? GetTabbedPageFromNavigationPage(Page? page)
+    {
+        if (page is NavigationPage { CurrentPage: TabbedPage tabbedPage })
+        {
+            return tabbedPage;
+        }
+
+        return null;
     }
 }

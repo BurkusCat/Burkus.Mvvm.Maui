@@ -23,36 +23,16 @@
 **⚠️ Warning**: `Burkus.Mvvm.Maui` is currently an experimental library. Expect frequent breaking API changes. This library will be versioned as ["0.y.z"](https://semver.org/#spec-item-4) until we establish a stable, well-liked API. Only then will we release versions "1.y.z" and beyond.
 
 # Supporting the Project 💖
-<a href="https://github.com/sponsors/BurkusCat"><img align="right" src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/mona.png" alt="Mona the GitHub Sponsor Octocat smiling and holding a heart"></a>
+Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I hope it is a helpful project for you!
 
-Hi there 👋 I'm Ronan Burke aka Burkus. I maintain this project during my spare time and I would love to be able to dedicate more time each month to supporting it!  If you've found value in Burkus.Mvvm.Maui, I would greatly appreciate if you would be able to **[sponsor me on GitHub Sponsors](https://github.com/sponsors/BurkusCat)**. There are different rewards for each of the monthly or one-time sponsorship tiers such as:  
-
-- a sponsorship badge 🪙
-- prioritized bug reports 🐛
-- opportunities for pair-programming sessions, consulting, or mentorship 🧑‍🏫
-- shout-outs right here in this `README` 📢
-- ... and more
-
-<br clear="right"/>
+I won't always have time to work on this project, but it would be greatly appreciated if you are able to file issues, raise PRs, and review others' PRs.
 
 ⭐ If you like the project, please consider giving it a __GitHub Star__ ⭐
 
 # Documentation 📗
-See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
-
-🚀 [Run the Demo App](/samples/DemoApp/) to see interactive examples of features in this library. With the code examples you can learn about:
-- different types of navigation
-- the standard way to configure this library
-- utilizing lifecycle events
-- passing parameters
-- displaying native dialogs
-
-🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
-
-| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
-| -------- | ------- | ------- |
 
 ## Getting started
+
 1. Install `Burkus.Mvvm.Maui` into your main MAUI project from NuGet: <https://www.nuget.org/packages/Burkus.Mvvm.Maui> [![NuGet](https://img.shields.io/nuget/v/Burkus.Mvvm.Maui.svg?label=NuGet)](https://www.nuget.org/packages/Burkus.Mvvm.Maui/)
 2. In your shared project's `App.xaml.cs`, remove any line where `MainPage` is set to a `Page` or an `AppShell`. You should be left with a simpler `App` class like this:
 ``` csharp
@@ -83,6 +63,28 @@ public static class MauiProgram
             ...
 ```
 4. **💡 RECOMMENDED**: This library pairs great with the amazing `CommunityToolkit.Mvvm`. Follow its [Getting started](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/#getting-started) guide to add it.
+
+## Demo app
+See the `DemoApp` in the `/samples` folder of this repository for a full example of this library in action.
+
+🚀 [Run the Demo App](/samples/DemoApp/) to see interactive examples of features in this library. With the code examples you can learn about:
+- different types of navigation
+- the standard way to configure this library
+- utilizing lifecycle events
+- passing parameters
+- displaying native dialogs
+
+🧪 [Check out the Test Project](/tests/DemoApp.UnitTests/) for demonstrations how you can write tests for code that calls this library. This will help ensure you write rock-solid apps!
+
+| <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/winui-login.png" width="612" alt="The Login page of the demo app running on WinUI"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/ios-home.png" width="200" alt="The Home page of the demo app running on iOS"> | <img src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/android-tabs.png" width="200" alt="The Tabs page of the demo app running on Android"> |
+| -------- | ------- | ------- |
+
+## Sample/reference application
+"Next Page" is a Personal Book Application developed using `Burkus.Mvvm.Maui`. It may give you some ideas and inspiration on how best to build a production application using `Burkus.Mvvm.Maui`.
+
+📗 [Clone the Next Page sample application](https://github.com/BurkusCat/NextPage)
+
+**⚠️ Warning**: Next Page is built with an older version of `Burkus.Mvvm.Maui` and .NET 8. However, it may still serve as a useful reference.
 
 ## Registering views, viewmodels, and services
 A recommended way to register your views, viewmodels, and services is by creating extension methods in your `MauiProgram.cs` file.
@@ -305,7 +307,9 @@ public static class MauiProgram
 ```
 
 ## Lifecycle events and passing parameters
+
 ### INavigatedEvents
+
 If your viewmodel inherits from this interface, the below events will trigger for it.
 - `OnNavigatedTo(parameters)`
   - You can use this lifecycle event to retrieve parameters passed to this page
@@ -328,6 +332,7 @@ If your viewmodel inherits from this interface, the below events will trigger fo
   ```
 
 ### INavigatingEvents
+
 If your viewmodel inherits from this interface, the below events will trigger for it.
 - `OnNavigatingFrom(parameters)`
   - Allows the page you are leaving to add additional parameters to the page you are navigating to
@@ -338,7 +343,32 @@ If your viewmodel inherits from this interface, the below events will trigger fo
       parameters.Add("username", username);   
   }
   ```
+
+### IPageVisibilityEvents
+
+If your viewmodel inherits from this interface, the below events will trigger for it.
+- `OnAppearing()`
+  - Allows you to customize behavior immediately prior to the page becoming visible
+  - Is triggered by MAUI's `Page`' [OnAppearing](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onappearing) event.
+  ``` csharp
+  public void OnAppearing()
+  {
+    ...
+  }
+  ```
+
+- `OnDisappearing()`
+  - Allows you to customize behavior as the page disappears
+  - Is triggered by MAUI's `Page`'s [OnDisappearing](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.page.onappearing) event.
+  ``` csharp
+  public void OnDisappearing()
+  {
+    ...
+  }
+  ```
+
 ### Reserved navigation parameters
+
 Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.Maui` library to adjust how navigation is performed.
 
 - `ReservedNavigationParameters.UseAnimatedNavigation`
@@ -356,7 +386,62 @@ Several parameter keys have been pre-defined and are using by the `Burkus.Mvvm.M
 
 The `NavigationParameters` object exposes some handy properties `.UseAnimatedNavigation` and `.UseModalNavigation` so you can easily set or check the value of these properties.
 
+### MapNavigationParameterAttribute
+
+The `MapNavigationParameterAttribute` allows you to map navigation parameters to properties in a simpler way. Add the attribute to the top of a viewmodel class with the parameter you want to populate and the navigation parameter key you want to map from.
+
+``` csharp
+[MapNavigationParameter(nameof(ShowLabel), "show_label")]
+public partial class MapPropertiesViewModel : BaseViewModel
+{
+    [ObservableProperty]
+    public partial bool ShowLabel { get; set; }
+
+    // no "OnNavigatedTo" lifecycle code needed to map the property
+}
+```
+
+In the above example, if you navigate to this viewmodel and pass a boolean navigation parameter with the name `show_label`, the `ShowLabel` property on the viewmodel will automatically be set.
+
+#### Required navigation parameters
+
+If a viewmodel requires a navigation parameter to be passed in order to function, you can set the "required" property to true on the `MapNavigationParameterAttribute`. This will cause an exception to be thrown if the navigation to the viewmodel does not pass all required navigation parameters.
+
+``` csharp
+// both of these lines are equivalent
+[MapNavigationParameter(nameof(ShowLabel), "show_label"), true]
+[MapNavigationParameter(nameof(ShowLabel), "show_label"), required: true]
+```
+
+Properties mapped using this attribute will get set immediately before `OnNavigatedTo` gets called.
+
+It is important to note, that when you are unit testing viewmodels, you won't be able to test if the properties are set by passing parameters to `OnNavigatedTo`. This is because the mapping logic occurs in the `NavigationService`. Instead, your unit tests should instead focus on what happens when the properties are set to different values.
+
+#### Shorter syntax when the navigation parameter key is the same as the property name
+
+``` csharp
+[MapNavigationParameter(nameof(FontSize))]
+public partial class MapPropertiesViewModel : BaseViewModel
+{
+    [ObservableProperty]
+    public partial int FontSize { get; set; } = 14;
+
+    ...
+```
+
+From other viewmodels, you can refer to the property's name to map it.
+
+``` csharp
+[RelayCommand]
+private async Task GoToMapPropertiesPage()
+{
+    var parameters = new NavigationParameters { nameof(MapPropertiesViewModel.FontSize), 48 };
+    navigationService.Push<MapPropertiesPage>(navigationParameters);
+}
+```
+
 ## Dialog service
+
 `IDialogService` is automatically registered by `.UseBurkusMvvm(...)`. It is a testable service that is an abstraction over [the MAUI alerts/pop-ups/prompts/action sheets](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pop-ups).
 
 Register the service in your viewmodel constructor:
@@ -406,16 +491,22 @@ The source generator calls the following code, which may be useful if you need t
 return BackButtonNavigator.HandleBackButtonPressed();
 ```
 
-# Roadmap 🛣️
+# Features we need your help with 🫵
 - [View and viewmodel auto-registration](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/4)
 - [Popup pages](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/2)
 - [Nested viewmodels](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/5)
 - [OnNavigatingTo()](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/6)
-- [IPageVisibilityEvents](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/7)
 - [Navigation Guards](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/28)
 - [...and more](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues)
 
-[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions. Or, **support the project** and help influence its direction by [sponsoring me](https://github.com/sponsors/BurkusCat).
+[Create an issue](https://github.com/BurkusCat/Burkus.Mvvm.Maui/issues/new/choose) to add your own suggestions.
+
+# Built with Burkus.Mvvm.Maui 🚀
+Examples of projects and companies that use Burkus.Mvvm.Maui:
+
+| <a href="https://burkus.co.uk/projects/catlists"><img align="right" src="https://raw.githubusercontent.com/BurkusCat/Burkus.Mvvm.Maui/main/art/catlistslogo.png" alt="The Catlists game logo. It is a yellow D20 dice with cat ears"></a> |          |          |
+| -------- | -------- | -------- |
+| [Catlists](https://burkus.co.uk/projects/catlists) is created by [Burkus](https://burkus.co.uk/) and is available for [iOS](https://apps.apple.com/us/app/catlists/id6471727698), [Android](https://play.google.com/store/apps/details?id=uk.co.burkus.catlists), [Microsoft Store](https://www.microsoft.com/en-gb/store/r/catlists/9n4hjrrl377b), and [Steam](https://store.steampowered.com/app/2772590/Catlists/). |||
 
 # Contributing 💁‍♀️
 Contributions are very welcome! Please see the [contributing guide](CONTRIBUTING.MD) to get started.

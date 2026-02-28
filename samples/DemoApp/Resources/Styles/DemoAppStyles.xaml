@@ -17,7 +17,7 @@
         ApplyToDerivedTypes="True"
         TargetType="Label">
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
     <Style

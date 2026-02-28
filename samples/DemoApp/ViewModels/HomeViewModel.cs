@@ -19,10 +19,10 @@ public partial class HomeViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private string username;
+    public partial string Username { get; set; }
 
     [ObservableProperty]
-    private string currentWeatherDescription;
+    public partial string CurrentWeatherDescription { get; set; }
 
     #endregion Properties
 
@@ -138,11 +138,47 @@ public partial class HomeViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoToFlyoutPageDemo()
     {
-        // hack: flyout page must be the root page so I've made it a modal
-        var navigationParameters = new NavigationParameters();
-        navigationParameters.UseModalNavigation = true;
+        await navigationService.Navigate($"{nameof(DemoFlyoutPage)}");
+    }
 
-        await navigationService.Navigate($"{nameof(DemoFlyoutPage)}", navigationParameters);
+    /// <summary>
+    /// Navigate to the demo page visibility events page.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToPageVisibilityEventsDemo()
+    {
+        await navigationService.Push<PageVisibilityEventPage>();
+    }
+
+    /// <summary>
+    /// Navigate to the map properties demo and pass three parameters.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToMapPropertiesDemoWithRequiredParameter()
+    {
+        var navigationParameters = new NavigationParameters
+        {
+            { NavigationParameterKeys.ShowLabel, true },
+            { NavigationParameterKeys.LabelText, "This text has been mapped for you" },
+            { nameof(MapPropertiesViewModel.FontSize), 48 },
+        };
+
+        await navigationService.Push<MapPropertiesPage>(navigationParameters);
+    }
+
+    /// <summary>
+    /// Navigate to the map properties demo without all required parameters.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToMapPropertiesDemoWithoutRequiredParameter()
+    {
+        var navigationParameters = new NavigationParameters
+        {
+            { NavigationParameterKeys.ShowLabel, true },
+            { nameof(MapPropertiesViewModel.FontSize), 48 },
+        };
+
+        await navigationService.Push<MapPropertiesPage>(navigationParameters);
     }
 
     /// <summary>

@@ -7,7 +7,7 @@ public static class BurkusMvvmBuilderExtensions
     /// </summary>
     /// <param name="builder">BurkusMvvmBuilder</param>
     /// <param name="onStartFunc">Function to perform when starting with access to <see cref="INavigationService"/> and <see cref="IServiceProvider"/></param>
-    /// <returns></returns>
+    /// <returns>The builder</returns>
     public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<INavigationService, IServiceProvider, Task> onStartFunc)
     {
         var internalBuilder = builder as InternalBurkusMvvmBuilder;
@@ -25,7 +25,7 @@ public static class BurkusMvvmBuilderExtensions
     /// </summary>
     /// <param name="builder">BurkusMvvmBuilder</param>
     /// <param name="onStartFunc">Function to perform when starting with access to <see cref="INavigationService"/>.</param>
-    /// <returns></returns>
+    /// <returns>The builder</returns>
     public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<INavigationService, Task> onStartFunc)
     {
         return OnStart(builder, (nav, sp) => onStartFunc(nav));
@@ -36,7 +36,7 @@ public static class BurkusMvvmBuilderExtensions
     /// </summary>
     /// <param name="builder">BurkusMvvmBuilder</param>
     /// <param name="onStartFunc">Function to perform when starting with access to <see cref="IServiceProvider"/>.</param>
-    /// <returns></returns>
+    /// <returns>The builder</returns>
     public static BurkusMvvmBuilder OnStart(this BurkusMvvmBuilder builder, Func<IServiceProvider, Task> onStartFunc)
     {
         return OnStart(builder, (nav, sp) => onStartFunc(sp));
