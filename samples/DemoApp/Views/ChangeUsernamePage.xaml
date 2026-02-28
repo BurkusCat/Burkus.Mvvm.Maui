@@ -18,7 +18,7 @@
                 Grid.Row="0"
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.ChangeUsername_Heading}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalTextAlignment="Center" />
             <Label
                 Grid.Row="1"
                 HorizontalOptions="Center"

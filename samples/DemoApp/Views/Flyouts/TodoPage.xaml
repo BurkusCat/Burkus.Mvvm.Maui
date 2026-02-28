@@ -15,8 +15,7 @@
             Spacing="10">
             <Label
                 Style="{StaticResource HeadingLabel}"
-                Text="{x:Static properties:Resources.Todo_Title}"
-                VerticalOptions="EndAndExpand" />
+                Text="{x:Static properties:Resources.Todo_Title}" />
             <Label
                 HorizontalOptions="Center"
                 Text="{x:Static properties:Resources.Todo_TodoList}" />

@@ -18,7 +18,7 @@
                 IsVisible="{Binding ShowLabel}"
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.PageVisibilityEvent_ShowOnAppearing}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalTextAlignment="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -10,14 +10,16 @@
     x:DataType="vm:HomeViewModel"
     BindingContext="{burkus:ResolveBindingContext x:TypeArguments=vm:HomeViewModel}">
     <ScrollView>
-        <VerticalStackLayout Margin="15" Spacing="10">
+        <VerticalStackLayout
+            Margin="15"
+            Spacing="10">
             <Label
                 Style="{StaticResource HeadingLabel}"
                 Text="{Binding Username, StringFormat={x:Static properties:Resources.Home_WelcomeMessage}}"
-                VerticalOptions="EndAndExpand" />
+                VerticalTextAlignment="End" />
             <Label
                 FontAttributes="Bold"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Text="{Binding CurrentWeatherDescription}" />
             <Label
                 Margin="0,20,0,0"

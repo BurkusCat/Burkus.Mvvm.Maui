@@ -17,7 +17,7 @@
             <Label
                 Style="{StaticResource HeadingLabel}"
                 Text="{x:Static properties:Resources.UriTest_Title}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalTextAlignment="Center" />
             <Button
                 Command="{Binding GoBackMultipleTimesCommand}"
                 Style="{StaticResource PrimaryButton}"

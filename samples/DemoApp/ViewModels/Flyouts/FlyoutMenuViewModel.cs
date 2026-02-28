@@ -11,7 +11,7 @@ public partial class FlyoutMenuViewModel : BaseViewModel
     #region Properties
 
     [ObservableProperty]
-    private List<FlyoutPageItem> menuPages = new List<FlyoutPageItem>
+    public partial List<FlyoutPageItem> MenuPages { get; set; } = new List<FlyoutPageItem>
     {
         new FlyoutPageItem
         {

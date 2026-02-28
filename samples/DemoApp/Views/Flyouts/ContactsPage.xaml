@@ -12,11 +12,11 @@
     <ScrollView>
         <VerticalStackLayout
             Margin="15"
+            HorizontalOptions="Center"
             Spacing="10">
             <Label
                 Style="{StaticResource HeadingLabel}"
-                Text="{x:Static properties:Resources.Contacts_Title}"
-                VerticalOptions="EndAndExpand" />
+                Text="{x:Static properties:Resources.Contacts_Title}" />
             <Label
                 Margin="0,20,0,0"
                 FontAttributes="Italic"
@@ -28,7 +28,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
                         <Label
-                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
                             Text="{Binding .}" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -15,11 +15,11 @@
             Margin="15"
             Spacing="10">
             <Label
+                FontSize="{Binding FontSize}"
                 IsVisible="{Binding ShowLabel}"
                 Style="{StaticResource HeadingLabel}"
                 Text="{Binding LabelText}"
-                FontSize="{Binding FontSize}"
-                VerticalOptions="CenterAndExpand" />
+                VerticalTextAlignment="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
