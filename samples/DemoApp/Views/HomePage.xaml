@@ -85,6 +85,14 @@
                 Command="{Binding GoToMapPropertiesDemoWithoutRequiredParameterCommand}"
                 Style="{StaticResource PrimaryButton}"
                 Text="{x:Static properties:Resources.Home_Button_MapPropertiesDemoWithoutProperties}" />
+            <Label
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"
+                Text="Auto-set properties from navigation parameters" />
+            <Button
+                Command="{Binding GoToAutoSetPropertiesDemoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="Auto-set properties demo" />
             <Button
                 Margin="0,40,0,0"
                 Command="{Binding ExitCommand}"

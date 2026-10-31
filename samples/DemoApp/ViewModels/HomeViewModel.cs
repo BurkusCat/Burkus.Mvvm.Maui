@@ -182,6 +182,22 @@ public partial class HomeViewModel : BaseViewModel
     }
 
     /// <summary>
+    /// Navigate to the auto-set properties demo and pass snake_case parameters that are set automatically.
+    /// </summary>
+    [RelayCommand]
+    private async Task GoToAutoSetPropertiesDemo()
+    {
+        var navigationParameters = new NavigationParameters
+        {
+            { NavigationParameterKeys.GreetingText, "Hello from navigation parameters!" },
+            { NavigationParameterKeys.RepeatCount, 3 },
+            { NavigationParameterKeys.IsHighlighted, true },
+        };
+
+        await navigationService.Push<AutoSetPropertiesPage>(navigationParameters);
+    }
+
+    /// <summary>
     /// Exit the application.
     /// </summary>
     [RelayCommand]

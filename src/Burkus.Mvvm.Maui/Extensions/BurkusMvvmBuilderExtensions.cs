@@ -41,4 +41,28 @@ public static class BurkusMvvmBuilderExtensions
     {
         return OnStart(builder, (nav, sp) => onStartFunc(sp));
     }
+
+    /// <summary>
+    /// Automatically sets public writable properties on the ViewModel that have the same name as a navigation parameter key when navigating to a page.
+    /// </summary>
+    /// <param name="builder">BurkusMvvmBuilder</param>
+    /// <returns>The builder</returns>
+    public static BurkusMvvmBuilder AutoSetPropertiesOnNavigation(this BurkusMvvmBuilder builder)
+    {
+        return AutoSetPropertiesOnNavigation(builder, null);
+    }
+
+    /// <summary>
+    /// Automatically sets public writable properties on the ViewModel when navigating to a page. Each navigation parameter key is converted to a property name with the mapper.
+    /// </summary>
+    /// <param name="builder">BurkusMvvmBuilder</param>
+    /// <param name="propertyNameMapper">Converts a navigation parameter key to a property name, for example "test_param" to "TestParam". Keys are used as property names when null.</param>
+    /// <returns>The builder</returns>
+    public static BurkusMvvmBuilder AutoSetPropertiesOnNavigation(this BurkusMvvmBuilder builder, Func<string, string>? propertyNameMapper)
+    {
+        AutoSetPropertiesOptions.Enabled = true;
+        AutoSetPropertiesOptions.PropertyNameMapper = propertyNameMapper;
+
+        return builder;
+    }
 }

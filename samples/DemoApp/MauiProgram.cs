@@ -16,6 +16,8 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseBurkusMvvm(burkusMvvm =>
             {
+                burkusMvvm.AutoSetPropertiesOnNavigation(ToPropertyName);
+
                 burkusMvvm.OnStart(async (navigationService, serviceProvider) =>
                 {
                     var preferences = serviceProvider.GetRequiredService<IPreferences>();
@@ -47,6 +49,15 @@ public static class MauiProgram
         return builder.Build();
     }
 
+    /// <summary>
+    /// Converts snake_case navigation parameter keys to PascalCase property names, for example "greeting_text" to "GreetingText".
+    /// </summary>
+    private static string ToPropertyName(string key)
+    {
+        return string.Concat(key.Split('_')
+            .Select(part => part.Length == 0 ? part : char.ToUpperInvariant(part[0]) + part[1..]));
+    }
+
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
         // flyouts
@@ -63,6 +74,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<ChangeUsernameViewModel>();
         mauiAppBuilder.Services.AddTransient<HomeViewModel>();
         mauiAppBuilder.Services.AddTransient<LoginViewModel>();
+        mauiAppBuilder.Services.AddTransient<AutoSetPropertiesViewModel>();
         mauiAppBuilder.Services.AddTransient<MapPropertiesViewModel>();
         mauiAppBuilder.Services.AddTransient<PageVisibilityEventViewModel>();
         mauiAppBuilder.Services.AddTransient<RegisterViewModel>();
@@ -87,6 +99,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<ChangeUsernamePage>();
         mauiAppBuilder.Services.AddTransient<HomePage>();
         mauiAppBuilder.Services.AddTransient<LoginPage>();
+        mauiAppBuilder.Services.AddTransient<AutoSetPropertiesPage>();
         mauiAppBuilder.Services.AddTransient<MapPropertiesPage>();
         mauiAppBuilder.Services.AddTransient<PageVisibilityEventPage>();
         mauiAppBuilder.Services.AddTransient<RegisterPage>();

@@ -1,4 +1,6 @@
-﻿namespace Burkus.Mvvm.Maui;
+﻿using System.Reflection;
+
+namespace Burkus.Mvvm.Maui;
 
 internal static class LifecycleEventUtility
 {
@@ -31,6 +33,7 @@ internal static class LifecycleEventUtility
     internal static async Task TriggerOnNavigatedTo(object? bindingContext, NavigationParameters navigationParameters)
     {
         MapAttributeNavigationParameters(bindingContext, navigationParameters);
+        AutoMapNavigationParameters(bindingContext, navigationParameters);
 
         // trigger the OnNavigatedToEvent
         var navigatedToViewModel = bindingContext as INavigatedEvents;
@@ -85,6 +88,68 @@ internal static class LifecycleEventUtility
                 // throw an exception if the attribute is required but not found
                 throw new BurkusMvvmException($"The navigation parameter \"{attribute.PropertyName}\" is required but the key was not found.");
             }
+        }
+    }
+
+    private static void AutoMapNavigationParameters(object? bindingContext, NavigationParameters navigationParameters)
+    {
+        if (bindingContext is null || !AutoSetPropertiesOptions.Enabled)
+        {
+            return;
+        }
+
+        var type = bindingContext.GetType();
+
+        // keys already mapped by attributes take precedence
+        var attributeKeys = type.GetCustomAttributes(typeof(MapNavigationParameterAttribute), true)
+            .OfType<MapNavigationParameterAttribute>()
+            .Select(attribute => attribute.NavigationParameterKey)
+            .ToHashSet();
+
+        foreach (var (key, value) in navigationParameters)
+        {
+            if (value is null || attributeKeys.Contains(key) || IsReservedNavigationParameter(key))
+            {
+                continue;
+            }
+
+            var propertyName = AutoSetPropertiesOptions.PropertyNameMapper?.Invoke(key) ?? key;
+            var propertyInfo = type.GetProperty(propertyName);
+
+            if (propertyInfo == null || !propertyInfo.CanWrite)
+            {
+                continue;
+            }
+
+            propertyInfo.SetValue(bindingContext, ConvertToPropertyType(key, value, propertyInfo));
+        }
+    }
+
+    private static bool IsReservedNavigationParameter(string key)
+    {
+        return key == ReservedNavigationParameters.UseModalNavigation
+            || key == ReservedNavigationParameters.UseAnimatedNavigation
+            || key == ReservedNavigationParameters.SelectTab;
+    }
+
+    private static object ConvertToPropertyType(string key, object value, PropertyInfo propertyInfo)
+    {
+        var targetType = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType;
+
+        if (targetType.IsInstanceOfType(value))
+        {
+            return value;
+        }
+
+        try
+        {
+            return targetType.IsEnum
+                ? Enum.Parse(targetType, value.ToString()!)
+                : Convert.ChangeType(value, targetType);
+        }
+        catch (Exception ex) when (ex is FormatException or InvalidCastException or OverflowException or ArgumentException)
+        {
+            throw new BurkusMvvmException($"The navigation parameter \"{key}\" could not be converted to the type {targetType} of the property \"{propertyInfo.Name}\".", ex);
         }
     }
 
