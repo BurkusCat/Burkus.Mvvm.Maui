@@ -109,6 +109,9 @@
     <Compile Update="Views\MapPropertiesPage.xaml.cs">
       <DependentUpon>MapPropertiesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AutoSetPropertiesPage.xaml.cs">
+      <DependentUpon>AutoSetPropertiesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UriTestPage.xaml.cs">
       <DependentUpon>UriTestPage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\MapPropertiesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AutoSetPropertiesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\UriTestPage.xaml">
